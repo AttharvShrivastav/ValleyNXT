@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://use.typekit.net/mxb3kej.css");
+@import "tailwindcss";
+
+
+
+@font-face {
+  font-family: 'Axiforma';
+  src: url('src/fonts/Axiforma-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-ThinItalic.ttf') format('truetype');
+font-weight: 100;
+font-style: italic;
+}
+
+/* Axiforma Light */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-Light.ttf') format('truetype');
+font-weight: 300;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-LightItalic.ttf') format('truetype');
+font-weight: 300;
+font-style: italic;
+}
+
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-Book.ttf') format('truetype');
+font-weight: 350; /* Adjust if a specific 'Book' weight is known */
+font-style: normal;
+}
+
+/* Axiforma Book Italic */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-BookItalic.ttf') format('truetype');
+font-weight: 350;
+font-style: italic;
+}
+
+/* Axiforma Regular */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-Regular.ttf') format('truetype');
+font-weight: 400; /* Normal */
+font-style: normal;
+}
+
+/* Axiforma Italic */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-Italic.ttf') format('truetype');
+font-weight: 400;
+font-style: italic;
+}
+
+/* Axiforma Medium */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-Medium.ttf') format('truetype');
+font-weight: 500;
+font-style: normal;
+}
+
+/* Axiforma Medium Italic */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-MediumItalic.ttf') format('truetype');
+font-weight: 500;
+font-style: italic;
+}
+
+/* Axiforma SemiBold */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-SemiBold.ttf') format('truetype');
+font-weight: 600;
+font-style: normal;
+}
+
+/* Axiforma SemiBold Italic */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-SemiBoldItalic.ttf') format('truetype');
+font-weight: 600;
+font-style: italic;
+}
+
+/* Axiforma Bold */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-Bold.ttf') format('truetype');
+font-weight: 700;
+font-style: normal;
+}
+
+/* Axiforma Bold Italic */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-BoldItalic.ttf') format('truetype');
+font-weight: 700;
+font-style: italic;
+}
+
+/* Axiforma ExtraBold */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-ExtraBold.ttf') format('truetype');
+font-weight: 800;
+font-style: normal;
+}
+
+/* Axiforma ExtraBold Italic */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-ExtraBoldItalic.ttf') format('truetype');
+font-weight: 800;
+font-style: italic;
+}
+
+/* Axiforma Black */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-Black.ttf') format('truetype');
+font-weight: 900;
+font-style: normal;
+}
+
+/* Axiforma Black Italic */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-BlackItalic.ttf') format('truetype');
+font-weight: 900;
+font-style: italic;
+}
+
+/* Axiforma Heavy */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-Heavy.ttf') format('truetype');
+font-weight: 950; /* or 900 depending on specific font design */
+font-style: normal;
+}
+
+/* Axiforma Heavy Italic */
+@font-face {
+font-family: 'Axiforma';
+src: url('src/fonts/Axiforma-HeavyItalic.ttf') format('truetype');
+font-weight: 950;
+font-style: italic;
+}
+
+body{
+  background: #000;
+}
+
+@theme {
+  --color-primary : "#F47A36";
+  --color-normal : "#FFC7A8";
+  
+  --font-primary: "Axiforma", sans-serif;
+  --font-secondary: "Montserrat", sans-serif;
+  --font-serifa: "Georgia", serif;
+}
