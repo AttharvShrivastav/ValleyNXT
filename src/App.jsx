@@ -11,11 +11,15 @@ import Footer from './components/Footer';
 
 const Header = () => {
   return (
-    <header className="absolute h-[70px] w-full top-0 left-0 right-0 z-50 px-6 sm:px-12 py-6">
-      <nav className="flex items-center justify-between">
-        <Link to="/">
+    // This parent flex container centers the entire nav block vertically
+    <header className="absolute h-24 w-full top-0 left-0 right-0 z-50 px-6 sm:px-12 flex items-center">
+      {/* CORRECTION: Re-added 'items-center' to align the logo and NavMenu with each other. Added 'w-full' for spacing. */}
+      <nav className="flex items-center justify-between w-full">
+        <div className='h-full w-auto'>
+        <a href="/">
           <img className='w-[80px] h-[40px] sm:w-[140px] sm:h-[70px]' src={MyLogo} alt="ValleyNXT Ventures Logo" />
-        </Link>
+        </a>
+        </div>
         <NavMenu />
       </nav>
     </header>
@@ -30,7 +34,7 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/team" element={<TeamsPage />} />
+          <Route path="/team"element={<TeamsPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
         </Routes>
         <Footer />
