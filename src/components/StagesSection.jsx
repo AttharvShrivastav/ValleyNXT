@@ -10,7 +10,6 @@ import IdeationIcon from '../assets/IdeationIcon.png'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-// --- Main Section Component ---
 const StagesSection = () => {
     const sectionRef = useRef(null);
     const cardsRef = useRef([]);
@@ -18,7 +17,7 @@ const StagesSection = () => {
     const stages = [
       { icon: AccelerationIcon, title: 'Acceleration', content: `9 months of expert mentorship, funding, rapid tech build, and product sprints.
 Cloud and data workshops, CXO access. Everything needed to launch and scale.`},
-      { icon: IdeationIcon, title: 'Ideation',  content: `Early-stage backing for bold ideas, with belief, capital, and hands-on support.
+      { icon: IdeationIcon, title: 'Innovation',  content: `Early-stage backing for bold ideas, with belief, capital, and hands-on support.
 Mentors who've built before, market access, and global connections.
 Raw ideas refined into breakthrough solutions.` },
       { icon: BreakthroughIcon, title: 'Breakthrough', content: `Support for ventures solving real-world problems in health, education, climate, jobs, and livelihoods.

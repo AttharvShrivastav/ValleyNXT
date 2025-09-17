@@ -18,7 +18,6 @@ const NavMenu = () => {
   };
 
   useGSAP(() => {
-    // Create the timeline once and configure its callbacks
     timelineRef.current = gsap.timeline({
       paused: true,
       onStart: () => {
@@ -32,20 +31,17 @@ const NavMenu = () => {
       }
     });
 
-    // Animate menu container sliding in
     timelineRef.current.fromTo(menuContainer.current,
       { x: '-100%', opacity: 0 },
       { x: '0%', opacity: 1, duration: 0.8, ease: 'power3.out' }
     );
 
-    // Animate separators
     const linkSeparators = gsap.utils.toArray(navLinksContainer.current.querySelectorAll('.link-separator'));
     timelineRef.current.from(linkSeparators,
       { width: '0%', duration: 0.6, stagger: 0.05, ease: 'power2.out' },
       '-=0.4'
     );
     
-    // Animate nav links
     const linkItems = gsap.utils.toArray(navLinksContainer.current.querySelectorAll('.link-item'));
     timelineRef.current.fromTo(linkItems,
       { y: '20px', opacity: 0 },
@@ -71,24 +67,28 @@ const NavMenu = () => {
       <button
         ref={menuButtonRef}
         onClick={toggleMenu}
-        className="fixed top-8 right-8 z-50 text-white font-primary font-light text-xl cursor-pointer"
+        className="fixed top-6 right-6 sm:top-8 sm:right-8 z-[100] text-white cursor-pointer"
       >
-        Menu
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
       </button>
 
       <div
         ref={menuContainer}
-        className={`fixed inset-0 z-40 bg-black flex flex-col justify-center text-white font-primary font-light px-8 hidden opacity-0`}
+        className={`fixed inset-0 z-40 w-screen bg-black flex flex-col justify-center text-white font-primary font-light px-6 sm:px-8 hidden opacity-0`}
       >
-        <Link to="/" onClick={toggleMenu} className="absolute top-8 left-8 z-50">
-          <img className='w-[140px] h-[70px]' src={MyLogo} alt="ValleyNXT Ventures Logo" />
+        <Link to="/" onClick={toggleMenu} className="absolute top-6 left-6 sm:top-8 sm:left-8 z-50">
+          <img className='w-[80px] h-[40px] sm:w-[140px] sm:h-[70px]' src={MyLogo} alt="ValleyNXT Ventures Logo" />
         </Link>
         
         <button
           onClick={toggleMenu}
-          className="absolute top-8 right-8 text-xl font-light cursor-pointer"
+          className="absolute top-6 right-6 sm:top-8 sm:right-8 cursor-pointer"
         >
-          X
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
         
         <div ref={navLinksContainer} className="w-full max-w-none">
@@ -97,7 +97,7 @@ const NavMenu = () => {
 
           <div className="link-item overflow-hidden">
             <Link to="/" onClick={toggleMenu} className="relative block text-4xl md:text-5xl font-normal transition-colors duration-300 group">
-              <span className="relative z-10 py-4 transition-colors duration-300 group-hover:text-[#F47A36] block pl-8">HOME</span>
+              <span className="relative z-10 py-4 transition-colors font-primary duration-300 group-hover:text-[#F47A36] block pl-8">HOME</span>
               <div className="absolute top-0 right-0 h-full w-0 bg-gradient-to-r from-[#0000005b] to-[#F47A36] transition-all duration-300 group-hover:w-full"></div>
             </Link>
           </div>
@@ -106,7 +106,7 @@ const NavMenu = () => {
           
           <div className="link-item overflow-hidden">
             <Link to="/team" onClick={toggleMenu} className="relative block text-4xl md:text-5xl font-normal transition-colors duration-300 group">
-              <span className="relative z-10 py-4 transition-colors duration-300 group-hover:text-[#F47A36] block pl-8">TEAM</span>
+              <span className="relative z-10 py-4 font-primary transition-colors duration-300 group-hover:text-[#F47A36] block pl-8">TEAM</span>
               <div className="absolute top-0 right-0 h-full w-0 bg-gradient-to-r from-[#0000005b] to-[#F47A36] transition-all duration-300 group-hover:w-full"></div>
             </Link>
           </div>
@@ -115,7 +115,7 @@ const NavMenu = () => {
           
           <div className="link-item overflow-hidden">
             <Link to="/portfolio" onClick={toggleMenu} className="relative block text-4xl md:text-5xl font-normal transition-colors duration-300 group">
-              <span className="relative z-10 py-4 transition-colors duration-300 group-hover:text-[#F47A36] block pl-8">PORTFOLIO</span>
+              <span className="relative z-10 py-4 transition-colors font-primary duration-300 group-hover:text-[#F47A36] block pl-8">PORTFOLIO</span>
               <div className="absolute top-0 right-0 h-full w-0 bg-gradient-to-r from-[#0000005b] to-[#F47A36] transition-all duration-300 group-hover:w-full"></div>
             </Link>
           </div>
@@ -123,13 +123,13 @@ const NavMenu = () => {
           <div className="link-separator h-0.5 bg-[#F47A36]"></div>
         </div>
 
-        <div className="absolute bottom-8 left-8 text-sm text-gray-400 font-light">
-          <p>Address</p>
-          <p>123 Main St</p>
-          <p>City, State, ZIP</p>
+        <div className="absolute bottom-8 left-6 sm:left-8 text-xs sm:text-sm text-gray-400 font-light">
+          <p>195, Asco Capital </p>
+          <p>Sch.No.78 Part II Near Daisy Dales School</p>
+          <p>Indore, Madhya Pradesh</p>
         </div>
         
-        <div className="absolute bottom-8 right-8 text-sm text-gray-400 font-light space-y-2">
+        <div className="absolute bottom-8 right-6 sm:right-8 text-xs sm:text-sm text-gray-400 font-light space-y-2">
           <a href="https://behance.net" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors duration-300">Behance</a>
           <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors duration-300">Dribbble</a>
           <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors duration-300">LinkedIn</a>
