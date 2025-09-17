@@ -30,7 +30,7 @@ const StagesSectionBars = () => {
                 start: 'top 80%',
                 toggleActions: 'play none none none',
                 // ✅ CHANGE: Using an object forces markers to be visible on all screen sizes
-                markers: {}
+                // markers: {}
             }
         });
     }, { scope: componentRootRef });
