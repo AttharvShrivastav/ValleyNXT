@@ -6,25 +6,91 @@ import { SplitText } from 'gsap/all';
 
 import ProfileCard from '../components/ProfileCard';
 import AnandSaklechaImage from '../assets/AnandSaklecha.png';
+import DrMadhuImage from '../assets/DrMadhu.png';
+import DrNikhilImage from '../assets/DrNikhil.png';
+import MrSureshImage from '../assets/MrSureshImage.png';
+
+import DrInderjitImage from '../assets/DrInderjit.png'
+import DrNaziaImage from '../assets/DrNazia.png'
+import MrApurvaImage from '../assets/MrApurva.png'
+
+import HarshwardhanSaklechaImage from '../assets/1.png'
+import DhairyaJainImage from '../assets/2.png'
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 // --- Static Data ---
 const founders = [
-    { id: 1, name: "CA Anand Saklecha", title: "Capitalizing Ideas", bio: "Bio text for Anand Saklecha.", image: AnandSaklechaImage },
-    { id: 2, name: "Founder Two", title: "Chief Visionary", bio: "Bio text for Founder Two.", image: 'https://i.ibb.co/L5hYJmN/person2.png' },
-    { id: 3, name: "Founder Three", title: "Lead Strategist", bio: "Bio text for Founder Three.", image: 'https://i.ibb.co/c8m6w7p/person3.png' },
-    { id: 4, name: "Founder Four", title: "Growth Hacker", bio: "Bio text for Founder Four.", image: AnandSaklechaImage },
-];
-const advisory = [
-    { id: 5, name: "Advisor One", title: "Industry Expert", bio: "Bio text for Advisor One.", image: AnandSaklechaImage },
-    { id: 6, name: "Advisor Two", title: "Market Analyst", bio: "Bio text for Advisor Two.", image: 'https://i.ibb.co/L5hYJmN/person2.png' },
-    { id: 7, name: "Advisor Three", title: "Legal Counsel", bio: "Bio text for Advisor Three.", image: 'https://i.ibb.co/c8m6w7p/person3.png' },
+  {
+    id: 1,
+    name: "CA Anand Saklecha",
+    title: "Capitalizing Ideas",
+    bio: "Veteran fund manager, structuring over ₹4,500 Cr in deals and guiding entrepreneurs from inception to IPO.",
+    image: AnandSaklechaImage
+  },
+  {
+    id: 2,
+    name: "Dr. Madhu Vasepalli",
+    title: "Managing Partner",
+    bio: "Serial healthtech entrepreneur and investor in 17+ startups. Mentor to founders at the intersection of tech and healthcare.",
+    image: DrMadhuImage
+  },
+  {
+    id: 3,
+    name: "Dr. Nikhil Agarwal",
+    title: "Founder & Advisor",
+    bio: "Architect behind India's leading incubators and 175+ startups. Pioneer in innovation ecosystems and startup policy.",
+    image: DrNikhilImage
+  },
+  {
+    id: 4,
+    name: "Mr. Suresh Goyal",
+    title: "Partner & Fund Manager",
+    bio: "Infrastructure finance leader with 30+ years experience. Scaled India's largest PPP platform and managed global assets.",
+    image: MrSureshImage
+  }
 ];
 const investmentTeam = [
-    { id: 8, name: "Investor One", title: "Portfolio Manager", bio: "Bio text for Investor One.", image: null },
-    { id: 9, name: "Investor Two", title: "Due Diligence", bio: "Bio text for Investor Two.", image: AnandSaklechaImage },
+    {
+        id: 8,
+        name: "CA Harshwardhan Saklecha",
+        title: "Vice President",
+        bio: "Chartered Accountant and AIF Fund Manager. Brings advanced skills in VC, financial modeling, and deal structuring.",
+        image: HarshwardhanSaklechaImage
+    },
+    {
+        id: 9,
+        name: "CS Dhairya Jain",
+        title: "Investor Relation & Compliance Officer",
+        bio: "Company Secretary with expertise in fund-raise, due diligence, and compliance. Experience handling global investments.",
+        image: DhairyaJainImage
+    },
 ];
+
+const advisory = [
+    {
+        id: 10,
+        name: "Mr. Apurva Chamaria",
+        title: "Global Head of VC & Startup Partnerships, Google",
+        bio: "Top angel investor with 100+ startup investments and 10+ exits. Ecosystem builder shaping India’s tech landscape.",
+        image: MrApurvaImage
+    },
+    {
+        id: 11,
+        name: "Dr. Inderjit Singh",
+        title: "Ex-Member of Parliament, Singapore",
+        bio: "Co-founded a $2B unicorn; global startup leader and mentor. Supports deep tech and innovation ventures.",
+        image: DrInderjitImage
+    },
+    {
+        id: 12,
+        name: "Dr. Nazia M. Habib",
+        title: "Professor, University of Cambridge",
+        bio: "Expert in sustainable development and blended finance. Mentored global founders and mobilized $10M+ capital.",
+        image: DrNaziaImage
+    },
+];
+
 
 
 const TeamCategorySection = ({ title, members }) => (

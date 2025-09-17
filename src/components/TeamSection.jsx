@@ -5,16 +5,44 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import { SplitText } from 'gsap/all'; 
 import AnandSaklechaImage from '../assets/AnandSaklecha.png';
+import DrMadhuImage from '../assets/DrMadhu.png';
+import DrNikhilImage from '../assets/DrNikhil.png';
+import MrSureshImage from '../assets/MrSureshImage.png';
 import ProfileCard from './ProfileCard';
 
 gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, SplitText);
 
 const teamMembers = [
-    { id: 1, name: "CA Anand Saklecha", title: "Capitalizing Ideas", bio: "Veteran fund manager, structuring over ₹4,500 Cr in deals and guiding entrepreneurs from inception to IPO.", image: AnandSaklechaImage },
-    { id: 2, name: "Timothée Moiroux", title: "Co-Founder, CDO @Komet", bio: "Making the web a more beautiful and intuitive place. Specializing in branding, UI/UX, and motion design.", image: "https://i.ibb.co/L5hYJmN/person2.png" },
-    { id: 3, name: "Anjali Bansal", title:"Founder, Avaana Capital", bio: "Former global Partner and MD with TPG Growth PE.", image: "https://i.ibb.co/c8m6w7p/person3.png"},
-    { id: 4, name: "Sanjeev Bikhchandani", title: "Founder, Info Edge", bio: "Pioneer of internet entrepreneurship in India.", image: "https://i.ibb.co/L5hYJmN/person2.png" },
+  {
+    id: 1,
+    name: "CA Anand Saklecha",
+    title: "Capitalizing Ideas",
+    bio: "Veteran fund manager, structuring over ₹4,500 Cr in deals and guiding entrepreneurs from inception to IPO.",
+    image: AnandSaklechaImage
+  },
+  {
+    id: 2,
+    name: "Dr. Madhu Vasepalli",
+    title: "Managing Partner",
+    bio: "Serial healthtech entrepreneur and investor in 17+ startups. Mentor to founders at the intersection of tech and healthcare.",
+    image: DrMadhuImage
+  },
+  {
+    id: 3,
+    name: "Dr. Nikhil Agarwal",
+    title: "Founder & Advisor",
+    bio: "Architect behind India's leading incubators and 175+ startups. Pioneer in innovation ecosystems and startup policy.",
+    image: DrNikhilImage
+  },
+  {
+    id: 4,
+    name: "Mr. Suresh Goyal",
+    title: "Partner & Fund Manager",
+    bio: "Infrastructure finance leader with 30+ years experience. Scaled India's largest PPP platform and managed global assets.",
+    image: MrSureshImage
+  }
 ];
+
 
 const TeamSection = () => {
     const container = useRef(null);

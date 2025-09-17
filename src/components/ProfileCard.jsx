@@ -38,7 +38,7 @@ const ProfileCard = ({ person, className }) => {
                         src={person.image} 
                         alt={person.name} 
                         onError={handleImageError} 
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[250px]"
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full w-full"
                     />
                 )}
                 <div className="absolute z-10 text-left bottom-6 left-6">

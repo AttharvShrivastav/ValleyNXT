@@ -13,6 +13,7 @@ import Dashboard from '../components/Dashboard';
 import TeamSection from '../components/TeamSection'; // This is the preview on the homepage
 import VnvpediaSection from '../components/VnVPedia';
 
+gsap.registerPlugin(SplitText)
 
 const Hero = () => { 
   const heroRef = useRef();
