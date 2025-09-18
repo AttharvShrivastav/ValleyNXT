@@ -24,7 +24,6 @@ const PageHero = ({ subtitle, titleLine1, titleLine2, titleLine2Serif, buttonTex
             
             <div className="relative w-[90%] md:w-[80%] max-w-6xl flex flex-col items-center">
                 
-                {/* ✅ CHANGE: Added horizontal padding (px-16) to the SVG's container to shorten the lines */}
                 {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full hidden md:block px-16">
                     <svg width="100%" height="auto" viewBox="0 0 988 124" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
                         <path d="M104.667 3C104.667 1.52724 103.473 0.333333 102 0.333333C100.527 0.333333 99.3333 1.52724 99.3333 3C99.3333 4.47276 100.527 5.66667 102 5.66667C103.473 5.66667 104.667 4.47276 104.667 3ZM102 3V2.5L-7.62939e-06 2.5V3V3.5L102 3.5V3Z" fill="#F47A36"/>
@@ -40,7 +39,8 @@ const PageHero = ({ subtitle, titleLine1, titleLine2, titleLine2Serif, buttonTex
                         <h1 className="hero-heading font-primary font-normal text-4xl md:text-6xl text-[#FFC7A8] leading-tight">
                             <span className='font-bold'>{titleLine1}</span>
                             <br />
-                            <span className={`font-normal text-6xl md:text-7xl text-[#F47A36] ${titleLine2Serif ? 'font-serifa' : ''}`}>
+                             {/* ✅ CHANGE: Reduced base font size for mobile */}
+                            <span className={`font-normal text-5xl md:text-7xl text-[#F47A36] ${titleLine2Serif ? 'font-serifa' : ''}`}>
                                 {titleLine2}
                             </span>
                         </h1>
