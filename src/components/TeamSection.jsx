@@ -10,7 +10,7 @@ import DrNikhilImage from '../assets/DrNikhil.png';
 import MrSureshImage from '../assets/MrSureshImage.png';
 import ProfileCard from './ProfileCard';
 
-gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, SplitText);
+gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, SplitText, useGSAP);
 
 const teamMembers = [
   {
@@ -18,28 +18,32 @@ const teamMembers = [
     name: "CA Anand Saklecha",
     title: "Capitalizing Ideas",
     bio: "Veteran fund manager, structuring over ₹4,500 Cr in deals and guiding entrepreneurs from inception to IPO.",
-    image: AnandSaklechaImage
+    image: AnandSaklechaImage,
+    linkedin: "#" // ✅ ADDED: LinkedIn URL
   },
   {
     id: 2,
     name: "Dr. Madhu Vasepalli",
     title: "Managing Partner",
     bio: "Serial healthtech entrepreneur and investor in 17+ startups. Mentor to founders at the intersection of tech and healthcare.",
-    image: DrMadhuImage
+    image: DrMadhuImage,
+    linkedin: "#" // ✅ ADDED: LinkedIn URL
   },
   {
     id: 3,
     name: "Dr. Nikhil Agarwal",
     title: "Founder & Advisor",
     bio: "Architect behind India's leading incubators and 175+ startups. Pioneer in innovation ecosystems and startup policy.",
-    image: DrNikhilImage
+    image: DrNikhilImage,
+    linkedin: "#" // ✅ ADDED: LinkedIn URL
   },
   {
     id: 4,
     name: "Mr. Suresh Goyal",
     title: "Partner & Fund Manager",
     bio: "Infrastructure finance leader with 30+ years experience. Scaled India's largest PPP platform and managed global assets.",
-    image: MrSureshImage
+    image: MrSureshImage,
+    linkedin: "#" // ✅ ADDED: LinkedIn URL
   }
 ];
 
@@ -73,49 +77,52 @@ const TeamSection = () => {
             ctaButton.addEventListener('mouseleave', () => tl.timeScale(1.8).reverse());
         }
 
-        gsap.from(arcPathRef.current, {
-            drawSVG: "0%",
-            scrollTrigger: {
-                trigger: container.current,
-                start: "top 60%",
-                end: "bottom 80%",
-            }
+        const mm = gsap.matchMedia();
+        mm.add("(min-width: 768px)", () => {
+            gsap.from(arcPathRef.current, {
+                drawSVG: "0%",
+                scrollTrigger: {
+                    trigger: container.current,
+                    start: "top 60%",
+                    end: "bottom 80%",
+                }
+            });
         });
+
+        return () => mm.revert();
 
     }, { scope: container });
 
     return (
         <div ref={container} className="relative font-sans bg-[#000] text-white flex justify-center items-center min-h-screen p-5 sm:p-10 box-border overflow-hidden">
             
-            {/* --- SVG is positioned at the TOP with a downward-facing path --- */}
             <svg
-  className="absolute top-10 left-1/2 -translate-x-1/2 w-[1200px] h-auto z-0"
-  viewBox="0 0 1200 350"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
-  style={{ transform: 'scaleY(-1)' }} // 👈 Flip vertically
->
-  <path
-    ref={arcPathRef}
-    d="M50 2 C 300 350, 900 350, 1150 2"
-    stroke="#F47A36"
-    strokeWidth="2"
-  />
-</svg>
-
+                className="absolute top-10 left-1/2 -translate-x-1/2 w-[1200px] h-auto z-0 hidden md:block"
+                viewBox="0 0 1200 350"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ transform: 'scaleY(-1)' }}
+            >
+                <path
+                    ref={arcPathRef}
+                    d="M50 2 C 300 350, 900 350, 1150 2"
+                    stroke="#F47A36"
+                    strokeWidth="2"
+                />
+            </svg>
 
             <div className="w-full max-w-7xl text-center relative z-10">
-                <div className="overflow-hidden mb-32">
-                    <h2 className="main-heading text-5xl text-[#FFC7A8] font-bold leading-tight">
+                <div className="overflow-hidden mb-16 md:mb-32">
+                    <h2 className="main-heading text-4xl md:text-5xl text-[#FFC7A8] font-bold leading-tight">
                         CONNECTED TO THE VISIONARIES
                         <br />
-                        <span className='font-serifa text-6xl font-normal text-[#F47A36]'>
+                        <span className='font-serifa text-5xl md:text-6xl font-normal text-[#F47A36]'>
                             shaping tomorrow's market
                         </span>
                     </h2>
                 </div>
 
-                <div className="card-container flex justify-center items-center gap-8">
+                <div className="card-container flex flex-col md:flex-row justify-center items-center gap-8">
                     {teamMembers.map(person => (
                         <ProfileCard key={person.id} person={person} />
                     ))}
@@ -141,5 +148,4 @@ const TeamSection = () => {
         </div>
     );
 };
-
 export default TeamSection;
