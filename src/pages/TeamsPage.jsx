@@ -141,8 +141,8 @@ const TeamsPage = () => {
             {/* ✅ CHANGE: Replaced the hardcoded hero with the reusable PageHero component */}
             <PageHero 
                 subtitle="MEET OUR TEAM"
-                titleLine1="CONNECTED TO THE VISIONARIES"
-                titleLine2="shaping tomorrow's market"
+                titleLine1="THE FOURTH PILLAR"
+                titleLine2="of our story"
                 titleLine2Serif={true}
                 buttonText="Contact us for available positions"
             />

@@ -30,7 +30,7 @@ const Header = () => {
 export default function App() {
   return (
     <BrowserRouter>
-      <div className='bg-black'>
+      <div className='bg-black overflox-x-hidden'>
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
