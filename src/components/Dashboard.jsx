@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react"; // Added useLayoutEffect
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -43,7 +43,8 @@ function AnimatedNumber({ value, prefix = "", suffix = "" }) {
 
 // --- Final DashboardSection Component ---
 export default function DashboardSection() {
-    const container = useRef(null);
+    const sectionRef = useRef(null); // Ref for the outer section
+    const contentBoxRef = useRef(null); // Ref for the inner content box
     const presentationButton = useRef(null);
     const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -53,7 +54,6 @@ export default function DashboardSection() {
     const chartLogoRef = useRef(null);
     
     // Pie Chart Logic
-    // ✅ CHANGE: State is now a simple string for consistency.
     const [pieHeaderText, setPieHeaderText] = useState("Startups by Sector");
     const pieHeaderRef = useRef(null);
     const dataValues = pieChartData.slice(1).map(row => row[1]);
@@ -70,7 +70,6 @@ export default function DashboardSection() {
         tooltip: { trigger: 'none' },
     };
 
-    // ✅ CHANGE: Handlers now only set text, not color.
     const handleLegendEnter = (sector, percentage) => {
         if (pieHeaderText.startsWith(sector)) return;
         gsap.to(pieHeaderRef.current, { autoAlpha: 0, y: 10, duration: 0.2, ease: 'power2.in', onComplete: () => setPieHeaderText(`${sector}: ${percentage}%`) });
@@ -85,7 +84,7 @@ export default function DashboardSection() {
         gsap.timeline().to([chartContentRef.current, chartTitleRef.current, chartLogoRef.current], { autoAlpha: 0, y: 15, duration: 0.4, ease: 'power2.in', onComplete: () => setCurrentSlide(newIndex) });
     }
 
-    // Hook 1: For one-time setup animations like button hover listeners.
+    // GSAP Hook 1: Button hover animations (one-time setup)
     useGSAP(() => {
         const button = presentationButton.current;
         if (!button) return;
@@ -99,29 +98,71 @@ export default function DashboardSection() {
             button.removeEventListener('mouseenter', buttonEnter);
             button.removeEventListener('mouseleave', buttonLeave);
         }
-    }, { scope: container });
+    }, { scope: sectionRef }); // Scope to the sectionRef
 
-    // Hook 2: For the line chart carousel animation.
+    // GSAP Hook 2: Line chart carousel animation (runs on currentSlide change)
     useGSAP(() => {
         gsap.fromTo([chartContentRef.current, chartTitleRef.current, chartLogoRef.current], 
             { autoAlpha: 0, y: -15 }, 
             { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.05, ease: 'power2.out' }
         );
-    }, { dependencies: [currentSlide], scope: container });
+    }, { dependencies: [currentSlide], scope: sectionRef });
     
-    // Hook 3: For the pie chart header animation.
+    // GSAP Hook 3: Pie chart header animation (runs on pieHeaderText change)
     useGSAP(() => {
         gsap.fromTo(pieHeaderRef.current, 
             { autoAlpha: 0, y: -10 }, 
             { autoAlpha: 1, y: 0, duration: 0.3, ease: 'power2.out' }
         );
-    }, { dependencies: [pieHeaderText], scope: container });
+    }, { dependencies: [pieHeaderText], scope: sectionRef });
+
+    // ✅ NEW: Dynamic scaling based on window size to prevent overflow on zoom
+    useLayoutEffect(() => {
+        const adjustScale = () => {
+            if (!sectionRef.current || !contentBoxRef.current) return;
+
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            const contentRect = contentBoxRef.current.getBoundingClientRect();
+
+            // Calculate current padding/margin on the section
+            const sectionStyle = window.getComputedStyle(sectionRef.current);
+            const sectionPaddingX = parseFloat(sectionStyle.paddingLeft) + parseFloat(sectionStyle.paddingRight);
+            const sectionPaddingY = parseFloat(sectionStyle.paddingTop) + parseFloat(sectionStyle.paddingBottom);
+
+            // Determine available space for the content box
+            const availableWidth = viewportWidth - sectionPaddingX;
+            const availableHeight = viewportHeight - sectionPaddingY;
+
+            // Calculate scale factors
+            const scaleX = availableWidth / contentRect.width;
+            const scaleY = availableHeight / contentRect.height;
+            
+            // Choose the smaller scale to ensure it fits both dimensions
+            const finalScale = Math.min(scaleX, scaleY, 1); // Max scale is 1 (original size)
+
+            gsap.set(contentBoxRef.current, { scale: finalScale, transformOrigin: "center center" });
+        };
+
+        // Initial adjustment
+        adjustScale();
+
+        // Add resize listener
+        window.addEventListener('resize', adjustScale);
+
+        // Cleanup
+        return () => window.removeEventListener('resize', adjustScale);
+    }, []); // Empty dependency array means this runs once on mount and cleans up on unmount
+
 
     const activeSlide = chartSlides[currentSlide];
 
     return (
-        <section ref={container} className="bg-black min-h-screen w-full text-brown-900 flex justify-center items-center py-10 px-4">
-            <div className="w-full max-w-[1200px] h-auto md:h-[90vh] md:max-h-[800px] bg-[#FFC7A8] rounded-3xl p-6 md:p-8 shadow-lg flex flex-col gap-4 md:gap-8">
+        // ✅ CHANGE: Removed min-h-screen here, handled by useEffect and flex-grow
+        <section ref={sectionRef} className="bg-black w-full text-brown-900 flex justify-center items-center py-6 px-4 md:py-10 md:px-4 min-h-screen">
+            {/* ✅ CHANGE: Removed fixed height/max-height, now scales */}
+            <div ref={contentBoxRef} className="w-full max-w-[1200px] bg-[#FFC7A8] rounded-3xl p-6 md:p-8 shadow-lg flex flex-col gap-4 md:gap-8">
                 {/* Header */}
                 <div className="w-full flex items-center justify-between flex-shrink-0">
                     <img src={MyLogo} alt="ValleyNXT Ventures Logo" className="w-28 md:w-40" />
@@ -141,8 +182,7 @@ export default function DashboardSection() {
                         <div className="bg-[#1C0800] rounded-2xl px-4 py-6 flex-grow flex flex-col overflow-y-auto" onMouseLeave={handleLegendLeave}>
                             <div className="w-full h-full flex flex-col items-center justify-center gap-2">
                                 <div className="h-8 flex items-center flex-shrink-0">
-                                    <p ref={pieHeaderRef} className="text-center pt-2 font-primary text-lg">
-                                        {/* ✅ CHANGE: Logic now applies consistent color on hover. */}
+                                    <p ref={pieHeaderRef} className="text-center font-primary text-lg">
                                         {pieHeaderText === "Startups by Sector" ? (
                                             <>
                                                 <span className="text-[#FFC7A8]">Startups by </span>
