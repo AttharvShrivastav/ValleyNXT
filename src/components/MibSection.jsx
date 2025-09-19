@@ -368,6 +368,7 @@
 
 // export default VentureServices;
 
+
 import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -465,24 +466,43 @@ const VentureServices = () => {
     <div ref={mainRef} className="md:h-[300vh] bg-black text-[#FFC7A8]">
       <div ref={pinRef} className="md:h-screen w-screen flex flex-col">
         <div className="w-full text-center py-12 relative flex flex-col items-center justify-center">
-          {/* ✅ CHANGE: Pulled SVG up and reduced its container width for alignment */}
-          <div className="absolute top-16 left-1/2 -translate-x-1/2 w-full max-w-[1100px] hidden md:block px-4">
-            {/* ✅ CHANGE: Reduced SVG height to create more space */}
-            <svg width="100%" height="160" viewBox="0 0 1162 199" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-              <path d="M330.367 3.11328C330.367 1.85369 329.346 0.832583 328.086 0.832583C326.827 0.832583 325.806 1.85369 325.806 3.11328C325.806 4.37288 326.827 5.39398 328.086 5.39398C329.346 5.39398 330.367 4.37288 330.367 3.11328ZM328.086 3.11328L328.086 2.68565L1.00003 2.68567L1.00003 3.11331L1.00003 3.54094L328.086 3.54091L328.086 3.11328Z" fill="#F47A36"/>
-              <path d="M719.281 149C719.281 147.74 718.26 146.719 717 146.719C715.74 146.719 714.719 147.74 714.719 149C714.719 150.26 715.74 151.281 717 151.281C718.26 151.281 719.281 150.26 719.281 149ZM1162 149L1162 148.572L717 148.572L717 149L717 149.428L1162 149.428L1162 149Z" fill="#F47A36"/>
-              <line x1="1162" y1="197.779" x2="1" y2="197.779" stroke="#F47A36" strokeWidth="0.855262"/>
-              <line y1="-0.427631" x2="194.819" y2="-0.427631" transform="matrix(0.00536359 -0.999986 0.999984 0.00573948 1 197.488)" stroke="#F47A36" strokeWidth="0.855262"/>
-              <line x1="1161.57" y1="198" x2="1161.57" y2="149" stroke="#F47A36" strokeWidth="0.855262"/>
-            </svg>
+          <div className="absolute top-16 left-1/2 -translate-x-1/2 w-full max-w-[1400px] hidden md:block px-4">
+            <svg
+              width="100%"
+              height="160"
+              viewBox="0 0 1162 199"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMidYMid meet"
+>
+  <path
+    d="M330.367 3.11328C330.367 1.85369 329.346 0.832583 328.086 0.832583C326.827 0.832583 325.806 1.85369 325.806 3.11328C325.806 4.37288 326.827 5.39398 328.086 5.39398C329.346 5.39398 330.367 4.37288 330.367 3.11328ZM328.086 3.11328V2.68565H1V3.54094H328.086V3.11328Z"
+    fill="#F47A36"
+  />
+
+  {/* Right dot + line */}
+  <path
+    d="M719.281 149C719.281 147.74 718.26 146.719 717 146.719C715.74 146.719 714.719 147.74 714.719 149C714.719 150.26 715.74 151.281 717 151.281C718.26 151.281 719.281 150.26 719.281 149ZM1162 149H717V149.428H1162V149Z"
+    fill="#F47A36"
+  />
+
+  {/* Bottom horizontal line */}
+  <line x1="1162" y1="197.779" x2="1" y2="197.779" stroke="#F47A36" strokeWidth="1" />
+
+  {/* Left vertical line */}
+  <line x1="1" y1="197.488" x2="1" y2="2.669" stroke="#F47A36" strokeWidth="1" />
+
+  {/* Right vertical line */}
+  <line x1="1161.57" y1="198" x2="1161.57" y2="149" stroke="#F47A36" strokeWidth="1" />
+</svg>
           </div>
           <div className="relative z-10 max-w-[900px] w-full flex justify-center items-center p-4">
-            <h1 className='text-xl sm:text-3xl md:text-4xl font-primary leading-tight'>
+            <h1 className='text-2xl sm:text-3xl md:text-4xl font-primary leading-tight'>
               THREE PILLARS,<br />
               ONE BRIDGE TO <br />
               <span 
                 style={{ fontFamily: 'Georgia, serif', marginTop: '-0.5em', display: 'inline-block' }} 
-                className='text-[#F47A36] text-5xl sm:text-5xl md:text-6xl leading-none tracking-tight'
+                className='text-[#F47A36] text-4xl sm:text-5xl md:text-6xl leading-none tracking-tight'
               >
                 success
               </span>
