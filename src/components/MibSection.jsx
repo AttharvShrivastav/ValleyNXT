@@ -477,12 +477,12 @@ const VentureServices = () => {
             </svg>
           </div>
           <div className="relative z-10 max-w-[900px] w-full flex justify-center items-center p-4">
-            <h1 className='text-2xl sm:text-3xl md:text-4xl font-primary leading-tight'>
+            <h1 className='text-xl sm:text-3xl md:text-4xl font-primary leading-tight'>
               THREE PILLARS,<br />
               ONE BRIDGE TO <br />
               <span 
                 style={{ fontFamily: 'Georgia, serif', marginTop: '-0.5em', display: 'inline-block' }} 
-                className='text-[#F47A36] text-4xl sm:text-5xl md:text-6xl leading-none tracking-tight'
+                className='text-[#F47A36] text-5xl sm:text-5xl md:text-6xl leading-none tracking-tight'
               >
                 success
               </span>

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import gsap from "gsap";
+import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import StagesSectionBars from './StagesSectionBars';
@@ -26,7 +26,7 @@ Strategic partnerships, funding, and expert guidance. Building technology that m
     useGSAP(() => {
         const mm = gsap.matchMedia();
 
-        // DESKTOP ANIMATION (Unchanged)
+        // DESKTOP ANIMATION
         mm.add("(min-width: 768px)", () => {
             if (cardsRef.current.length < 3) return;
             const [left, middle, right] = cardsRef.current;
@@ -45,10 +45,9 @@ Strategic partnerships, funding, and expert guidance. Building technology that m
               .from(right, { opacity: 0, y: '100%', duration: 1, ease: 'power2.out' }, '+=0.2');
         });
 
-        // MOBILE ANIMATION (Unchanged)
+        // MOBILE ANIMATION
         mm.add("(max-width: 767px)", () => {
             if (cardsRef.current.length < 3) return;
-
             const [accelerationCard, innovationCard, breakthroughCard] = cardsRef.current;
 
             const tl = gsap.timeline({
@@ -74,7 +73,7 @@ Strategic partnerships, funding, and expert guidance. Building technology that m
         <section ref={sectionRef} className="bg-black pt-24 md:pt-36 min-h-screen w-full flex items-center justify-center relative overflow-hidden p-4">
             <StagesSectionBars />
             
-            <div className="flex flex-col md:flex-row justify-around md:-translate-y-20 md:items-end gap-8 md:gap-16 relative z-10">
+            <div className="flex flex-col md:grid md:grid-cols-3 md:-translate-y-20 md:items-end gap-8 md:gap-16 relative z-10">
                 {stages.map((stage, index) => {
                     let orderClass = '';
                     if (stage.id === 'innovation') orderClass = 'order-1';
@@ -89,13 +88,16 @@ Strategic partnerships, funding, and expert guidance. Building technology that m
                         <div
                             key={stage.id}
                             ref={el => cardsRef.current[index] = el}
-                            // ✅ CHANGE: Replaced md:h-auto with a fixed height for desktop
-                            className={`flex flex-col items-center text-center p-8 border-2 border-[#F47A36] rounded-3xl bg-black w-full max-w-sm h-auto md:w-[306px] md:h-[384px] lg:w-[22vw] md:max-w-[380px] md:order-none ${orderClass} ${transformClass}`}
+                            className={`flex flex-col items-center text-center p-8 border-2 border-[#F47A36] rounded-3xl bg-black w-full max-w-sm h-auto md:w-[306px] lg:w-[22vw] md:max-w-[380px] md:order-none ${orderClass} ${transformClass}`}
                         >
-                            <div className="h-1/3 w-full mb-8 flex items-center justify-center" style={{
-                                backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)',
-                                backgroundSize: '20px 20px'
-                            }}>
+                            {/* ✅ FIX: Restored the background style for the icon container */}
+                            <div 
+                                className="h-1/3 w-full mb-8 flex items-center justify-center"
+                                style={{
+                                  backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)',
+                                  backgroundSize: '20px 20px',
+                                }}
+                            >
                               <img src={stage.icon} alt={`${stage.title} icon`} />
                             </div>
                             <h3 className="text-lg font-secondary font-regular text-[#FFC7A8] uppercase mb-4">{stage.title}</h3>
