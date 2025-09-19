@@ -107,17 +107,18 @@ const TeamSection = () => {
                     ref={arcPathRef}
                     d="M50 2 C 300 350, 900 350, 1150 2"
                     stroke="#F47A36"
-                    strokeWidth="2"
+                    strokeWidth="1"
+                    style={{opacity: "70%"}}
                 />
             </svg>
 
             <div className="w-full max-w-7xl text-center relative z-10">
                 <div className="overflow-hidden mb-16 md:mb-32">
                     <h2 className="main-heading text-4xl md:text-5xl text-[#FFC7A8] font-bold leading-tight">
-                        CONNECTED TO THE VISIONARIES
+                        THE FOURTH PILLAR
                         <br />
-                        <span className='font-serifa text-5xl md:text-6xl font-normal text-[#F47A36]'>
-                            shaping tomorrow's market
+                        <span className='font-serifa text-6xl md:text-6xl font-normal text-[#F47A36]'>
+                            of our story
                         </span>
                     </h2>
                 </div>

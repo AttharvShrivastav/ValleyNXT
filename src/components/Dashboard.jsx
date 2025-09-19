@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react"; // Added useLayoutEffect
+import React, { useState, useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -10,7 +10,6 @@ import Kyari from "../assets/Dashboard/Kyari.png";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-// --- Data Constants ---
 const stats = [
     { label: "Total Fund Size", value: 200, prefix: "INR ", suffix: "Cr+" },
     { label: "Startups Screened", value: 3500, suffix: "+" },
@@ -27,7 +26,6 @@ const pieChartData = [
 ];
 const pieChartColors = ['#F47A36', '#BA5B26', '#FFC7A8', '#916B55', '#FA9D79', '#4D1600', '#E64910', '#D98D62', '#8B4017'];
 
-// --- Reusable AnimatedNumber Component ---
 function AnimatedNumber({ value, prefix = "", suffix = "" }) {
     const ref = useRef(null);
     useGSAP(() => {
@@ -41,19 +39,14 @@ function AnimatedNumber({ value, prefix = "", suffix = "" }) {
     return (<span ref={ref} className="text-[#F47A36] font-primary text-3xl md:text-5xl">0{suffix}</span>);
 }
 
-// --- Final DashboardSection Component ---
 export default function DashboardSection() {
-    const sectionRef = useRef(null); // Ref for the outer section
-    const contentBoxRef = useRef(null); // Ref for the inner content box
+    const sectionRef = useRef(null);
+    const contentBoxRef = useRef(null);
     const presentationButton = useRef(null);
     const [currentSlide, setCurrentSlide] = useState(0);
-
-    // Carousel Animation Refs & Logic
     const chartContentRef = useRef(null);
     const chartTitleRef = useRef(null);
     const chartLogoRef = useRef(null);
-    
-    // Pie Chart Logic
     const [pieHeaderText, setPieHeaderText] = useState("Startups by Sector");
     const pieHeaderRef = useRef(null);
     const dataValues = pieChartData.slice(1).map(row => row[1]);
@@ -67,7 +60,7 @@ export default function DashboardSection() {
         pieHole: 0.5,
         colors: pieChartColors,
         chartArea: { left: 10, top: 10, width: '90%', height: '90%' },
-        tooltip: { trigger: 'none' },
+        tooltip: { trigger: 'none' }, // Important to keep this to disable default tooltips
     };
 
     const handleLegendEnter = (sector, percentage) => {
@@ -84,7 +77,6 @@ export default function DashboardSection() {
         gsap.timeline().to([chartContentRef.current, chartTitleRef.current, chartLogoRef.current], { autoAlpha: 0, y: 15, duration: 0.4, ease: 'power2.in', onComplete: () => setCurrentSlide(newIndex) });
     }
 
-    // GSAP Hook 1: Button hover animations (one-time setup)
     useGSAP(() => {
         const button = presentationButton.current;
         if (!button) return;
@@ -95,12 +87,13 @@ export default function DashboardSection() {
         button.addEventListener('mouseleave', buttonLeave);
         
         return () => {
-            button.removeEventListener('mouseenter', buttonEnter);
-            button.removeEventListener('mouseleave', buttonLeave);
+            if(button) {
+                button.removeEventListener('mouseenter', buttonEnter);
+                button.removeEventListener('mouseleave', buttonLeave);
+            }
         }
-    }, { scope: sectionRef }); // Scope to the sectionRef
+    }, { scope: sectionRef });
 
-    // GSAP Hook 2: Line chart carousel animation (runs on currentSlide change)
     useGSAP(() => {
         gsap.fromTo([chartContentRef.current, chartTitleRef.current, chartLogoRef.current], 
             { autoAlpha: 0, y: -15 }, 
@@ -108,7 +101,6 @@ export default function DashboardSection() {
         );
     }, { dependencies: [currentSlide], scope: sectionRef });
     
-    // GSAP Hook 3: Pie chart header animation (runs on pieHeaderText change)
     useGSAP(() => {
         gsap.fromTo(pieHeaderRef.current, 
             { autoAlpha: 0, y: -10 }, 
@@ -116,54 +108,33 @@ export default function DashboardSection() {
         );
     }, { dependencies: [pieHeaderText], scope: sectionRef });
 
-    // ✅ NEW: Dynamic scaling based on window size to prevent overflow on zoom
     useLayoutEffect(() => {
         const adjustScale = () => {
             if (!sectionRef.current || !contentBoxRef.current) return;
-
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
-
             const contentRect = contentBoxRef.current.getBoundingClientRect();
-
-            // Calculate current padding/margin on the section
             const sectionStyle = window.getComputedStyle(sectionRef.current);
             const sectionPaddingX = parseFloat(sectionStyle.paddingLeft) + parseFloat(sectionStyle.paddingRight);
             const sectionPaddingY = parseFloat(sectionStyle.paddingTop) + parseFloat(sectionStyle.paddingBottom);
-
-            // Determine available space for the content box
             const availableWidth = viewportWidth - sectionPaddingX;
             const availableHeight = viewportHeight - sectionPaddingY;
-
-            // Calculate scale factors
             const scaleX = availableWidth / contentRect.width;
             const scaleY = availableHeight / contentRect.height;
-            
-            // Choose the smaller scale to ensure it fits both dimensions
-            const finalScale = Math.min(scaleX, scaleY, 1); // Max scale is 1 (original size)
+            const finalScale = Math.min(scaleX, scaleY, 1);
 
             gsap.set(contentBoxRef.current, { scale: finalScale, transformOrigin: "center center" });
         };
-
-        // Initial adjustment
         adjustScale();
-
-        // Add resize listener
         window.addEventListener('resize', adjustScale);
-
-        // Cleanup
         return () => window.removeEventListener('resize', adjustScale);
-    }, []); // Empty dependency array means this runs once on mount and cleans up on unmount
-
+    }, []);
 
     const activeSlide = chartSlides[currentSlide];
 
     return (
-        // ✅ CHANGE: Removed min-h-screen here, handled by useEffect and flex-grow
         <section ref={sectionRef} className="bg-black w-full text-brown-900 flex justify-center items-center py-6 px-4 md:py-10 md:px-4 min-h-screen">
-            {/* ✅ CHANGE: Removed fixed height/max-height, now scales */}
             <div ref={contentBoxRef} className="w-full max-w-[1200px] bg-[#FFC7A8] rounded-3xl p-6 md:p-8 shadow-lg flex flex-col gap-4 md:gap-8">
-                {/* Header */}
                 <div className="w-full flex items-center justify-between flex-shrink-0">
                     <img src={MyLogo} alt="ValleyNXT Ventures Logo" className="w-28 md:w-40" />
                     <button ref={presentationButton} className="w-44 md:w-52 px-4 rounded-full flex-shrink-0 text-sm md:text-[15px] font-primary font-bold flex items-center justify-center gap-3 h-12 bg-[#F47A36] text-[#330000] transition-colors hover:bg-[#1C0800] hover:text-[#FFC7A8]">
@@ -171,9 +142,7 @@ export default function DashboardSection() {
                         <svg className="w-2 md:w-auto" height="18" viewBox="0 0 15 26" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M2.22732 0.771729L0.259766 2.75703L10.3514 12.9397L0.259766 23.1224L2.22732 25.1077L14.223 12.9397L2.22732 0.771729Z" /></svg>
                     </button>
                 </div>
-                {/* Main Content */}
                 <div className="w-full flex-grow flex flex-col md:flex-row gap-8 md:gap-12 text-[#330000] min-h-0">
-                    {/* Left Column */}
                     <div className="w-full md:w-1/4 flex flex-col gap-6 min-h-0">
                         <div>
                             <h2 className="text-4xl md:text-5xl font-serifa leading-none">One Look<br />At Us</h2>
@@ -194,13 +163,45 @@ export default function DashboardSection() {
                                     </p>
                                 </div>
                                 <div className="flex-shrink-0 w-36 h-36">
-                                    <Chart chartType="PieChart" width="100%" height="100%" data={pieChartData} options={pieChartOptions} loader={<div>...</div>} />
+                                    <Chart
+                                        chartType="PieChart"
+                                        width="100%"
+                                        height="100%"
+                                        data={pieChartData}
+                                        options={pieChartOptions}
+                                        loader={<div>...</div>}
+                                        chartEvents={[
+                                            {
+                                                eventName: 'onmouseover',
+                                                callback: ({ chartWrapper, row }) => {
+                                                    // This event provides the data row index directly.
+                                                    // row will be null if the mouse is not over a slice.
+                                                    if (row === null) return;
+                                                    
+                                                    const dataTable = chartWrapper.getDataTable();
+                                                    // The row index corresponds to the data rows (after the header)
+                                                    const sector = dataTable.getValue(row, 0);
+                                                    const value = dataTable.getValue(row, 1);
+                                                    const percentage = ((value / totalValue) * 100).toFixed(1);
+                                                    
+                                                    handleLegendEnter(sector, percentage);
+                                                },
+                                            },
+                                            {
+                                                eventName: 'onmouseout',
+                                                callback: () => {
+                                                    handleLegendLeave();
+                                                },
+                                            },
+                                        ]}
+                                    />
                                 </div>
                                 <div className="grid grid-cols-2 gap-x-5 gap-y-1.5 text-[11px] text-[#FFC7A8] p-2">
                                     {pieChartData.slice(1).map(([sector, value], index) => {
                                         const percentage = ((value / totalValue) * 100).toFixed(1);
                                         return (
                                             <div key={sector} onMouseEnter={() => handleLegendEnter(sector, percentage)} className="flex items-center gap-2 cursor-default p-1 rounded transition-colors hover:bg-[#4d16004d]">
+                                                {/* ✅ Simplified color lookup using the map index */}
                                                 <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: pieChartColors[index] }}></div>
                                                 <span>{sector}</span>
                                             </div>
@@ -210,7 +211,6 @@ export default function DashboardSection() {
                             </div>
                         </div>
                     </div>
-                    {/* Right Column */}
                     <div className="w-full md:w-3/4 flex flex-col gap-6 min-h-0">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             {stats.map((stat) => ( <div key={stat.label} className="bg-[#1C0800] text-center rounded-2xl p-6 flex flex-col justify-center"> <p className="text-[#FFC7A8] font-primary text-lg md:text-xl mb-1">{stat.label}</p> <AnimatedNumber value={stat.value} prefix={stat.prefix} suffix={stat.suffix} /> </div> ))}
