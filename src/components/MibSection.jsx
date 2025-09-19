@@ -368,7 +368,6 @@
 
 // export default VentureServices;
 
-
 import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -380,6 +379,7 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin, MotionPathPlugin, DrawSVGPlugin, useGSAP);
 
 const ventureData = {
+  // ... your data is unchanged
   content: [
     { id: 'mentorship', title: 'Mentorship', subtitle: 'Unlock Founder Speed and Precision.', description: 'Our curated network of 150+ CXOs, industry veterans, and domain experts work closely with founders, providing tailored guidance every step of the way. From strategic problem-solving and product-market fit advice to leadership coaching and technical workshops, mentorship is designed to accelerate decision-making and avoid common pitfalls. With deep sector expertise and a founder-first approach, our mentors turn bold ideas into executable, scalable plans.'},
     { id: 'investment', title: 'Investment', subtitle: 'Fuel Bold Visions with Smart Capital.', description: 'We deploy capital thoughtfully, matching the right funding to each startup\'s stage—from pre-seed validation to Series A+ growth. With structured investment tranches and active performance-based follow-on funding of up to ₹10 Cr, we ensure startups have the runway and resources they need to execute rapidly and attract further market interest. Our investment rigor focuses on ventures with strong tech moats, scalable models, and clear exit potential, aiming for high-impact returns and sustainable growth.'},
@@ -399,9 +399,9 @@ const VentureServices = () => {
     if (!mainRef.current) return;
     const mm = gsap.matchMedia();
 
-    // DESKTOP ANIMATION
     mm.add("(min-width: 768px)", () => {
       if (!pinRef.current) return;
+      
       const mainTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: mainRef.current,
@@ -421,18 +421,29 @@ const VentureServices = () => {
         .to('.morph-path', { morphSVG: (i) => ventureData.svg.paths.connects[i], ease: 'power1.inOut' }, "second_fadeout")
         .to('.morph-dot', { attr: (i) => ({...ventureData.svg.dots.connects[i]}), ease: 'power1.inOut' }, "second_fadeout");
       
+      // ✅ FIX: Logic for the tracing line is now responsive
       const wrapper = pinRef.current.querySelector('.content-wrapper');
       if (!wrapper) return;
       const glowSvg = wrapper.querySelector('.glow-svg');
       const motionPath = wrapper.querySelector('.motion-path');
-      if (glowSvg && motionPath) {
+      const traceLine = wrapper.querySelector('.trace-line');
+
+      const updateMotionPath = () => {
+        if (!glowSvg || !motionPath || !traceLine) return;
+        
+        // Kill the old animation before creating a new one on resize
+        gsap.killTweensOf(traceLine);
+
+        // Recalculate dimensions and path
         const radius = 32, inset = 0.5, w = wrapper.offsetWidth, h = wrapper.offsetHeight;
         glowSvg.setAttribute('viewBox', `0 0 ${w} ${h}`);
         const pathRadius = radius - inset;
         const pathData = `M ${radius},${inset} H ${w - radius} a ${pathRadius},${pathRadius} 0 0 1 ${pathRadius},${pathRadius} V ${h - radius} a ${pathRadius},${pathRadius} 0 0 1 -${pathRadius},${pathRadius} H ${radius} a ${pathRadius},${pathRadius} 0 0 1 -${pathRadius},-${pathRadius} V ${radius} a ${pathRadius},${pathRadius} 0 0 1 ${pathRadius},-${pathRadius} Z`;
         motionPath.setAttribute('d', pathData);
-        gsap.to(".trace-line", {
-          motionPath: { path: ".motion-path", align: ".motion-path", alignOrigin: [0.5, 0.5], autoRotate: true },
+
+        // Re-create the animation with the new path
+        gsap.to(traceLine, {
+          motionPath: { path: motionPath, align: motionPath, alignOrigin: [0.5, 0.5], autoRotate: true },
           ease: 'none',
           scrollTrigger: {
             trigger: mainRef.current,
@@ -441,11 +452,21 @@ const VentureServices = () => {
             scrub: 1,
           },
         });
-      }
+      };
+
+      // Run the function once initially
+      updateMotionPath();
+      // Add a resize listener to re-run it when the window size changes
+      window.addEventListener('resize', updateMotionPath);
+
+      // Return a cleanup function for the event listener
+      return () => {
+        window.removeEventListener('resize', updateMotionPath);
+      };
     });
 
-    // MOBILE ANIMATION
     mm.add("(max-width: 767px)", () => {
+      // ... your mobile animation logic is unchanged
       const mobileSections = gsap.utils.toArray('.mobile-service-section');
       mobileSections.forEach(section => {
         gsap.from(section, {
@@ -463,6 +484,7 @@ const VentureServices = () => {
   }, { scope: mainRef });
 
   return (
+    // Your JSX is unchanged
     <div ref={mainRef} className="md:h-[300vh] bg-black text-[#FFC7A8]">
       <div ref={pinRef} className="md:h-screen w-screen flex flex-col">
         <div className="w-full text-center py-12 relative flex flex-col items-center justify-center">
@@ -479,20 +501,12 @@ const VentureServices = () => {
     d="M330.367 3.11328C330.367 1.85369 329.346 0.832583 328.086 0.832583C326.827 0.832583 325.806 1.85369 325.806 3.11328C325.806 4.37288 326.827 5.39398 328.086 5.39398C329.346 5.39398 330.367 4.37288 330.367 3.11328ZM328.086 3.11328V2.68565H1V3.54094H328.086V3.11328Z"
     fill="#F47A36"
   />
-
-  {/* Right dot + line */}
   <path
     d="M719.281 149C719.281 147.74 718.26 146.719 717 146.719C715.74 146.719 714.719 147.74 714.719 149C714.719 150.26 715.74 151.281 717 151.281C718.26 151.281 719.281 150.26 719.281 149ZM1162 149H717V149.428H1162V149Z"
     fill="#F47A36"
   />
-
-  {/* Bottom horizontal line */}
   <line x1="1162" y1="197.779" x2="1" y2="197.779" stroke="#F47A36" strokeWidth="1" />
-
-  {/* Left vertical line */}
   <line x1="1" y1="197.488" x2="1" y2="2.669" stroke="#F47A36" strokeWidth="1" />
-
-  {/* Right vertical line */}
   <line x1="1161.57" y1="198" x2="1161.57" y2="149" stroke="#F47A36" strokeWidth="1" />
 </svg>
           </div>
