@@ -25,7 +25,7 @@ const founders = [
   {
     id: 1,
     name: "CA Anand Saklecha",
-    title: "Capitalizing Ideas",
+    title: "Founder and Head of Investment Committee",
     bio: "Veteran fund manager, structuring over ₹4,500 Cr in deals and guiding entrepreneurs from inception to IPO.",
     image: AnandSaklechaImage,
     linkedin: "https://www.linkedin.com/in/anand-saklecha-18a57716/"
@@ -33,7 +33,7 @@ const founders = [
   {
     id: 2,
     name: "Dr. Madhu Vasepalli",
-    title: "Managing Partner",
+    title: "Founder and Managing Partner",
     bio: "Serial healthtech entrepreneur and investor in 17+ startups. Mentor to founders at the intersection of tech and healthcare.",
     image: DrMadhuImage,
     linkedin: "https://www.linkedin.com/in/dr-madhu-vasepalli-mds-43a24812/"
