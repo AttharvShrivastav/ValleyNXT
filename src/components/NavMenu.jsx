@@ -96,28 +96,28 @@ const NavMenu = () => {
           <div className="link-separator h-0.5 bg-[#F47A36]"></div>
 
           <div className="link-item overflow-hidden">
-            <a href="/" onClick={toggleMenu} className="relative block text-4xl md:text-5xl font-normal transition-colors duration-300 group">
+            <Link to="/" onClick={toggleMenu} className="relative block text-4xl md:text-5xl font-normal transition-colors duration-300 group">
               <span className="relative z-10 py-4 transition-colors font-primary duration-300 group-hover:text-[#F47A36] block pl-8">HOME</span>
               <div className="absolute top-0 right-0 h-full w-0 bg-gradient-to-r from-[#0000005b] to-[#F47A36] transition-all duration-300 group-hover:w-full"></div>
-            </a>
+            </Link>
           </div>
           
           <div className="link-separator h-0.5 bg-[#F47A36]"></div>
           
           <div className="link-item overflow-hidden">
-            <a href="/team" onClick={toggleMenu} className="relative block text-4xl md:text-5xl font-normal transition-colors duration-300 group">
+            <Link to="/team" onClick={toggleMenu} className="relative block text-4xl md:text-5xl font-normal transition-colors duration-300 group">
               <span className="relative z-10 py-4 font-primary transition-colors duration-300 group-hover:text-[#F47A36] block pl-8">TEAM</span>
               <div className="absolute top-0 right-0 h-full w-0 bg-gradient-to-r from-[#0000005b] to-[#F47A36] transition-all duration-300 group-hover:w-full"></div>
-            </a>
+            </Link>
           </div>
           
           <div className="link-separator h-0.5 bg-[#F47A36]"></div>
           
           <div className="link-item overflow-hidden">
-            <a href="/portfolio" onClick={toggleMenu} className="relative block text-4xl md:text-5xl font-normal transition-colors duration-300 group">
+            <Link to="/portfolio" onClick={toggleMenu} className="relative block text-4xl md:text-5xl font-normal transition-colors duration-300 group">
               <span className="relative z-10 py-4 transition-colors font-primary duration-300 group-hover:text-[#F47A36] block pl-8">PORTFOLIO</span>
               <div className="absolute top-0 right-0 h-full w-0 bg-gradient-to-r from-[#0000005b] to-[#F47A36] transition-all duration-300 group-hover:w-full"></div>
-            </a>
+            </Link>
           </div>
           
           <div className="link-separator h-0.5 bg-[#F47A36]"></div>

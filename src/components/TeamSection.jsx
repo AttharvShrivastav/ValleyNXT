@@ -130,7 +130,7 @@ const TeamSection = () => {
                 </div>
 
                 <div className="flex justify-center mt-16">
-                    <a href="/team" className="team-cta-button relative w-[60px] h-[60px] cursor-pointer">
+                    <Link to="/team" className="team-cta-button relative w-[60px] h-[60px] cursor-pointer">
                         <div className="cta-background absolute inset-0 w-[60px] h-[60px] bg-[#FA9D79] rounded-full flex items-center">
                            <div className="cta-text-container absolute left-[30px] overflow-hidden">
                                <div className="cta-text text-lg font-medium text-[#2b1107] whitespace-nowrap">
@@ -143,7 +143,7 @@ const TeamSection = () => {
                                 <path d="M9 5L16 12L9 19" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </div>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
