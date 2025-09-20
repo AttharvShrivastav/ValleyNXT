@@ -130,10 +130,9 @@ const NavMenu = () => {
         </div>
         
         <div className="absolute bottom-8 right-6 sm:right-8 text-xs sm:text-sm text-gray-400 font-light space-y-2">
-          <a href="https://behance.net" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors duration-300">Behance</a>
-          <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors duration-300">Dribbble</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors duration-300">LinkedIn</a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors duration-300">Instagram</a>
+          <a href="https://x.com/ValleyNXT_VC" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors duration-300">Twitter</a>
+          <a href="https://www.linkedin.com/company/valleynxtventures/" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors duration-300">LinkedIn</a>
+          <a href="https://www.instagram.com/valleynxt_vc?utm_source=ig_web_button_share_sheet&igsh=cWtqMzR1eWFsaXJx" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors duration-300">Instagram</a>
         </div>
       </div>
     </>

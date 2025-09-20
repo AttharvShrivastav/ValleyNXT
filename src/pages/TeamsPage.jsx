@@ -28,7 +28,7 @@ const founders = [
     title: "Capitalizing Ideas",
     bio: "Veteran fund manager, structuring over ₹4,500 Cr in deals and guiding entrepreneurs from inception to IPO.",
     image: AnandSaklechaImage,
-    linkedin: "#"
+    linkedin: "https://www.linkedin.com/in/anand-saklecha-18a57716/"
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ const founders = [
     title: "Managing Partner",
     bio: "Serial healthtech entrepreneur and investor in 17+ startups. Mentor to founders at the intersection of tech and healthcare.",
     image: DrMadhuImage,
-    linkedin: "#"
+    linkedin: "https://www.linkedin.com/in/dr-madhu-vasepalli-mds-43a24812/"
   },
   {
     id: 3,
@@ -44,7 +44,7 @@ const founders = [
     title: "Founder & Advisor",
     bio: "Architect behind India's leading incubators and 175+ startups. Pioneer in innovation ecosystems and startup policy.",
     image: DrNikhilImage,
-    linkedin: "#"
+    linkedin: "https://www.linkedin.com/in/drnikhilagarwalindia/"
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ const founders = [
     title: "Partner & Fund Manager",
     bio: "Infrastructure finance leader with 30+ years experience. Scaled India's largest PPP platform and managed global assets.",
     image: MrSureshImage,
-    linkedin: "#"
+    linkedin: "https://www.linkedin.com/in/suresh-goyal-4534364/"
   }
 ];
 const investmentTeam = [
@@ -62,7 +62,7 @@ const investmentTeam = [
         title: "Vice President",
         bio: "Chartered Accountant and AIF Fund Manager. Brings advanced skills in VC, financial modeling, and deal structuring.",
         image: HarshwardhanSaklechaImage,
-        linkedin: "#"
+        linkedin: "https://www.linkedin.com/in/harshwardhan-saklecha/"
     },
     {
         id: 9,
@@ -70,7 +70,7 @@ const investmentTeam = [
         title: "Investor Relation & Compliance Officer",
         bio: "Company Secretary with expertise in fund-raise, due diligence, and compliance. Experience handling global investments.",
         image: DhairyaJainImage,
-        linkedin: "#"
+        linkedin: "https://www.linkedin.com/in/jaindhairya/"
     },
 ];
 const advisory = [
@@ -80,7 +80,7 @@ const advisory = [
         title: "Global Head of VC & Startup Partnerships, Google",
         bio: "Top angel investor with 100+ startup investments and 10+ exits. Ecosystem builder shaping India’s tech landscape.",
         image: MrApurvaImage,
-        linkedin: "#"
+        linkedin: "https://www.linkedin.com/in/apurvachamaria/"
     },
     {
         id: 11,
@@ -96,7 +96,7 @@ const advisory = [
         title: "Professor, University of Cambridge",
         bio: "Expert in sustainable development and blended finance. Mentored global founders and mobilized $10M+ capital.",
         image: DrNaziaImage,
-        linkedin: "#"
+        linkedin: "https://www.linkedin.com/in/naziamhabib/"
     },
 ];
 
@@ -115,9 +115,7 @@ const TeamsPage = () => {
     const pageRef = useRef(null);
     
     useGSAP(() => {
-        // ✅ CLEANUP: Removed the hero heading animation, as it's now handled by the PageHero component.
-        
-        // This animation for the profile cards remains.
+
         const cards = gsap.utils.toArray('.profile-card');
         cards.forEach(card => {
             gsap.from(card, {

@@ -46,9 +46,9 @@ const Hero = () => {
         <div className="overflow-hidden"><div>ACCELERATING</div></div>
         <div className="overflow-hidden"><div><span className="font-extrabold text-[#F47A36]">GROWTH</span></div></div>
       </h1>
-      <div ref={buttonRef} className="mt-8 bg-[#F47A36] flex items-center justify-center h-8 w-42 md:h-12 md:w-52 md:rounded-2xl rounded-xl">
+      <a href='https://vclub.valleynxtventures.com/entrepreneur/signup/NA==' ref={buttonRef} className="mt-8 bg-[#F47A36] flex items-center justify-center h-8 w-42 z-[150] md:h-12 md:w-52 md:rounded-2xl rounded-xl">
         <h2 className='font-primary text-[#FFC7A8] text-[12px] md:text-base'>FIND FUNDING</h2>
-      </div>
+      </a>
     </div>
   );
 };

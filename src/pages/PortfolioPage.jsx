@@ -209,8 +209,8 @@ const PortfolioPage = () => {
             />
             
             <div className="w-full flex justify-center mt-12 mb-12 px-4">
-                <div className="relative w-[90%] flex items-center p-1 bg-black rounded-full border border-[#F47A36]">
-                    <div ref={sliderRef} className="absolute h-[85%] bg-[#F47A36] rounded-full z-0"></div>
+                <div className="relative w-[90%] flex items-center bg-black rounded-full border border-[#F47A36]">
+                    <div ref={sliderRef} className="absolute h-[88%] w-[95%] bg-[#F47A36] rounded-full z-0"></div>
                     
                     <button onClick={() => handleToggle('valley')} className={`toggle-button relative z-10 px-4 md:px-8 py-2 md:py-3 text-xs sm:text-sm font-semibold text-[#FFC7A8] text-center transition-colors duration-300 flex justify-center items-center ${hasBharatBreakthrough ? 'w-1/2' : 'w-full'}`}>
                         VALLEY NXT VENTURES

@@ -125,12 +125,12 @@ const VnvpediaSection = () => {
             </div>
 
             <div className="relative w-full max-w-[76rem] h-auto md:h-[30rem]">
-                <div className="back-plate absolute inset-0 w-full h-full md:h-[26rem] top-1/2 -translate-y-1/2 border-2 border-[#F47A36] rounded-[35px] z-10"></div>
+                <div className="back-plate absolute inset-0 w-full h-full md:h-[26rem] top-1/2 -translate-y-1/2 border-2 border-[#F47A36] rounded-[35px] z-10 hidden md:block"></div>
                 
-                {/* ✅ CHANGE: Buttons are now hidden on mobile and visible on desktop */}
+                {/* DESKTOP: Buttons restored to their original state, hidden on mobile */}
                 <button
                     onClick={() => handleNavigation('prev')}
-                    className="nav-button absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-30 p-4 rounded-full bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none md:block"
+                    className="nav-button absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-30 p-4 rounded-full bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
                     aria-label="Previous article"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -138,7 +138,8 @@ const VnvpediaSection = () => {
                     </svg>
                 </button>
                 
-                <div className="main-card relative md:absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-full md:max-w-[68rem] h-auto md:h-[30rem] border-2 border-[#f47a36] bg-[#FAD9C5] rounded-[35px] text-center shadow-lg flex items-center justify-center p-8 md:p-12 z-20 overflow-hidden">
+                {/* ✅ FIX: Removed `top-1/2 -translate-y-1/2` from mobile, added `mt-16 md:mt-0` */}
+                <div className="main-card relative md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full max-w-full md:max-w-[68rem] h-auto md:h-[30rem] border-2 border-[#f47a36] bg-[#FAD9C5] rounded-[35px] text-center shadow-lg flex items-center justify-center p-8 md:p-12 z-20 overflow-hidden mt-16 md:mt-0">
                     <div className="relative z-10 w-full max-w-2xl min-h-[250px] md:min-h-full h-full flex items-center justify-center">
                         <div ref={el => contentRefs.current[0] = el} className="absolute w-full">
                             <h3 className="text-2xl md:text-4xl font-secondary font-semibold mb-6 text-[#d98d62]">{vnvpediaArticles[0].title}</h3>
@@ -151,10 +152,32 @@ const VnvpediaSection = () => {
                     </div>
                 </div>
 
-                {/* ✅ CHANGE: Buttons are now hidden on mobile and visible on desktop */}
+                {/* DESKTOP: Buttons restored to their original state, hidden on mobile */}
                 <button
                     onClick={() => handleNavigation('next')}
-                    className="nav-button absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-30 p-4 rounded-full bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none md:block"
+                    className="nav-button absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-30 p-4 rounded-full bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
+                    aria-label="Next article"
+                >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            {/* MOBILE: New container for mobile-only navigation buttons with added `mt-8` */}
+            <div className="w-full flex md:hidden items-center justify-center gap-8 mt-8">
+                <button
+                    onClick={() => handleNavigation('prev')}
+                    className="p-3 rounded-full bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none"
+                    aria-label="Previous article"
+                >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button
+                    onClick={() => handleNavigation('next')}
+                    className="p-3 rounded-full bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none"
                     aria-label="Next article"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
