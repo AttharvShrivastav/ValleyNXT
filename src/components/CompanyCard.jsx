@@ -7,7 +7,7 @@ import FallbackLogo from '../assets/FallbackLogo.svg';
 
 gsap.registerPlugin(Flip, DrawSVGPlugin);
 
-const CompanyCard = ({ company, onClick, isActive, isPreExpanding, ...props }) => {
+const CompanyCard = ({ company, onClick, isActive, ...props }) => {
     const cardRef = useRef(null);
     const timeline = useRef();
     const [isFlipped, setIsFlipped] = useState(false);
@@ -20,33 +20,45 @@ const CompanyCard = ({ company, onClick, isActive, isPreExpanding, ...props }) =
         }
     };
     
-    // New hook to handle the pre-expansion fade-out animation
-    useGSAP(() => {
-        const initialLogo = cardRef.current.querySelector('.logo-initial');
-        if (isPreExpanding) {
-            gsap.to(initialLogo, { autoAlpha: 0, duration: 0.5, ease: 'power2.in' });
-        } else if (!isActive) {
-            // If it's not expanding and not active, ensure the logo is visible
-            gsap.to(initialLogo, { autoAlpha: 1, duration: 0.3 });
-        }
-    }, { dependencies: [isPreExpanding, isActive], scope: cardRef });
-
-    // DESKTOP: Updated timeline only handles the fade-in sequence
+    // DESKTOP: New timeline for fade-out / fade-in sequence
     useGSAP(() => {
         const mm = gsap.matchMedia();
 
         mm.add("(min-width: 768px)", () => {
+            const initialLogo = cardRef.current.querySelector('.logo-initial');
             const detailsPanel = cardRef.current.querySelector('.details-panel');
             const expandedLogo = cardRef.current.querySelector('.logo-expanded');
             const horizontalLine = cardRef.current.querySelector('.horizontal-line');
             const name = cardRef.current.querySelector('.company-name');
             const description = cardRef.current.querySelector('.company-description');
             
+            // This timeline orchestrates the entire sequence
             timeline.current = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } })
-                .set(detailsPanel, { autoAlpha: 1 })
-                .from(expandedLogo, { autoAlpha: 0, scale: 0.9, duration: 0.4 })
-                .from(horizontalLine, { drawSVG: "50% 50%", duration: 0.5 }, "<0.1")
-                .from([name, description], { autoAlpha: 0, y: 10, stagger: 0.15, duration: 0.4 }, ">-0.3");
+                // 1. Fade out the initial, centered logo.
+                .to(initialLogo, { 
+                    autoAlpha: 0, 
+                    duration: 0.3 
+                })
+                // 2. Make the details panel visible to show its children.
+                .set(detailsPanel, { 
+                    autoAlpha: 1 
+                })
+                // 3. Fade in the three new elements sequentially.
+                .from(expandedLogo, { 
+                    autoAlpha: 0, 
+                    scale: 0.9, 
+                    duration: 0.4 
+                }, ">0.1") // Starts 0.1s after the initial logo fades out
+                .from(horizontalLine, { 
+                    drawSVG: "50% 50%", // Animate from the center out
+                    duration: 0.5 
+                }, "<0.1") // Starts 0.1s after the expanded logo starts fading in
+                .from([name, description], { 
+                    autoAlpha: 0, 
+                    y: 10, 
+                    stagger: 0.15, 
+                    duration: 0.4 
+                }, ">-0.3"); // Overlaps with the end of the line draw
         });
 
         return () => mm.revert();
