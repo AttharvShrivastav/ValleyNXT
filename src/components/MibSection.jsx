@@ -604,6 +604,7 @@ gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin, MotionPathPlugin, DrawSVGPlug
 
 const ventureData = {
   // ... your data is unchanged
+  
   content: [
     { id: 'mentorship', title: 'Mentorship', subtitle: 'Unlock Founder Speed and Precision.', description: 'Our curated network of 150+ CXOs, industry veterans, and domain experts work closely with founders, providing tailored guidance every step of the way. From strategic problem-solving and product-market fit advice to leadership coaching and technical workshops, mentorship is designed to accelerate decision-making and avoid common pitfalls. With deep sector expertise and a founder-first approach, our mentors turn bold ideas into executable, scalable plans.'},
     { id: 'investment', title: 'Investment', subtitle: 'Fuel Bold Visions with Smart Capital.', description: 'We deploy capital thoughtfully, matching the right funding to each startup\'s stage—from pre-seed validation to Series A+ growth. With structured investment tranches and active performance-based follow-on funding of up to ₹10 Cr, we ensure startups have the runway and resources they need to execute rapidly and attract further market interest. Our investment rigor focuses on ventures with strong tech moats, scalable models, and clear exit potential, aiming for high-impact returns and sustainable growth.'},
@@ -618,15 +619,104 @@ const ventureData = {
 const VentureServices = () => {
   const mainRef = useRef(null);
   const pinRef = useRef(null);
+  const headingSvgRef = useRef(null);
 
   useGSAP(() => {
     if (!mainRef.current) return;
     const mm = gsap.matchMedia();
 
+     if (headingSvgRef.current) {
+    // Get all animatable elements in the correct order
+    const topHorizontalLine = headingSvgRef.current.querySelector('path:nth-child(1)'); // Top left horizontal line
+    const topDot = headingSvgRef.current.querySelector('circle:nth-child(2)'); // Top dot
+    const leftVerticalLine = headingSvgRef.current.querySelector('path:nth-child(6)'); // Left vertical line
+    const bottomHorizontalBorder = headingSvgRef.current.querySelector('path:nth-child(5)'); // Large bottom horizontal line
+    const rightVerticalLine = headingSvgRef.current.querySelector('path:nth-child(7)'); // Right vertical line
+    const bottomHorizontalLine = headingSvgRef.current.querySelector('path:nth-child(3)'); // Bottom right horizontal line
+    const bottomDot = headingSvgRef.current.querySelector('circle:nth-child(4)'); // Bottom dot
+    
+    // Set initial state for all paths
+    const allPaths = [topHorizontalLine, leftVerticalLine, bottomHorizontalBorder, rightVerticalLine, bottomHorizontalLine];
+    gsap.set(allPaths, { drawSVG: "0%" });
+    
+    // Set initial state for all dots
+    const allDots = [topDot, bottomDot];
+    gsap.set(allDots, { scale: 0, transformOrigin: "center" });
+
+    // Create drawing timeline with your specific sequence
+    const drawingTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: headingSvgRef.current,
+        start: 'top 70%',
+        toggleActions: "play none none reverse",
+      }
+    });
+
+    // Your specific animation sequence:
+    drawingTimeline
+      // 1. First top dot
+      .to(topDot, {
+        scale: 1,
+        duration: 0.3,
+        ease: "back.out(1.7)"
+      })
+      
+      // 2. Then horizontal line (reverse - right to left)
+      .fromTo(topHorizontalLine, 
+        { drawSVG: "100% 100%" }, 
+        { 
+          drawSVG: "0% 100%", 
+          duration: 0.5,
+          // ease: "power2.out" 
+        }
+      )
+      
+      // 3. Then left vertical line
+      .to(leftVerticalLine, {
+        drawSVG: "100%", 
+        duration: 0.3,
+        // ease: "power2.out" 
+      })
+      
+      // 4. Then horizontal line (bottom border)
+      .to(bottomHorizontalBorder, {
+        drawSVG: "100%", 
+        duration: 0.8,
+        // ease: "power2.out" 
+      })
+      
+      // 5. Then right vertical line
+      .fromTo(rightVerticalLine, 
+        { drawSVG: "100% 100%" }, 
+        { 
+          drawSVG: "0% 100%", 
+          duration: 0.2,
+          // ease: "power2.out" 
+        }
+      )
+      .fromTo(bottomHorizontalLine, 
+        { drawSVG: "100% 100%" }, 
+        { 
+          drawSVG: "0% 100%", 
+          duration: 0.5,
+          // ease: "power2.out" 
+        }
+      )
+      
+      .to(bottomDot, {
+        scale: 1,
+        duration: 0.3,
+        ease: "back.out(1.7)"
+      });
+  }
     // --- DESKTOP ANIMATION ---
     mm.add("(min-width: 768px)", () => {
       if (!pinRef.current) return;
       
+
+      
+
+
       const contentSections = gsap.utils.toArray('.desktop-content-section');
       gsap.set(contentSections.slice(1), { opacity: 0 });
 
@@ -708,14 +798,78 @@ const VentureServices = () => {
       {/* ✅ FIXED: md:h-screen ensures the pinning container is only for desktop. */}
       <div ref={pinRef} className="flex w-screen flex-col md:h-screen">
         <div className="w-full text-center py-12 relative flex flex-col items-center justify-center">
-            <div className="absolute top-16 left-1/2 -translate-x-1/2 w-full max-w-[1100px] hidden md:block px-4">
-                <svg width="100%" height="160" viewBox="0 0 1162 199" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                  <path d="M330.367 3.11328C330.367 1.85369 329.346 0.832583 328.086 0.832583C326.827 0.832583 325.806 1.85369 325.806 3.11328C325.806 4.37288 326.827 5.39398 328.086 5.39398C329.346 5.39398 330.367 4.37288 330.367 3.11328ZM328.086 3.11328L328.086 2.68565L1.00003 2.68567L1.00003 3.11331L1.00003 3.54094L328.086 3.54091L328.086 3.11328Z" fill="#F47A36"/>
-                  <path d="M719.281 149C719.281 147.74 718.26 146.719 717 146.719C715.74 146.719 714.719 147.74 714.719 149C714.719 150.26 715.74 151.281 717 151.281C718.26 151.281 719.281 150.26 719.281 149ZM1162 149L1162 148.572L717 148.572L717 149L717 149.428L1162 149.428L1162 149Z" fill="#F47A36"/>
-                  <line x1="1162" y1="197.779" x2="1" y2="197.779" stroke="#F47A36" strokeWidth="0.855262"/>
-                  <line y1="-0.427631" x2="194.819" y2="-0.427631" transform="matrix(0.00536359 -0.999986 0.999984 0.00573948 1 197.488)" stroke="#F47A36" strokeWidth="0.855262"/>
-                  <line x1="1161.57" y1="198" x2="1161.57" y2="149" stroke="#F47A36" strokeWidth="0.855262"/>
-                </svg>
+            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-[1100px] hidden md:block px-4">
+                <svg 
+  ref={headingSvgRef}
+  width="100%" 
+  height="100%" 
+  viewBox="0 0 1112 149" 
+  fill="none" 
+  xmlns="http://www.w3.org/2000/svg"
+>
+  {/* Top left horizontal line */}
+  <path 
+    d="M0 3L327.086 3" 
+    fill="none" 
+    stroke="#F47A36" 
+    strokeWidth="1.5"
+  />
+  
+  {/* Top dot */}
+  <circle 
+    cx="327.086" 
+    cy="3" 
+    r="2.5" 
+    fill="#F47A36"
+  />
+  
+  {/* Bottom right horizontal line */}
+  <path 
+    d="M736 93L1112 93" 
+    fill="none" 
+    stroke="#F47A36" 
+    strokeWidth="1.5"
+  />
+  
+  {/* Bottom dot */}
+  <circle 
+    cx="736" 
+    cy="93" 
+    r="2.5" 
+    fill="#F47A36"
+  />
+  
+  {/* Bottom horizontal border line */}
+  <path 
+    d="M0 148.428L1112 148.428" 
+    fill="none" 
+    stroke="#F47A36" 
+    strokeWidth="1.5"
+  />
+  
+  {/* Left vertical line */}
+  <path 
+    d="M0.572369 3L0.572369 148" 
+    fill="none" 
+    stroke="#F47A36" 
+    strokeWidth="1.5"
+  />
+  
+  {/* Right vertical line */}
+  <path 
+    d="M1111.57 93L1111.57 148" 
+    fill="none" 
+    stroke="#F47A36" 
+    strokeWidth="1.5"
+  />
+</svg>
+
+
+
+
+
+
+
             </div>
             <div className="relative z-10 max-w-[900px] w-full flex justify-center items-center p-4">
                 <h1 className='text-2xl sm:text-3xl md:text-4xl font-primary leading-tight'>

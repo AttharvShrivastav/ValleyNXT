@@ -109,14 +109,18 @@ const VnvpediaSection = () => {
 
             <div className="relative w-full max-w-5xl flex flex-col items-center mb-16 md:mb-24">
                 <div className="relative z-20 flex items-center justify-center w-full">
-                    <div className="heading-frame for-svg absolute -translate-y-6 hidden md:block">
-                         <svg width="876" height="81" viewBox="0 0 876 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <path d="M111.667 78C111.667 76.5272 110.473 75.3333 109 75.3333C107.527 75.3333 106.333 76.5272 106.333 78C106.333 79.4728 107.527 80.6667 109 80.6667C110.473 80.6667 111.667 79.4728 111.667 78ZM109 78V77.5L0 77.5V78V78.5L109 78.5V78Z" fill="#F47A36"/>
-                           <path d="M769.667 78C769.667 76.5272 768.473 75.3333 767 75.3333C765.527 75.3333 764.333 76.5272 764.333 78C764.333 79.4728 765.527 80.6667 767 80.6667C768.473 80.6667 769.667 79.4728 769.667 78ZM876 78V77.5L767 77.5V78V78.5L876 78.5V78Z" fill="#F47A36"/>
-                           <line x1="875" y1="0.5" y2="0.5" stroke="#F47A36"/>
-                           <line x1="0.5" y1="2.18557e-08" x2="0.499997" y2="78" stroke="#F47A36"/>
-                           <line x1="875.5" y1="2.18557e-08" x2="875.5" y2="78" stroke="#F47A36"/>
-                        </svg>
+                    <div className="absolute hidden md:top-0 md:-translate-y-4 md:block">
+                         <svg width="998" height="67" viewBox="0 0 998 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M118.667 64C118.667 62.5272 117.473 61.3333 116 61.3333C114.527 61.3333 113.333 62.5272 113.333 64C113.333 65.4728 114.527 66.6667 116 66.6667C117.473 66.6667 118.667 65.4728 118.667 64ZM116 64V63.5L1 63.5V64V64.5L116 64.5V64Z" fill="#F47A36"/>
+<path d="M884.667 64C884.667 62.5272 883.473 61.3333 882 61.3333C880.527 61.3333 879.333 62.5272 879.333 64C879.333 65.4728 880.527 66.6667 882 66.6667C883.473 66.6667 884.667 65.4728 884.667 64ZM997 64V63.5L882 63.5V64V64.5L997 64.5V64Z" fill="#F47A36"/>
+<line x1="995.938" y1="0.5" x2="0.000244141" y2="0.5" stroke="#F47A36"/>
+<line x1="0.5" y1="2.18557e-08" x2="0.499997" y2="64" stroke="#F47A36"/>
+<line x1="997.5" y1="2.05842e-08" x2="997.5" y2="64" stroke="#F47A36"/>
+</svg>
+
+
+
+
                     </div>
                     <h2 className="heading-text text-white text-4xl md:text-6xl font-primary tracking-wider text-center">
                         EXPLORE <span className="text-[#F47A36] text-6xl md:text-8xl font-serifa">vnvpedia</span>
