@@ -35,7 +35,7 @@ const PageHero = ({ subtitle, titleLine1, titleLine2, titleLine2Serif, buttonTex
                             {/* ✅ CHANGE: Made each line a block element for clean stacking */}
                             <span className='block font-normal'>{titleLine1}</span>
                             {/* ✅ CHANGE: Removed <br /> and the problematic leading-0 class */}
-                            <span className={`block font-normal text-5xl md:text-7xl text-[#F47A36] ${titleLine2Serif ? 'font-serifa' : ''}`}>
+                            <span className={`block font-normal text-5xl pb-1 md:text-7xl text-[#F47A36] ${titleLine2Serif ? 'font-serifa' : ''}`}>
                                 {titleLine2}
                             </span>
                         </h1>
