@@ -9,6 +9,7 @@ import DrMadhuImage from '../assets/DrMadhu.png';
 import DrNikhilImage from '../assets/DrNikhil.png';
 import MrSureshImage from '../assets/MrSureshImage.png';
 import ProfileCard from './ProfileCard';
+import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, SplitText, useGSAP);
 
