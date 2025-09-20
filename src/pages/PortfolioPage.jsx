@@ -13,7 +13,7 @@ import AstromedaLogo from '../assets/logos/Astromeda.png';
 import NavarsLogo from '../assets/logos/Navars.png';
 import SocialHardwareLogo from '../assets/logos/SocialHardware.png';
 import AstrophelAerospaceLogo from '../assets/logos/AstrophelAerospace.png';
-import AutWelkinLogo from '../assets/logos/Autwelkin.png';
+import AutWelkinLogo from '../assets/logos/AutWelkin.png';
 import SwaahaLogo from '../assets/logos/Swaaha.png';
 
 const valleyVenturesCompanies = [
