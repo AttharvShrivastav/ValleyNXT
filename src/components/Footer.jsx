@@ -110,10 +110,10 @@ const Footer = () => {
                     </nav>
 
                     <div className="flex flex-col space-y-2 text-base text-[#BA5B26]" ref={el => textElementsRef.current[2] = el}>
-                        <p><span className='text-[#8B4017]'>AIF Name:</span> ValleyNXT Ventures Trust</p>
+                        <p><span className='text-[#8B4017]'>AIF Name:</span> Bharat Breakthrough Fund I</p>
                         <p><span className='text-[#8B4017]'>AIF Category:</span> Category 1</p>
                         <p><span className='text-[#8B4017]'>SEBI Registration Number:</span> IN/AIF1/25-26/1892</p>
-                        <p><span className='text-[#8B4017]'>Fund Manager:</span> Valley NXT Ventures LLP</p>
+                        <p><span className='text-[#8B4017]'>Fund Manager:</span> ValleyNXT Ventures Trust </p>
                     </div>
                 </div>
             </div>
