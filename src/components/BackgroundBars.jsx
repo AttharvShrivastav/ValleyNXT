@@ -4,7 +4,6 @@ import React, { useRef,useState, useEffect } from 'react';
 
 gsap.registerPlugin(useGSAP);
 
-// 1. The component now accepts a 'position' prop, defaulting to 'bottom'
 const BackgroundBars = ({ position = 'bottom' }) => {
     const barsContainerRef = useRef(null);
 

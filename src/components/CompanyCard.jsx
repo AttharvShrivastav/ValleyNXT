@@ -19,8 +19,6 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
             onClick?.();
         }
     };
-    
-    // DESKTOP: New timeline for fade-out / fade-in sequence
     useGSAP(() => {
         const mm = gsap.matchMedia();
 
@@ -97,7 +95,6 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
             className="company-card relative aspect-[4/3] bg-black rounded-2xl border border-[#F85C20] flex justify-center items-center cursor-pointer p-4 overflow-hidden"
             {...props}
         >
-            {/* Desktop View */}
             <div className="hidden md:block w-full h-full">
                 <div className="logo-initial absolute inset-0 flex justify-center items-center">
                     <img 

@@ -11,9 +11,7 @@ import Footer from './components/Footer';
 
 const Header = () => {
   return (
-    // This parent flex container centers the entire nav block vertically
     <header className="absolute h-24 w-full top-0 left-0 right-0 z-50 px-6 sm:px-12 flex items-center">
-      {/* CORRECTION: Re-added 'items-center' to align the logo and NavMenu with each other. Added 'w-full' for spacing. */}
       <nav className="flex items-center justify-between w-full">
         <div className='h-full w-auto overflow-x-hidden'>
         <a href="/">

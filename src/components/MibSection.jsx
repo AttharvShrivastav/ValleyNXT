@@ -589,8 +589,7 @@
 // };
 
 // export default VentureServices;
-
-
+// src/components/VentureServices.jsx
 
 import React, { useRef } from 'react';
 import { gsap } from 'gsap';
@@ -599,12 +598,13 @@ import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import { useGSAP } from '@gsap/react';
+import { debounce } from '../utils/debounce'; // Adjust path if necessary
 
+// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin, MotionPathPlugin, DrawSVGPlugin, useGSAP);
 
+// Data remains unchanged
 const ventureData = {
-  // ... your data is unchanged
-  
   content: [
     { id: 'mentorship', title: 'Mentorship', subtitle: 'Unlock Founder Speed and Precision.', description: 'Our curated network of 150+ CXOs, industry veterans, and domain experts work closely with founders, providing tailored guidance every step of the way. From strategic problem-solving and product-market fit advice to leadership coaching and technical workshops, mentorship is designed to accelerate decision-making and avoid common pitfalls. With deep sector expertise and a founder-first approach, our mentors turn bold ideas into executable, scalable plans.'},
     { id: 'investment', title: 'Investment', subtitle: 'Fuel Bold Visions with Smart Capital.', description: 'We deploy capital thoughtfully, matching the right funding to each startup\'s stage—from pre-seed validation to Series A+ growth. With structured investment tranches and active performance-based follow-on funding of up to ₹10 Cr, we ensure startups have the runway and resources they need to execute rapidly and attract further market interest. Our investment rigor focuses on ventures with strong tech moats, scalable models, and clear exit potential, aiming for high-impact returns and sustainable growth.'},
@@ -616,109 +616,53 @@ const ventureData = {
   },
 };
 
-const VentureServices = () => {
-  const mainRef = useRef(null);
-  const pinRef = useRef(null);
-  const headingSvgRef = useRef(null);
+// --- CUSTOM HOOKS FOR ANIMATION LOGIC ---
 
+const useHeadingAnimation = (scopeRef) => {
   useGSAP(() => {
-    if (!mainRef.current) return;
-    const mm = gsap.matchMedia();
+    if (!scopeRef.current) return;
 
-     if (headingSvgRef.current) {
-    // Get all animatable elements in the correct order
-    const topHorizontalLine = headingSvgRef.current.querySelector('path:nth-child(1)'); // Top left horizontal line
-    const topDot = headingSvgRef.current.querySelector('circle:nth-child(2)'); // Top dot
-    const leftVerticalLine = headingSvgRef.current.querySelector('path:nth-child(6)'); // Left vertical line
-    const bottomHorizontalBorder = headingSvgRef.current.querySelector('path:nth-child(5)'); // Large bottom horizontal line
-    const rightVerticalLine = headingSvgRef.current.querySelector('path:nth-child(7)'); // Right vertical line
-    const bottomHorizontalLine = headingSvgRef.current.querySelector('path:nth-child(3)'); // Bottom right horizontal line
-    const bottomDot = headingSvgRef.current.querySelector('circle:nth-child(4)'); // Bottom dot
+    const topHorizontalLine = scopeRef.current.querySelector('path:nth-child(1)');
+    const topDot = scopeRef.current.querySelector('circle:nth-child(2)');
+    const leftVerticalLine = scopeRef.current.querySelector('path:nth-child(6)');
+    const bottomHorizontalBorder = scopeRef.current.querySelector('path:nth-child(5)');
+    const rightVerticalLine = scopeRef.current.querySelector('path:nth-child(7)');
+    const bottomHorizontalLine = scopeRef.current.querySelector('path:nth-child(3)');
+    const bottomDot = scopeRef.current.querySelector('circle:nth-child(4)');
     
-    // Set initial state for all paths
-    const allPaths = [topHorizontalLine, leftVerticalLine, bottomHorizontalBorder, rightVerticalLine, bottomHorizontalLine];
-    gsap.set(allPaths, { drawSVG: "0%" });
-    
-    // Set initial state for all dots
-    const allDots = [topDot, bottomDot];
-    gsap.set(allDots, { scale: 0, transformOrigin: "center" });
+    gsap.set([topHorizontalLine, leftVerticalLine, bottomHorizontalBorder, rightVerticalLine, bottomHorizontalLine], { drawSVG: "0%" });
+    gsap.set([topDot, bottomDot], { scale: 0, transformOrigin: "center" });
 
-    // Create drawing timeline with your specific sequence
-    const drawingTimeline = gsap.timeline({
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: headingSvgRef.current,
+        trigger: scopeRef.current,
         start: 'top 70%',
         toggleActions: "play none none reverse",
       }
     });
 
-    // Your specific animation sequence:
-    drawingTimeline
-      // 1. First top dot
-      .to(topDot, {
-        scale: 1,
-        duration: 0.3,
-        ease: "back.out(1.7)"
-      })
-      
-      // 2. Then horizontal line (reverse - right to left)
-      .fromTo(topHorizontalLine, 
-        { drawSVG: "100% 100%" }, 
-        { 
-          drawSVG: "0% 100%", 
-          duration: 0.5,
-          // ease: "power2.out" 
-        }
-      )
-      
-      // 3. Then left vertical line
-      .to(leftVerticalLine, {
-        drawSVG: "100%", 
-        duration: 0.3,
-        // ease: "power2.out" 
-      })
-      
-      // 4. Then horizontal line (bottom border)
-      .to(bottomHorizontalBorder, {
-        drawSVG: "100%", 
-        duration: 0.8,
-        // ease: "power2.out" 
-      })
-      
-      // 5. Then right vertical line
-      .fromTo(rightVerticalLine, 
-        { drawSVG: "100% 100%" }, 
-        { 
-          drawSVG: "0% 100%", 
-          duration: 0.2,
-          // ease: "power2.out" 
-        }
-      )
-      .fromTo(bottomHorizontalLine, 
-        { drawSVG: "100% 100%" }, 
-        { 
-          drawSVG: "0% 100%", 
-          duration: 0.5,
-          // ease: "power2.out" 
-        }
-      )
-      
-      .to(bottomDot, {
-        scale: 1,
-        duration: 0.3,
-        ease: "back.out(1.7)"
-      });
-  }
-    // --- DESKTOP ANIMATION ---
+    tl.to(topDot, { scale: 1, duration: 0.3, ease: "back.out(1.7)" })
+      .fromTo(topHorizontalLine, { drawSVG: "100% 100%" }, { drawSVG: "0% 100%", duration: 0.5 })
+      .to(leftVerticalLine, { drawSVG: "100%", duration: 0.3 })
+      .to(bottomHorizontalBorder, { drawSVG: "100%", duration: 0.8 })
+      .fromTo(rightVerticalLine, { drawSVG: "100% 100%" }, { drawSVG: "0% 100%", duration: 0.2 })
+      .fromTo(bottomHorizontalLine, { drawSVG: "100% 100%" }, { drawSVG: "0% 100%", duration: 0.5 })
+      .to(bottomDot, { scale: 1, duration: 0.3, ease: "back.out(1.7)" });
+
+  }, { scope: scopeRef });
+};
+
+const useDesktopAnimations = ({ mainRef, pinRef, contentRefs }) => {
+  useGSAP(() => {
+    const mm = gsap.matchMedia();
+
     mm.add("(min-width: 768px)", () => {
       if (!pinRef.current) return;
-      
 
-      
+      const contentElements = contentRefs.current.filter(Boolean);
+      if (contentElements.length < ventureData.content.length) return;
 
-
-      const contentSections = gsap.utils.toArray('.desktop-content-section');
-      gsap.set(contentSections.slice(1), { opacity: 0 });
+      gsap.set(contentElements.slice(1), { opacity: 0 });
 
       const mainTimeline = gsap.timeline({
         scrollTrigger: {
@@ -730,16 +674,25 @@ const VentureServices = () => {
         },
       });
 
-      mainTimeline
-        .to('#mentorship-content', { opacity: 0 }, "first_fadeout")
-        .to('#investment-content', { opacity: 1 }, "first_fadein")
-        .to('.morph-path', { morphSVG: (i) => ventureData.svg.paths.investment[i], ease: 'power1.inOut' }, "first_fadeout")
-        .to('.morph-dot', { attr: (i) => ({...ventureData.svg.dots.investment[i]}), ease: 'power1.inOut' }, "first_fadeout")
-        .to('#investment-content', { opacity: 0 }, "second_fadeout")
-        .to('#connects-content', { opacity: 1 }, "second_fadein")
-        .to('.morph-path', { morphSVG: (i) => ventureData.svg.paths.connects[i], ease: 'power1.inOut' }, "second_fadeout")
-        .to('.morph-dot', { attr: (i) => ({...ventureData.svg.dots.connects[i]}), ease: 'power1.inOut' }, "second_fadeout");
-      
+      ventureData.content.forEach((section, index) => {
+        if (index === 0) return; 
+
+        const fadeOutPos = `fadeOut-${index}`;
+        const fadeInPos = `fadeIn-${index}`;
+        
+        mainTimeline
+          .to(contentElements[index - 1], { opacity: 0 }, fadeOutPos)
+          .to('.morph-path', {
+            morphSVG: (i) => ventureData.svg.paths[section.id][i],
+            ease: 'power1.inOut',
+          }, fadeOutPos)
+          .to('.morph-dot', {
+            attr: (i) => ({ ...ventureData.svg.dots[section.id][i] }),
+            ease: 'power1.inOut',
+          }, fadeOutPos)
+          .to(contentElements[index], { opacity: 1 }, fadeInPos);
+      });
+
       const wrapper = pinRef.current.querySelector('.content-wrapper');
       if (!wrapper) return;
       
@@ -751,13 +704,25 @@ const VentureServices = () => {
       const updateMotionPath = () => {
         if (!glowSvg || !motionPath || !traceLine) return;
         if (motionPathAnim) motionPathAnim.kill();
-        const radius = 32, inset = 0.5, w = wrapper.offsetWidth, h = wrapper.offsetHeight;
+        
+        const radius = 32;
+        const inset = 0.5;
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
+        
         glowSvg.setAttribute('viewBox', `0 0 ${w} ${h}`);
         const pathRadius = radius - inset;
         const pathData = `M ${radius},${inset} H ${w - radius} a ${pathRadius},${pathRadius} 0 0 1 ${pathRadius},${pathRadius} V ${h - radius} a ${pathRadius},${pathRadius} 0 0 1 -${pathRadius},${pathRadius} H ${radius} a ${pathRadius},${pathRadius} 0 0 1 -${pathRadius},-${pathRadius} V ${radius} a ${pathRadius},${pathRadius} 0 0 1 ${pathRadius},-${pathRadius} Z`;
+        
         motionPath.setAttribute('d', pathData);
+        
         motionPathAnim = gsap.to(traceLine, {
-          motionPath: { path: motionPath, align: motionPath, alignOrigin: [0.5, 0.5], autoRotate: true },
+          motionPath: {
+            path: motionPath,
+            align: motionPath,
+            alignOrigin: [0.5, 0.5],
+            autoRotate: true
+          },
           ease: 'none',
           scrollTrigger: {
             trigger: mainRef.current,
@@ -767,14 +732,23 @@ const VentureServices = () => {
           },
         });
       };
+      
+      const debouncedUpdate = debounce(updateMotionPath, 200);
       updateMotionPath();
-      window.addEventListener('resize', updateMotionPath);
+      window.addEventListener('resize', debouncedUpdate);
+
       return () => {
-        window.removeEventListener('resize', updateMotionPath);
+        window.removeEventListener('resize', debouncedUpdate);
       };
     });
+    
+    return () => mm.revert();
+  }, { scope: mainRef });
+};
 
-    // ✅ FIXED: Using your correct, non-pinned mobile animation logic.
+const useMobileAnimations = (scopeRef) => {
+  useGSAP(() => {
+    const mm = gsap.matchMedia();
     mm.add("(max-width: 767px)", () => {
       const mobileSections = gsap.utils.toArray('.mobile-service-section');
       mobileSections.forEach(section => {
@@ -784,157 +758,166 @@ const VentureServices = () => {
           scrollTrigger: {
             trigger: section,
             start: 'top 85%',
+            toggleActions: "play none none reverse",
           }
         });
       });
     });
-
     return () => mm.revert();
-  }, { scope: mainRef });
+  }, { scope: scopeRef });
+};
+
+
+const VentureServices = () => {
+  const mainRef = useRef(null);
+  const pinRef = useRef(null);
+  const headingSvgRef = useRef(null);
+  const contentRefs = useRef([]);
+
+  useHeadingAnimation(headingSvgRef);
+  useDesktopAnimations({ mainRef, pinRef, contentRefs });
+  useMobileAnimations(mainRef);
 
   return (
-    // ✅ FIXED: md:h-[300vh] ensures the tall container is only for desktop.
-    <div ref={mainRef} className="bg-black text-[#FFC7A8] md:h-[300vh]">
-      {/* ✅ FIXED: md:h-screen ensures the pinning container is only for desktop. */}
-      <div ref={pinRef} className="flex w-screen flex-col md:h-screen">
-        <div className="w-full text-center py-12 relative flex flex-col items-center justify-center">
-            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-[1100px] hidden md:block px-4">
-                <svg 
-  ref={headingSvgRef}
-  width="100%" 
-  height="100%" 
-  viewBox="0 0 1112 149" 
-  fill="none" 
-  xmlns="http://www.w3.org/2000/svg"
->
-  {/* Top left horizontal line */}
-  <path 
-    d="M0 3L327.086 3" 
-    fill="none" 
-    stroke="#F47A36" 
-    strokeWidth="1.5"
-  />
-  
-  {/* Top dot */}
-  <circle 
-    cx="327.086" 
-    cy="3" 
-    r="2.5" 
-    fill="#F47A36"
-  />
-  
-  {/* Bottom right horizontal line */}
-  <path 
-    d="M736 93L1112 93" 
-    fill="none" 
-    stroke="#F47A36" 
-    strokeWidth="1.5"
-  />
-  
-  {/* Bottom dot */}
-  <circle 
-    cx="736" 
-    cy="93" 
-    r="2.5" 
-    fill="#F47A36"
-  />
-  
-  {/* Bottom horizontal border line */}
-  <path 
-    d="M0 148.428L1112 148.428" 
-    fill="none" 
-    stroke="#F47A36" 
-    strokeWidth="1.5"
-  />
-  
-  {/* Left vertical line */}
-  <path 
-    d="M0.572369 3L0.572369 148" 
-    fill="none" 
-    stroke="#F47A36" 
-    strokeWidth="1.5"
-  />
-  
-  {/* Right vertical line */}
-  <path 
-    d="M1111.57 93L1111.57 148" 
-    fill="none" 
-    stroke="#F47A36" 
-    strokeWidth="1.5"
-  />
-</svg>
+    <div 
+      ref={mainRef} 
+      className="bg-black text-[#FFC7A8]"
+    >
+      <style>{`
+        @media (min-width: 768px) {
+          .dynamic-height-container {
+            height: ${ventureData.content.length * 100}vh;
+          }
+        }
 
+        .main-heading-container {
+          /* Define base variable for vertical padding */
+          --heading-py: 3rem;
+          padding-top: var(--heading-py);
+          padding-bottom: var(--heading-py);
+        }
 
+        .heading-svg-container {
+          /* Calculate SVG top position based on the padding variable */
+          top: calc(var(--heading-py) + 2rem);
+        }
 
-
-
-
-
-            </div>
-            <div className="relative z-10 max-w-[900px] w-full flex justify-center items-center p-4">
-                <h1 className='text-2xl sm:text-3xl md:text-4xl font-primary leading-tight'>
-                  THREE PILLARS,<br />
-                  ONE BRIDGE TO <br />
-                  <span 
-                    style={{ fontFamily: 'Georgia, serif', marginTop: '-0.5em', display: 'inline-block' }} 
-                    className='text-[#F47A36] text-4xl sm:text-5xl md:text-6xl leading-none tracking-tight'
+        @media (min-width: 768px) and (max-height: 800px) {
+          .main-heading-container {
+            /* On short screens, just change the variable */
+            --heading-py: 2rem;
+          }
+          .desktop-content-section {
+            padding: 2rem;
+            gap: 1.5rem;
+          }
+          .desktop-content-section h1 {
+            font-size: 1.125rem;
+          }
+          .desktop-content-section p {
+            font-size: 0.875rem;
+            line-height: 1.4;
+          }
+          .svg-container {
+            width: 240px;
+            height: 240px;
+          }
+          .svg-container svg {
+            width: 220px;
+            height: 220px;
+          }
+        }
+      `}</style>
+      <div className="dynamic-height-container">
+        <div ref={pinRef} className="flex w-screen flex-col md:h-screen">
+          <div className="main-heading-container w-full text-center relative flex flex-col items-center justify-center">
+              <div className="heading-svg-container absolute left-1/2 -translate-x-1/2 w-full max-w-[1100px] hidden md:block px-4">
+                  <svg 
+                    ref={headingSvgRef}
+                    width="100%" 
+                    height="100%" 
+                    viewBox="0 0 1112 149" 
+                    fill="none" 
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    success
-                  </span>
-                </h1>
-            </div>
-        </div>
-
-        {/* --- DESKTOP VIEW --- */}
-        <div className="hidden md:flex flex-grow items-center justify-center w-full px-4 pb-8 overflow-hidden">
-          <div className="content-wrapper relative grid grid-cols-10 max-w-[1100px] w-full h-full max-h-[670px] border border-[#F47A36] rounded-[2rem] bg-black overflow-hidden">
-            <div className="col-span-6 relative flex items-center justify-center p-12 border-r border-[#F47A36]">
-              {ventureData.content.map((item) => (
-                <div key={item.id} id={`${item.id}-content`} className="desktop-content-section absolute w-full h-full flex flex-col gap-8 items-center justify-center p-12 text-center">
-                  <div className="flex flex-col items-center gap-0">
-                    <h1 className="text-2xl font-primary font-normal leading-none">{item.title}</h1>
-                    <h2 className="text-sm font-secondary font-normal text-[#F47A36]">{item.subtitle}</h2>
-                  </div>
-                  <p className="text-sm font-secondary leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-            <div className="col-span-4 flex flex-col justify-center items-center gap-6 p-4">
-              <div className="w-[320px] h-[320px] rounded-2xl flex items-center justify-center" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
-                <svg width="300" height="300" viewBox="0 0 100 100">
-                  {ventureData.svg.paths.mentorship.map((path, i) => ( <path key={`path-${i}`} className="morph-path fill-none stroke-[#F47A36]" d={path} strokeWidth="0.5" /> ))}
-                  {ventureData.svg.dots.mentorship.map((dot, i) => ( <circle key={`dot-${i}`} className="morph-dot fill-[#F47A36]" r="2.5" cx={dot.cx} cy={dot.cy} /> ))}
-                </svg>
+                    <path d="M0 3L327.086 3" fill="none" stroke="#F47A36" strokeWidth="1.5" />
+                    <circle cx="327.086" cy="3" r="2.5" fill="#F47A36" />
+                    <path d="M736 93L1112 93" fill="none" stroke="#F47A36" strokeWidth="1.5" />
+                    <circle cx="736" cy="93" r="2.5" fill="#F47A36" />
+                    <path d="M0 148.428L1112 148.428" fill="none" stroke="#F47A36" strokeWidth="1.5" />
+                    <path d="M0.572369 3L0.572369 148" fill="none" stroke="#F47A36" strokeWidth="1.5" />
+                    <path d="M1111.57 93L1111.57 148" fill="none" stroke="#F47A36" strokeWidth="1.5" />
+                  </svg>
               </div>
-            </div>
-            <svg className="glow-svg absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible">
-              <path className="motion-path" fill="none" stroke="none" />
-              <line className="trace-line" x1="-15" y1="0" x2="15" y2="0" stroke="#FFC7A8" strokeWidth="2" />
-            </svg>
+              <div className="relative z-10 max-w-[900px] w-full flex justify-center items-center p-4">
+                  <h1 className='text-2xl sm:text-3xl md:text-4xl font-primary leading-tight'>
+                    THREE PILLARS,<br />
+                    ONE BRIDGE TO <br />
+                    <span 
+                      style={{ fontFamily: 'Georgia, serif', marginTop: '-0.5em', display: 'inline-block' }} 
+                      className='text-[#F47A36] text-4xl sm:text-5xl md:text-6xl leading-none tracking-tight'
+                    >
+                      success
+                    </span>
+                  </h1>
+              </div>
           </div>
-        </div>
 
-        {/* ✅ FIXED: Using your correct mobile JSX with individual cards. */}
-        <div className="flex md:hidden flex-col gap-12 p-4">
-          {ventureData.content.map((item) => (
-            <div key={item.id} className="mobile-service-section flex flex-col items-center text-center gap-6 border border-[#F47A36] rounded-[2rem] p-6">
-              <div className="flex flex-col items-center gap-0">
-                <h1 className="text-2xl font-primary font-normal leading-none">{item.title}</h1>
-                <h2 className="text-sm font-secondary font-normal text-[#F47a36]">{item.subtitle}</h2>
+          {/* --- DESKTOP VIEW --- */}
+          <div className="hidden md:flex flex-grow items-center justify-center w-full px-4 pb-8 overflow-hidden">
+            <div className="content-wrapper relative grid grid-cols-10 max-w-[1100px] w-full h-full max-h-[670px] border border-[#F47A36] rounded-[2rem] bg-black overflow-hidden">
+              <div className="col-span-6 relative flex items-center justify-center p-12 border-r border-[#F47A36]">
+                {ventureData.content.map((item, index) => (
+                  <div 
+                    key={item.id} 
+                    ref={(element) => { contentRefs.current[index] = element; }} 
+                    className="desktop-content-section absolute w-full h-full flex flex-col gap-8 items-center justify-center p-12 text-center"
+                  >
+                    <div className="flex flex-col items-center gap-0">
+                      <h1 className="text-2xl font-primary font-normal leading-none">{item.title}</h1>
+                      <h2 className="text-sm font-secondary font-normal text-[#F47A36]">{item.subtitle}</h2>
+                    </div>
+                    <p className="text-sm font-secondary leading-relaxed">{item.description}</p>
+                  </div>
+                ))}
               </div>
-              <p className="text-sm font-secondary leading-tight">{item.description}</p>
-              <div className="w-full max-w-[300px] aspect-square rounded-2xl flex items-center justify-center mt-4" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
-                <svg width="280" height="280" viewBox="0 0 100 100">
-                  {ventureData.svg.paths[item.id].map((path, i) => (
-                    <path key={`path-${i}`} className="fill-none stroke-[#F47A36]" d={path} strokeWidth="0.5" />
-                  ))}
-                  {ventureData.svg.dots[item.id].map((dot, i) => (
-                    <circle key={`dot-${i}`} className="fill-[#F47A36]" r="2.5" cx={dot.cx} cy={dot.cy} />
-                  ))}
-                </svg>
+              <div className="col-span-4 flex flex-col justify-center items-center gap-6 p-4">
+                <div className="svg-container w-[320px] h-[320px] rounded-2xl flex items-center justify-center" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
+                  <svg width="300" height="300" viewBox="0 0 100 100">
+                    {ventureData.svg.paths.mentorship.map((path, i) => ( <path key={`path-${i}`} className="morph-path fill-none stroke-[#F47A36]" d={path} strokeWidth="0.5" /> ))}
+                    {ventureData.svg.dots.mentorship.map((dot, i) => ( <circle key={`dot-${i}`} className="morph-dot fill-[#F47A36]" r="2.5" cx={dot.cx} cy={dot.cy} /> ))}
+                  </svg>
+                </div>
               </div>
+              <svg className="glow-svg absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible">
+                <path className="motion-path" fill="none" stroke="none" />
+                <line className="trace-line" x1="-15" y1="0" x2="15" y2="0" stroke="#FFC7A8" strokeWidth="2" />
+              </svg>
             </div>
-          ))}
+          </div>
+
+          {/* --- MOBILE VIEW --- */}
+          <div className="flex md:hidden flex-col gap-12 p-4">
+            {ventureData.content.map((item) => (
+              <div key={item.id} className="mobile-service-section flex flex-col items-center text-center gap-6 border border-[#F47A36] rounded-[2rem] p-6">
+                <div className="flex flex-col items-center gap-0">
+                  <h1 className="text-2xl font-primary font-normal leading-none">{item.title}</h1>
+                  <h2 className="text-sm font-secondary font-normal text-[#F47a36]">{item.subtitle}</h2>
+                </div>
+                <p className="text-sm font-secondary leading-tight">{item.description}</p>
+                <div className="w-full max-w-[300px] aspect-square rounded-2xl flex items-center justify-center mt-4" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
+                  <svg width="280" height="280" viewBox="0 0 100 100">
+                    {ventureData.svg.paths[item.id].map((path, i) => (
+                      <path key={`path-${i}`} className="fill-none stroke-[#F47A36]" d={path} strokeWidth="0.5" />
+                    ))}
+                    {ventureData.svg.dots[item.id].map((dot, i) => (
+                      <circle key={`dot-${i}`} className="fill-[#F47A36]" r="2.5" cx={dot.cx} cy={dot.cy} />
+                    ))}
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
