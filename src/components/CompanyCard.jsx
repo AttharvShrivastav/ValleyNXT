@@ -142,7 +142,7 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
                     </div>
                     <div>
                         <h3 className="text-xl md:text-2xl font-bold text-[#F47A36] mb-2">{company.name}</h3>
-                        <p className="text-xs md:text-sm text-gray-200 leading-snug">{company.description}</p>
+                        <p className="text-xs md:text-sm text-text-main leading-snug">{company.description}</p>
                     </div>
                 </div>
             </div>

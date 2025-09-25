@@ -90,7 +90,7 @@ const bharatBreakthroughCompanies = [];
 const PortfolioPage = () => {
     const [activeCategory, setActiveCategory] = useState('valley');
     const [activeCardId, setActiveCardId] = useState(null);
-    const [preExpandingCardId, setPreExpandingCardId] = useState(null);
+    const [preExpandingCardId, setPreExpandingCardId] = useState(null); // New state for pre-animation
     const pageRef = useRef(null);
     const sliderRef = useRef(null);
     const gridRef = useRef(null);
@@ -101,19 +101,21 @@ const PortfolioPage = () => {
 
     const handleCardClick = (cardId) => {
         clearTimeout(clickTimeoutRef.current);
-        setPreExpandingCardId(null);
+        setPreExpandingCardId(null); // Reset any previous pre-expansion
 
         if (activeCardId === cardId) {
             setActiveCardId(null);
             return;
         }
         
+        // Trigger the pre-expansion fade-out animation on the child card
         setPreExpandingCardId(cardId);
         
+        // Set a 0.5-second timeout to trigger the actual expansion
         clickTimeoutRef.current = setTimeout(() => {
             setActiveCardId(cardId);
-            setPreExpandingCardId(null);
-        }, 500);
+            setPreExpandingCardId(null); // Clear pre-expansion state after it's done
+        }); // 0.5-second delay
     };
 
     const handleToggle = (category) => {
@@ -182,8 +184,6 @@ const PortfolioPage = () => {
                 });
             });
 
-            // ✅ FIX: This entire block that fades out sibling cards has been removed.
-            /*
             if (activeCardId) {
                 const activeCard = gridRef.current.querySelector(`[data-id="${activeCardId}"]`);
                 const siblings = cards.filter(c => c !== activeCard);
@@ -191,7 +191,6 @@ const PortfolioPage = () => {
             } else {
                 gsap.to(cards, { autoAlpha: 1, duration: 0.5, ease: 'power2.out' });
             }
-            */
         });
         
         return () => mm.revert();
@@ -206,7 +205,7 @@ const PortfolioPage = () => {
                 titleLine1="VENTURES IN MOTION"
                 titleLine2="a collective growth"
                 titleLine2Serif={true}
-                buttonText="Looking for Funding and mentorship?"
+                buttonText="Looking for Funding?"
             />
             
             <div className="w-full flex justify-center mt-12 mb-12 px-4">
@@ -233,7 +232,7 @@ const PortfolioPage = () => {
                             company={company}
                             onClick={() => handleCardClick(company.id)}
                             isActive={activeCardId === company.id}
-                            isPreExpanding={preExpandingCardId === company.id}
+                            isPreExpanding={preExpandingCardId === company.id} // Pass new prop
                             data-id={company.id}
                         />
                     ))

@@ -103,8 +103,8 @@ const Footer = () => {
                     <div className="w-full flex flex-col text-[#BA5B26] lg:flex-row lg:items-end lg:space-x-16 mt-12 md:mt-0">
                         <nav className="flex flex-col space-y-2 text-lg mb-8 md:mb-0" ref={el => textElementsRef.current[1] = el}>
                             <a href="#home" className="hover:text-orange-400 transition-colors w-max">Home</a>
-                            <a href="#portfolio" className="hover:text-orange-400 transition-colors w-max">Portfolio</a>
-                            <a href="#team" className="hover:text-orange-400 transition-colors w-max">Team</a>
+                            <a href="/portfolio" className="hover:text-orange-400 transition-colors w-max">Portfolio</a>
+                            <a href="/team" className="hover:text-orange-400 transition-colors w-max">Team</a>
                             <a href="https://vclub.valleynxtventures.com/entrepreneur/signup/NA==" className="hover:text-orange-400 transition-colors w-max">VN Club</a>
                         </nav>
                         <div className="flex flex-col space-y-2 text-base text-[#BA5B26]" ref={el => textElementsRef.current[2] = el}>
