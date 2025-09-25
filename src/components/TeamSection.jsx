@@ -64,8 +64,10 @@ const TeamSection = () => {
                 stagger: 0.05 
             });
 
-            masterTl.to(topRightLine, { drawSVG: "100%", duration: 0.8, ease: 'power2.inOut' })
-              .to(topRightCircle, { scale: 1, duration: 0.3 }, "-=0.2")
+            //  .fromTo(topHorizontalLine, { drawSVG: "100% 100%" }, { drawSVG: "0% 100%", duration: 0.5 })
+            masterTl.to(topRightCircle, { scale: 1, duration: 0.3 }, "-=0.2")
+            .fromTo(topRightLine, {drawSVG: "100% 100%"}, { drawSVG: "100%", duration: 0.8, ease: 'power2.inOut' })
+            //   .to(topRightCircle, { scale: 1, duration: 0.3 }, "-=0.2")
               .to(leftVertical, { drawSVG: "100%", duration: 0.3, ease: 'none' })
               .to(bigHorizontal, { drawSVG: "100%", duration: 0.8, ease: 'power2.inOut' })
               .to(rightVertical, { drawSVG: "100%", duration: 0.2, ease: 'none' })
@@ -99,7 +101,7 @@ const TeamSection = () => {
         <div ref={container} className="relative font-sans bg-background text-text-main flex justify-center items-center min-h-screen p-5 sm:p-10 box-border overflow-hidden">
             <div className="w-full max-w-7xl text-center relative z-10">
                 <div className="relative mb-16 md:mb-32 flex justify-center items-center">
-                    <svg ref={headingSvgRef} className="absolute w-[94%] sm:hidden top-0 translate-y-5 h-[100%] z-0" viewBox="0 0 833 102" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg ref={headingSvgRef} className="absolute w-[94%] hidden lg:block top-0 translate-y-5 h-auto z-0" viewBox="0 0 833 102" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <line ref={topRightLineRef} x1="0" y1="3" x2="263" y2="3" stroke="var(--color-accent)"/>
                         <circle ref={topRightCircleRef} cx="263" cy="3" r="2.66" fill="var(--color-accent)"/>
                         <line ref={topLeftLineRef} x1="833" y1="45" x2="634" y2="45" stroke="var(--color-accent)"/>
@@ -119,8 +121,8 @@ const TeamSection = () => {
                     </div>
                 </div>
 
-                {/* ✅ FIX: Replaced flexbox with a responsive CSS Grid */}
-                <div className="card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-8">
+                {/* ✅ FIX: Uses Grid for mobile/tablet, but switches to Flexbox on desktop to restore original layout */}
+                <div className="card-container grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row lg:justify-center justify-items-center gap-8">
                     {teamMembers.map(person => (
                         <ProfileCard key={person.id} person={person} />
                     ))}
