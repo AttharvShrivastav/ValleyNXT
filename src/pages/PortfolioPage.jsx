@@ -90,7 +90,7 @@ const bharatBreakthroughCompanies = [];
 const PortfolioPage = () => {
     const [activeCategory, setActiveCategory] = useState('valley');
     const [activeCardId, setActiveCardId] = useState(null);
-    const [preExpandingCardId, setPreExpandingCardId] = useState(null); // New state for pre-animation
+    const [preExpandingCardId, setPreExpandingCardId] = useState(null);
     const pageRef = useRef(null);
     const sliderRef = useRef(null);
     const gridRef = useRef(null);
@@ -101,21 +101,19 @@ const PortfolioPage = () => {
 
     const handleCardClick = (cardId) => {
         clearTimeout(clickTimeoutRef.current);
-        setPreExpandingCardId(null); // Reset any previous pre-expansion
+        setPreExpandingCardId(null);
 
         if (activeCardId === cardId) {
             setActiveCardId(null);
             return;
         }
         
-        // Trigger the pre-expansion fade-out animation on the child card
         setPreExpandingCardId(cardId);
         
-        // Set a 0.5-second timeout to trigger the actual expansion
         clickTimeoutRef.current = setTimeout(() => {
             setActiveCardId(cardId);
-            setPreExpandingCardId(null); // Clear pre-expansion state after it's done
-        }); // 0.5-second delay
+            setPreExpandingCardId(null);
+        }, 500);
     };
 
     const handleToggle = (category) => {
@@ -184,6 +182,8 @@ const PortfolioPage = () => {
                 });
             });
 
+            // ✅ FIX: This block, which was causing the fading effect, has been removed.
+            /*
             if (activeCardId) {
                 const activeCard = gridRef.current.querySelector(`[data-id="${activeCardId}"]`);
                 const siblings = cards.filter(c => c !== activeCard);
@@ -191,6 +191,7 @@ const PortfolioPage = () => {
             } else {
                 gsap.to(cards, { autoAlpha: 1, duration: 0.5, ease: 'power2.out' });
             }
+            */
         });
         
         return () => mm.revert();
@@ -232,7 +233,7 @@ const PortfolioPage = () => {
                             company={company}
                             onClick={() => handleCardClick(company.id)}
                             isActive={activeCardId === company.id}
-                            isPreExpanding={preExpandingCardId === company.id} // Pass new prop
+                            isPreExpanding={preExpandingCardId === company.id}
                             data-id={company.id}
                         />
                     ))

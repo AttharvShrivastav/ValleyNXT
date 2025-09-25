@@ -24,6 +24,7 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
     const cardRef = useRef(null);
     const timeline = useRef();
     const [isFlipped, setIsFlipped] = useState(false);
+    const isInitialMount = useRef(true); // Ref to track initial render
 
     const handleClick = () => {
         if (window.innerWidth < 768) {
@@ -34,14 +35,15 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
     };
 
     const handleCloseClick = (e) => {
-        e.stopPropagation(); // Prevent card's main onClick from firing
+        e.stopPropagation();
         if (window.innerWidth < 768) {
             setIsFlipped(false);
         } else {
-            onClick?.(); // This will trigger the close action in the parent
+            onClick?.();
         }
     };
 
+    // Desktop animation timeline setup
     useGSAP(() => {
         const mm = gsap.matchMedia();
 
@@ -52,7 +54,7 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
             const horizontalLine = cardRef.current.querySelector('.horizontal-line');
             const name = cardRef.current.querySelector('.company-name');
             const description = cardRef.current.querySelector('.company-description');
-            const closeButton = cardRef.current.querySelector('.close-button'); // ✅ Target the close button
+            const closeButton = cardRef.current.querySelector('.close-button');
             
             timeline.current = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } })
                 .to(initialLogo, { autoAlpha: 0, duration: 0.3 })
@@ -60,7 +62,6 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
                 .from(expandedLogo, { autoAlpha: 0, scale: 0.9, duration: 0.4 }, ">0.1")
                 .from(horizontalLine, { drawSVG: "50% 50%", duration: 0.5 }, "<0.1")
                 .from([name, description], { autoAlpha: 0, y: 10, stagger: 0.15, duration: 0.4 }, ">-0.3")
-                // ✅ Animate the close button in with the text
                 .from(closeButton, { autoAlpha: 0, scale: 0.5, duration: 0.3 }, "<");
         });
 
@@ -68,6 +69,7 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
 
     }, { scope: cardRef });
 
+    // Play/reverse desktop timeline
     useGSAP(() => {
         if (timeline.current) {
             if (isActive) {
@@ -78,7 +80,15 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
         }
     }, { dependencies: [isActive] });
 
+    // Mobile flip animation
     useGSAP(() => {
+        // ✅ FIX: Prevent Flip animation on initial render to solve both
+        // the intermittent visibility bug and the click-blocking issue.
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+            return;
+        }
+
         const mm = gsap.matchMedia();
         mm.add("(max-width: 767px)", () => {
              const state = Flip.getState(cardRef.current.querySelectorAll(".logo-panel-mobile, .details-panel-mobile"));
@@ -108,7 +118,7 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
                     />
                 </div>
                 <div className="details-panel absolute inset-0 p-6 flex flex-col justify-center items-center text-center opacity-0 pointer-events-none">
-                    <CloseIcon onClick={handleCloseClick} /> {/* ✅ Add Close Button */}
+                    <CloseIcon onClick={handleCloseClick} />
                     <div className="logo-expanded w-1/3 h-[30%] flex justify-center items-center">
                         <img 
                            src={company.logo || FallbackLogo} 
@@ -136,7 +146,7 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
                     />
                 </div>
                 <div className={`details-panel-mobile absolute inset-0 w-full h-full p-6 flex flex-col items-center justify-center text-center transition-opacity duration-300 ${isFlipped ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                    <CloseIcon onClick={handleCloseClick} /> {/* ✅ Add Close Button */}
+                    <CloseIcon onClick={handleCloseClick} />
                     <div className="w-1/3 mb-4">
                         <img src={company.logo || FallbackLogo} alt={`${company.name} logo`} className="max-w-full h-auto object-contain" />
                     </div>
