@@ -29,6 +29,8 @@ const VnvpediaSection = () => {
     const contentRefs = useRef([]);
     const isAnimating = useRef(false);
     const sectionContainerRef = useRef(null);
+    const headingRef = useRef(null);
+
 
     gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -105,12 +107,12 @@ const VnvpediaSection = () => {
     };
 
     return (
-        <div ref={sectionContainerRef} className="relative bg-black min-h-screen flex flex-col items-center justify-center py-24 px-4 font-primary">
+        <div ref={sectionContainerRef} className="relative bg-background min-h-screen flex flex-col items-center justify-center py-24 px-4 font-primary">
 
             <div className="relative w-full max-w-5xl flex flex-col items-center mb-16 md:mb-24">
                 <div className="relative z-20 flex items-center justify-center w-full">
                     <div className="absolute hidden md:top-0 md:-translate-y-4 md:block">
-                         <svg width="998" height="67" viewBox="0 0 998 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <svg ref={headingRef} width="998" height="67" viewBox="0 0 998 67" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M118.667 64C118.667 62.5272 117.473 61.3333 116 61.3333C114.527 61.3333 113.333 62.5272 113.333 64C113.333 65.4728 114.527 66.6667 116 66.6667C117.473 66.6667 118.667 65.4728 118.667 64ZM116 64V63.5L1 63.5V64V64.5L116 64.5V64Z" fill="#F47A36"/>
 <path d="M884.667 64C884.667 62.5272 883.473 61.3333 882 61.3333C880.527 61.3333 879.333 62.5272 879.333 64C879.333 65.4728 880.527 66.6667 882 66.6667C883.473 66.6667 884.667 65.4728 884.667 64ZM997 64V63.5L882 63.5V64V64.5L997 64.5V64Z" fill="#F47A36"/>
 <line x1="995.938" y1="0.5" x2="0.000244141" y2="0.5" stroke="#F47A36"/>
@@ -122,8 +124,8 @@ const VnvpediaSection = () => {
 
 
                     </div>
-                    <h2 className="heading-text text-white text-4xl md:text-6xl font-primary tracking-wider text-center">
-                        EXPLORE <span className="text-[#F47A36] text-6xl md:text-8xl font-serifa">vnvpedia</span>
+                    <h2 className="heading-text text-text-main text-4xl md:text-6xl font-primary tracking-wider text-center">
+                        EXPLORE <span className="text-accent text-6xl md:text-8xl font-serifa">vnvpedia</span>
                     </h2>
                 </div>
             </div>
@@ -134,7 +136,7 @@ const VnvpediaSection = () => {
                 {/* DESKTOP: Buttons restored to their original state, hidden on mobile */}
                 <button
                     onClick={() => handleNavigation('prev')}
-                    className="nav-button absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-30 p-4 rounded-full bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
+                    className="nav-button absolute left-0 top-1/2 -translate-y-10 -translate-x-1/2 z-30 p-4 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
                     aria-label="Previous article"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -146,12 +148,12 @@ const VnvpediaSection = () => {
                 <div className="main-card relative md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full max-w-full md:max-w-[68rem] h-auto md:h-[30rem] border-2 border-[#f47a36] bg-[#FAD9C5] rounded-[35px] text-center shadow-lg flex items-center justify-center p-8 md:p-12 z-20 overflow-hidden mt-16 md:mt-0">
                     <div className="relative z-10 w-full max-w-2xl min-h-[250px] md:min-h-full h-full flex items-center justify-center">
                         <div ref={el => contentRefs.current[0] = el} className="absolute w-full">
-                            <h3 className="text-2xl md:text-4xl font-secondary font-semibold mb-6 text-[#d98d62]">{vnvpediaArticles[0].title}</h3>
-                            <p className="text-base md:text-xl font-secondary leading-relaxed text-[#2b1107]">{vnvpediaArticles[0].content}</p>
+                            <h3 className="text-2xl md:text-4xl font-primary font-normal mb-6 text-accent">{vnvpediaArticles[0].title}</h3>
+                            <p className="text-base md:text-xl font-secondary leading-relaxed text-text-dark">{vnvpediaArticles[0].content}</p>
                         </div>
                         <div ref={el => contentRefs.current[1] = el} className="absolute w-full">
-                             <h3 className="text-2xl md:text-4xl font-secondary font-semibold mb-6 text-[#d98d62]"></h3>
-                             <p className="text-base md:text-xl font-secondary leading-relaxed text-[#2b1107]"></p>
+                             <h3 className="text-2xl md:text-4xl font-secondary font-normal mb-6 text-accent"></h3>
+                             <p className="text-base md:text-xl font-secondary leading-relaxed text-text-dark"></p>
                         </div>
                     </div>
                 </div>
@@ -159,7 +161,7 @@ const VnvpediaSection = () => {
                 {/* DESKTOP: Buttons restored to their original state, hidden on mobile */}
                 <button
                     onClick={() => handleNavigation('next')}
-                    className="nav-button absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-30 p-4 rounded-full bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
+                    className="nav-button absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-30 p-4 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
                     aria-label="Next article"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -181,7 +183,7 @@ const VnvpediaSection = () => {
                 </button>
                 <button
                     onClick={() => handleNavigation('next')}
-                    className="p-3 rounded-full bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none"
+                    className="p-3 rounded-full -tr bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none"
                     aria-label="Next article"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,7 +197,7 @@ const VnvpediaSection = () => {
                     <AnimatedCtaButton text="Explore Vnvpedia" />
                 </div>
                 <div className="block md:hidden">
-                    <a href="https://www.linkedin.com/company/valleynxtventures/about/" className="inline-block bg-[#F47A36] text-black font-bold text-lg px-8 py-4 rounded-full hover:bg-[#d98d62] transition-colors duration-300">
+                    <a href="https://www.linkedin.com/company/valleynxtventures/about/" className="inline-block bg-dashboard-bg text-black font-bold text-lg px-8 py-4 rounded-full hover:bg-[#d98d62] transition-colors duration-300">
                         Explore Vnvpedia
                     </a>
                 </div>

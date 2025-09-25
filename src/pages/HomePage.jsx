@@ -39,15 +39,15 @@ const Hero = () => {
   }, { scope: heroRef, dependencies: [fontsLoaded] });
 
   return (
-    <div ref={heroRef} className="flex w-full flex-col items-center justify-center bg-black h-screen">
-      <h1 ref={heroTextRef} className='text-4xl md:text-6xl text-[#FFC7A8] font-light z-10 tracking-normal text-center font-primary'>
+    <div ref={heroRef} className="flex w-full flex-col items-center justify-center bg-background h-screen">
+      <h1 ref={heroTextRef} className='text-4xl md:text-6xl text-text-main font-light z-10 tracking-normal text-center font-primary'>
         <div className="overflow-hidden"><div>EMPOWERING</div></div>
-        <div className="overflow-hidden"><div><span className='font-extrabold text-[#F47A36]'>INNOVATION</span></div></div>
+        <div className="overflow-hidden"><div><span className='font-extrabold text-accent'>INNOVATION</span></div></div>
         <div className="overflow-hidden"><div>ACCELERATING</div></div>
-        <div className="overflow-hidden"><div><span className="font-extrabold text-[#F47A36]">GROWTH</span></div></div>
+        <div className="overflow-hidden"><div><span className="font-extrabold text-accent">GROWTH</span></div></div>
       </h1>
-      <a href='https://vclub.valleynxtventures.com/entrepreneur/signup/NA==' ref={buttonRef} className="mt-8 bg-[#F47A36] flex items-center justify-center h-8 w-42 z-10 md:h-12 md:w-52 md:rounded-2xl rounded-xl">
-        <h2 className='font-primary text-[#FFC7A8] text-[12px] md:text-base'>FIND FUNDING</h2>
+      <a href='https://vclub.valleynxtventures.com/entrepreneur/signup/NA==' ref={buttonRef} className="mt-8 bg-button flex items-center justify-center h-8 w-42 z-10 md:h-12 md:w-52 md:rounded-2xl rounded-xl">
+        <h2 className='font-primary text-background text-[12px] md:text-base'>FIND FUNDING</h2>
       </a>
     </div>
   );

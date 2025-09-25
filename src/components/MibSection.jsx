@@ -99,7 +99,7 @@
 //   }, { scope: mainRef });
 
 //   return (
-//     <div ref={mainRef} className="h-[300vh] bg-black text-[#FFC7A8]">
+//     <div ref={mainRef} className="h-[300vh] bg-black text-text-main">
 //       <div ref={pinRef} className="h-screen w-screen flex flex-col">
 //         <div className="w-full text-center py-12 relative flex flex-col items-center justify-center">
 //             <div className="absolute top-16 left-1/2 -translate-x-1/2 w-full max-w-[1100px] hidden md:block px-4">
@@ -117,7 +117,7 @@
 //                   ONE BRIDGE TO <br />
 //                   <span 
 //                     style={{ fontFamily: 'Georgia, serif', marginTop: '-0.5em', display: 'inline-block' }} 
-//                     className='text-[#F47A36] text-4xl sm:text-5xl md:text-6xl leading-none tracking-tight'
+//                     className='text-accent text-4xl sm:text-5xl md:text-6xl leading-none tracking-tight'
 //                   >
 //                     success
 //                   </span>
@@ -125,13 +125,13 @@
 //             </div>
 //         </div>
 //         <div className="flex md:hidden flex-grow flex-col items-center justify-center w-full px-4 pb-8 overflow-hidden">
-//             <div className="relative w-full h-full flex flex-col justify-center items-center gap-6 border border-[#F47A36] rounded-[2rem] p-6">
+//             <div className="relative w-full h-full flex flex-col justify-center items-center gap-6 border border-accent rounded-[2rem] p-6">
 //                 <div className="relative w-full flex-1 flex items-center justify-center">
 //                     {ventureData.content.map((item, index) => (
 //                         <div key={item.id} id={`${item.id}-content-mobile`} className={`absolute w-full h-full flex flex-col gap-4 items-center justify-center text-center ${index === 0 ? 'opacity-100' : 'opacity-0'}`}>
 //                             <div className="flex flex-col items-center">
 //                                 <h1 className="text-2xl font-primary leading-none">{item.title}</h1>
-//                                 <h2 className="text-sm font-secondary text-[#F47A36]">{item.subtitle}</h2>
+//                                 <h2 className="text-sm font-secondary text-accent">{item.subtitle}</h2>
 //                             </div>
 //                             <p className="text-sm font-secondary leading-tight">{item.description}</p>
 //                         </div>
@@ -140,10 +140,10 @@
 //                 <div className="w-full max-w-[240px] aspect-square rounded-2xl flex items-center justify-center" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
 //                     <svg width="220" height="220" viewBox="0 0 100 100">
 //                         {ventureData.svg.paths.mentorship.map((path, i) => (
-//                             <path key={`path-${i}`} className="morph-path-mobile fill-none stroke-[#F47A36]" d={path} strokeWidth="0.5" />
+//                             <path key={`path-${i}`} className="morph-path-mobile fill-none stroke-accent" d={path} strokeWidth="0.5" />
 //                         ))}
 //                         {ventureData.svg.dots.mentorship.map((dot, i) => (
-//                             <circle key={`dot-${i}`} className="morph-dot-mobile fill-[#F47A36]" r="2.5" cx={dot.cx} cy={dot.cy} />
+//                             <circle key={`dot-${i}`} className="morph-dot-mobile fill-accent" r="2.5" cx={dot.cx} cy={dot.cy} />
 //                         ))}
 //                     </svg>
 //                 </div>
@@ -151,14 +151,14 @@
 //         </div>
 //         <div className="hidden md:flex flex-grow items-center justify-center w-full px-4 pb-8 overflow-hidden">
 //           <div 
-//             className="content-wrapper relative grid grid-cols-10 max-w-[1100px] w-full h-full max-h-[670px] border border-[#F47A36] rounded-[2rem] bg-black overflow-hidden"
+//             className="content-wrapper relative grid grid-cols-10 max-w-[1100px] w-full h-full max-h-[670px] border border-accent rounded-[2rem] bg-black overflow-hidden"
 //           >
-//             <div className="col-span-6 relative flex items-center justify-center p-12 border-r border-[#F47A36]">
+//             <div className="col-span-6 relative flex items-center justify-center p-12 border-r border-accent">
 //               {ventureData.content.map((item, index) => (
 //                 <div key={item.id} id={`${item.id}-content`} className={`absolute w-full h-full flex flex-col gap-8 items-center justify-center p-12 text-center ${index === 0 ? 'opacity-100' : 'opacity-0'}`}>
 //                   <div className="flex flex-col items-center gap-0">
 //                     <h1 className="text-2xl font-primary font-normal leading-none">{item.title}</h1>
-//                     <h2 className="text-sm font-secondary font-normal text-[#F47A36]">{item.subtitle}</h2>
+//                     <h2 className="text-sm font-secondary font-normal text-accent">{item.subtitle}</h2>
 //                   </div>
 //                   <p className="text-sm font-secondary leading-relaxed">{item.description}</p>
 //                 </div>
@@ -168,10 +168,10 @@
 //               <div className="w-[320px] h-[320px] rounded-2xl flex items-center justify-center" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
 //                 <svg width="300" height="300" viewBox="0 0 100 100">
 //                   {ventureData.svg.paths.mentorship.map((path, i) => (
-//                     <path key={`path-${i}`} className="morph-path fill-none stroke-[#F47A36]" d={path} strokeWidth="0.5" />
+//                     <path key={`path-${i}`} className="morph-path fill-none stroke-accent" d={path} strokeWidth="0.5" />
 //                   ))}
 //                   {ventureData.svg.dots.mentorship.map((dot, i) => (
-//                     <circle key={`dot-${i}`} className="morph-dot fill-[#F47A36]" r="2.5" cx={dot.cx} cy={dot.cy} />
+//                     <circle key={`dot-${i}`} className="morph-dot fill-accent" r="2.5" cx={dot.cx} cy={dot.cy} />
 //                   ))}
 //                 </svg>
 //               </div>
@@ -281,7 +281,7 @@
 //   }, { scope: mainRef });
 
 //   return (
-//     <div ref={mainRef} className="md:h-[300vh] bg-black text-[#FFC7A8]">
+//     <div ref={mainRef} className="md:h-[300vh] bg-black text-text-main">
 //       <div ref={pinRef} className="md:h-screen w-screen flex flex-col">
 //         <div className="w-full text-center py-12 relative flex flex-col items-center justify-center">
 //           {/* ✅ CHANGE: Centered the SVG container to make its position robust on zoom */}
@@ -300,7 +300,7 @@
 //               ONE BRIDGE TO <br />
 //               <span 
 //                 style={{ fontFamily: 'Georgia, serif', marginTop: '-0.5em', display: 'inline-block' }} 
-//                 className='text-[#F47A36] text-5xl sm:text-6xl md:text-7xl leading-none tracking-tight'
+//                 className='text-accent text-5xl sm:text-6xl md:text-7xl leading-none tracking-tight'
 //               >
 //                 success
 //               </span>
@@ -309,14 +309,14 @@
 //         </div>
 //         <div className="hidden md:flex flex-grow items-center justify-center w-full px-4 pb-8 overflow-hidden">
 //           <div 
-//             className="content-wrapper relative grid grid-cols-10 max-w-[1100px] w-full h-full max-h-[670px] border border-[#F47A36] rounded-[2rem] bg-black overflow-hidden"
+//             className="content-wrapper relative grid grid-cols-10 max-w-[1100px] w-full h-full max-h-[670px] border border-accent rounded-[2rem] bg-black overflow-hidden"
 //           >
-//             <div className="col-span-6 relative flex items-center justify-center p-12 border-r border-[#F47A36]">
+//             <div className="col-span-6 relative flex items-center justify-center p-12 border-r border-accent">
 //               {ventureData.content.map((item, index) => (
 //                 <div key={item.id} id={`${item.id}-content`} className={`absolute w-full h-full flex flex-col gap-12 items-center justify-center p-12 text-center ${index === 0 ? 'opacity-100' : 'opacity-0'}`}>
 //                   <div className="flex flex-col items-center gap-0">
 //                     <h1 className="text-3xl font-primary font-normal leading-none">{item.title}</h1>
-//                     <h2 className="text-base font-secondary font-normal text-[#F47A36]">{item.subtitle}</h2>
+//                     <h2 className="text-base font-secondary font-normal text-accent">{item.subtitle}</h2>
 //                   </div>
 //                   <p className="text-base font-secondary leading-snug">{item.description}</p>
 //                 </div>
@@ -326,10 +326,10 @@
 //               <div className="w-[400px] h-[400px] rounded-2xl flex items-center justify-center" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
 //                 <svg width="360" height="360" viewBox="0 0 100 100">
 //                   {ventureData.svg.paths.mentorship.map((path, i) => (
-//                     <path key={`path-${i}`} className="morph-path fill-none stroke-[#F47A36]" d={path} strokeWidth="0.5" />
+//                     <path key={`path-${i}`} className="morph-path fill-none stroke-accent" d={path} strokeWidth="0.5" />
 //                   ))}
 //                   {ventureData.svg.dots.mentorship.map((dot, i) => (
-//                     <circle key={`dot-${i}`} className="morph-dot fill-[#F47A36]" r="2.5" cx={dot.cx} cy={dot.cy} />
+//                     <circle key={`dot-${i}`} className="morph-dot fill-accent" r="2.5" cx={dot.cx} cy={dot.cy} />
 //                   ))}
 //                 </svg>
 //               </div>
@@ -342,19 +342,19 @@
 //         </div>
 //         <div className="flex md:hidden flex-col gap-12 p-4">
 //           {ventureData.content.map((item) => (
-//             <div key={item.id} className="mobile-service-section flex flex-col items-center text-center gap-6 border border-[#F47A36] rounded-[2rem] p-6">
+//             <div key={item.id} className="mobile-service-section flex flex-col items-center text-center gap-6 border border-accent rounded-[2rem] p-6">
 //               <div className="flex flex-col items-center gap-0">
 //                 <h1 className="text-2xl font-primary font-normal leading-none">{item.title}</h1>
-//                 <h2 className="text-sm font-secondary font-normal text-[#F47a36]">{item.subtitle}</h2>
+//                 <h2 className="text-sm font-secondary font-normal text-accent">{item.subtitle}</h2>
 //               </div>
 //               <p className="text-sm font-secondary leading-tight">{item.description}</p>
 //               <div className="w-full max-w-[300px] aspect-square rounded-2xl flex items-center justify-center mt-4" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
 //                 <svg width="280" height="280" viewBox="0 0 100 100">
 //                   {ventureData.svg.paths[item.id].map((path, i) => (
-//                     <path key={`path-${i}`} className="fill-none stroke-[#F47A36]" d={path} strokeWidth="0.5" />
+//                     <path key={`path-${i}`} className="fill-none stroke-accent" d={path} strokeWidth="0.5" />
 //                   ))}
 //                   {ventureData.svg.dots[item.id].map((dot, i) => (
-//                     <circle key={`dot-${i}`} className="fill-[#F47A36]" r="2.5" cx={dot.cx} cy={dot.cy} />
+//                     <circle key={`dot-${i}`} className="fill-accent" r="2.5" cx={dot.cx} cy={dot.cy} />
 //                   ))}
 //                 </svg>
 //               </div>
@@ -495,7 +495,7 @@
 //   }, { scope: mainRef });
 
 //   return (
-//     <div ref={mainRef} className="h-[300vh] bg-black text-[#FFC7A8]">
+//     <div ref={mainRef} className="h-[300vh] bg-black text-text-main">
 //       <div ref={pinRef} className="h-screen w-screen flex flex-col">
 //         <div className="w-full text-center py-12 relative flex flex-col items-center justify-center">
 //             <div className="absolute top-16 left-1/2 -translate-x-1/2 w-full max-w-[1100px] hidden md:block px-4">
@@ -513,7 +513,7 @@
 //                   ONE BRIDGE TO <br />
 //                   <span 
 //                     style={{ fontFamily: 'Georgia, serif', marginTop: '-0.5em', display: 'inline-block' }} 
-//                     className='text-[#F47A36] text-4xl sm:text-5xl md:text-6xl leading-none tracking-tight'
+//                     className='text-accent text-4xl sm:text-5xl md:text-6xl leading-none tracking-tight'
 //                   >
 //                     success
 //                   </span>
@@ -523,13 +523,13 @@
 
 //         {/* --- MOBILE VIEW --- */}
 //         <div className="flex md:hidden flex-grow flex-col items-center justify-center w-full px-4 pb-8 overflow-hidden">
-//             <div className="relative w-full h-full flex flex-col justify-center items-center gap-6 border border-[#F47A36] rounded-[2rem] p-6">
+//             <div className="relative w-full h-full flex flex-col justify-center items-center gap-6 border border-accent rounded-[2rem] p-6">
 //                 <div className="relative w-full flex-1 flex items-center justify-center">
 //                     {ventureData.content.map((item, index) => (
 //                         <div key={item.id} id={`${item.id}-content-mobile`} className={`absolute w-full h-full flex flex-col gap-4 items-center justify-center text-center ${index === 0 ? 'opacity-100' : 'opacity-0'}`}>
 //                             <div className="flex flex-col items-center">
 //                                 <h1 className="text-2xl font-primary leading-none">{item.title}</h1>
-//                                 <h2 className="text-sm font-secondary text-[#F47A36]">{item.subtitle}</h2>
+//                                 <h2 className="text-sm font-secondary text-accent">{item.subtitle}</h2>
 //                             </div>
 //                             <p className="text-sm font-secondary leading-tight">{item.description}</p>
 //                         </div>
@@ -538,10 +538,10 @@
 //                 <div className="w-full max-w-[240px] aspect-square rounded-2xl flex items-center justify-center" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
 //                     <svg width="220" height="220" viewBox="0 0 100 100">
 //                         {ventureData.svg.paths.mentorship.map((path, i) => (
-//                             <path key={`path-${i}`} className="morph-path-mobile fill-none stroke-[#F47A36]" d={path} strokeWidth="0.5" />
+//                             <path key={`path-${i}`} className="morph-path-mobile fill-none stroke-accent" d={path} strokeWidth="0.5" />
 //                         ))}
 //                         {ventureData.svg.dots.mentorship.map((dot, i) => (
-//                             <circle key={`dot-${i}`} className="morph-dot-mobile fill-[#F47A36]" r="2.5" cx={dot.cx} cy={dot.cy} />
+//                             <circle key={`dot-${i}`} className="morph-dot-mobile fill-accent" r="2.5" cx={dot.cx} cy={dot.cy} />
 //                         ))}
 //                     </svg>
 //                 </div>
@@ -551,14 +551,14 @@
 //         {/* --- DESKTOP VIEW --- */}
 //         <div className="hidden md:flex flex-grow items-center justify-center w-full px-4 pb-8 overflow-hidden">
 //           <div 
-//             className="content-wrapper relative grid grid-cols-10 max-w-[1100px] w-full h-full max-h-[670px] border border-[#F47A36] rounded-[2rem] bg-black overflow-hidden"
+//             className="content-wrapper relative grid grid-cols-10 max-w-[1100px] w-full h-full max-h-[670px] border border-accent rounded-[2rem] bg-black overflow-hidden"
 //           >
-//             <div className="col-span-6 relative flex items-center justify-center p-12 border-r border-[#F47A36]">
+//             <div className="col-span-6 relative flex items-center justify-center p-12 border-r border-accent">
 //               {ventureData.content.map((item) => (
 //                 <div key={item.id} id={`${item.id}-content`} className="desktop-content-section absolute w-full h-full flex flex-col gap-8 items-center justify-center p-12 text-center">
 //                   <div className="flex flex-col items-center gap-0">
 //                     <h1 className="text-2xl font-primary font-normal leading-none">{item.title}</h1>
-//                     <h2 className="text-sm font-secondary font-normal text-[#F47A36]">{item.subtitle}</h2>
+//                     <h2 className="text-sm font-secondary font-normal text-accent">{item.subtitle}</h2>
 //                   </div>
 //                   <p className="text-sm font-secondary leading-relaxed">{item.description}</p>
 //                 </div>
@@ -568,10 +568,10 @@
 //               <div className="w-[320px] h-[320px] rounded-2xl flex items-center justify-center" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
 //                 <svg width="300" height="300" viewBox="0 0 100 100">
 //                   {ventureData.svg.paths.mentorship.map((path, i) => (
-//                     <path key={`path-${i}`} className="morph-path fill-none stroke-[#F47A36]" d={path} strokeWidth="0.5" />
+//                     <path key={`path-${i}`} className="morph-path fill-none stroke-accent" d={path} strokeWidth="0.5" />
 //                   ))}
 //                   {ventureData.svg.dots.mentorship.map((dot, i) => (
-//                     <circle key={`dot-${i}`} className="morph-dot fill-[#F47A36]" r="2.5" cx={dot.cx} cy={dot.cy} />
+//                     <circle key={`dot-${i}`} className="morph-dot fill-accent" r="2.5" cx={dot.cx} cy={dot.cy} />
 //                   ))}
 //                 </svg>
 //               </div>
@@ -781,7 +781,7 @@ const VentureServices = () => {
   return (
     <div 
       ref={mainRef} 
-      className="bg-black text-[#FFC7A8]"
+      className="bg-background text-text-main"
     >
       <style>{`
         @media (min-width: 768px) {
@@ -855,7 +855,7 @@ const VentureServices = () => {
                     ONE BRIDGE TO <br />
                     <span 
                       style={{ fontFamily: 'Georgia, serif', marginTop: '-0.5em', display: 'inline-block' }} 
-                      className='text-[#F47A36] text-4xl sm:text-5xl md:text-6xl leading-none tracking-tight'
+                      className='text-accent text-4xl sm:text-5xl md:text-6xl leading-none tracking-tight'
                     >
                       success
                     </span>
@@ -865,8 +865,8 @@ const VentureServices = () => {
 
           {/* --- DESKTOP VIEW --- */}
           <div className="hidden md:flex flex-grow items-center justify-center w-full px-4 pb-8 overflow-hidden">
-            <div className="content-wrapper relative grid grid-cols-10 max-w-[1100px] w-full h-full max-h-[670px] border border-[#F47A36] rounded-[2rem] bg-black overflow-hidden">
-              <div className="col-span-6 relative flex items-center justify-center p-12 border-r border-[#F47A36]">
+            <div className="content-wrapper relative grid grid-cols-10 max-w-[1100px] w-full h-full max-h-[670px] border border-accent rounded-[2rem] bg-container-bg overflow-hidden">
+              <div className="col-span-6 relative flex items-center justify-center p-12 border-r border-accent">
                 {ventureData.content.map((item, index) => (
                   <div 
                     key={item.id} 
@@ -874,18 +874,18 @@ const VentureServices = () => {
                     className="desktop-content-section absolute w-full h-full flex flex-col gap-8 items-center justify-center p-12 text-center"
                   >
                     <div className="flex flex-col items-center gap-0">
-                      <h1 className="text-2xl font-primary font-normal leading-none">{item.title}</h1>
-                      <h2 className="text-sm font-secondary font-normal text-[#F47A36]">{item.subtitle}</h2>
+                      <h1 className="text-3xl font-primary pb-5 font-normal leading-none">{item.title}</h1>
+                      <h2 className="text-sm font-secondary font-normal text-accent">{item.subtitle}</h2>
                     </div>
                     <p className="text-sm font-secondary leading-relaxed">{item.description}</p>
                   </div>
                 ))}
               </div>
               <div className="col-span-4 flex flex-col justify-center items-center gap-6 p-4">
-                <div className="svg-container w-[320px] h-[320px] rounded-2xl flex items-center justify-center" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
+                <div className="svg-container w-[320px] h-[320px] rounded-2xl flex items-center justify-center" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255, 104, 44, 0.7) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
                   <svg width="300" height="300" viewBox="0 0 100 100">
-                    {ventureData.svg.paths.mentorship.map((path, i) => ( <path key={`path-${i}`} className="morph-path fill-none stroke-[#F47A36]" d={path} strokeWidth="0.5" /> ))}
-                    {ventureData.svg.dots.mentorship.map((dot, i) => ( <circle key={`dot-${i}`} className="morph-dot fill-[#F47A36]" r="2.5" cx={dot.cx} cy={dot.cy} /> ))}
+                    {ventureData.svg.paths.mentorship.map((path, i) => ( <path key={`path-${i}`} className="morph-path fill-none stroke-accent" d={path} strokeWidth="0.5" /> ))}
+                    {ventureData.svg.dots.mentorship.map((dot, i) => ( <circle key={`dot-${i}`} className="morph-dot fill-accent" r="2.5" cx={dot.cx} cy={dot.cy} /> ))}
                   </svg>
                 </div>
               </div>
@@ -899,19 +899,19 @@ const VentureServices = () => {
           {/* --- MOBILE VIEW --- */}
           <div className="flex md:hidden flex-col gap-12 p-4">
             {ventureData.content.map((item) => (
-              <div key={item.id} className="mobile-service-section flex flex-col items-center text-center gap-6 border border-[#F47A36] rounded-[2rem] p-6">
+              <div key={item.id} className="mobile-service-section flex flex-col items-center text-center gap-6 border border-accent rounded-[2rem] p-6">
                 <div className="flex flex-col items-center gap-0">
-                  <h1 className="text-2xl font-primary font-normal leading-none">{item.title}</h1>
-                  <h2 className="text-sm font-secondary font-normal text-[#F47a36]">{item.subtitle}</h2>
+                  <h1 className="text-2xl font-primary font-normal text-text-main leading-none">{item.title}</h1>
+                  <h2 className="text-sm font-secondary font-normal text-accent">{item.subtitle}</h2>
                 </div>
-                <p className="text-sm font-secondary leading-tight">{item.description}</p>
+                <p className="text-sm text-text-main font-secondary leading-tight">{item.description}</p>
                 <div className="w-full max-w-[300px] aspect-square rounded-2xl flex items-center justify-center mt-4" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
                   <svg width="280" height="280" viewBox="0 0 100 100">
                     {ventureData.svg.paths[item.id].map((path, i) => (
-                      <path key={`path-${i}`} className="fill-none stroke-[#F47A36]" d={path} strokeWidth="0.5" />
+                      <path key={`path-${i}`} className="fill-none stroke-accent" d={path} strokeWidth="0.5" />
                     ))}
                     {ventureData.svg.dots[item.id].map((dot, i) => (
-                      <circle key={`dot-${i}`} className="fill-[#F47A36]" r="2.5" cx={dot.cx} cy={dot.cy} />
+                      <circle key={`dot-${i}`} className="fill-accent" r="2.5" cx={dot.cx} cy={dot.cy} />
                     ))}
                   </svg>
                 </div>

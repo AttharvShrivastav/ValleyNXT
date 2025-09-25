@@ -2,6 +2,75 @@
 @import url("https://use.typekit.net/mxb3kej.css");
 @import "tailwindcss";
 
+
+/* 1. Define what the 'dark:' variant does, per the new docs */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* 2. Define your design tokens for the default (light) theme */
+@theme {
+    --font-primary: "Axiforma", sans-serif;
+    --font-secondary: "Montserrat", sans-serif;
+    --font-serifa: "Georgia", serif;
+
+    --color-button: #863b33;
+    --color-button-text: #ffc7a8;
+
+  --color-background: #EBE6DD;
+  --color-text-main: #512520;
+  --color-text-dark: #512520;
+
+  --color-accent: #FF682C;
+  --color-accent-rgb: 255, 104, 44;
+
+  --color-container-bg: #F5D6C2;
+  --color-dashboard-bg: #FFC7A8;
+
+  --color-profilecard-bg: #F5D6C2;
+
+  --color-CTA-button-bg: #F99C7A;
+  --color-CTA-button-text: #2b1107;
+
+  --color-footer-bg: #FFC7A8;
+  --color-footer-text: #BA5B26;
+  --color-footer-text-accent: #8B4017;
+}
+
+/* 3. Define the overrides for when dark mode is active */
+[data-theme="dark"] {
+  --color-background: #000000;
+  --color-text-main: #FFC7A8;
+  --color-text-dark: #1C0800;
+  --color-dashboard-main: #000000;
+
+  --color-button: #F47A36;
+  --color-button-text: #1C0800;
+  --color-accent: #F47A36;
+  --color-accent-rgb: 244, 122, 54; 
+
+
+  --color-container-bg: #00000020;
+  --color-dashboard-bg: #FFC7A8;
+
+  --color-profilecard-bg: #592000;
+  --color-profilecard-hover:rgba(89, 33, 0, 0.693)0;
+
+  --color-CTA-button-bg: #FA9D79;
+  --color-CTA-button-text: #2b1107;
+
+
+  --color-footer-bg: #4D1600;
+  --color-footer-text: #ba5b26;
+  --color-footer-text-accent: #8B4017;
+
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
 @font-face {
     font-family: 'Axiforma';
     src: url('/fonts/Axiforma-SemiBold.eot');
@@ -242,17 +311,3 @@
     font-style: italic;
 }
 
-body{
-  background: #000;
-}
-
-
-
-@theme {
-  --color-primary : "#F47A36";
-  --color-normal : "#FFC7A8";
-  
-  --font-primary: "Axiforma", sans-serif;
-  --font-secondary: "Montserrat", sans-serif;
-  --font-serifa: "Georgia", serif;
-}

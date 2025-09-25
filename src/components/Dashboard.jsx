@@ -254,9 +254,9 @@ import Kyari from "../assets/Dashboard/Kyari.png";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const stats = [
-    { label: "Total Fund Size", value: 200, prefix: "INR ", suffix: "Cr+" },
     { label: "Startups Screened", value: 3500, suffix: "+" },
     { label: "Startups Evaluated", value: 800, suffix: "+" },
+    { label: "Startups Pitched", value: 40, suffix: "+" },
     { label: "Startups Funded", value: 10, suffix: "+" },
 ];
 const chartSlides = [
@@ -388,16 +388,16 @@ export default function DashboardSection() {
     const activeSlide = chartSlides[currentSlide];
 
     return (
-        <section ref={sectionRef} className="bg-black w-full text-brown-900 flex justify-center items-center py-6 px-4 md:py-10 md:px-4 min-h-screen">
-            <div ref={contentBoxRef} className="w-full max-w-[1200px] bg-[#FFC7A8] rounded-3xl p-6 md:p-8 shadow-lg flex flex-col gap-4 md:gap-8">
+        <section ref={sectionRef} className="bg-background w-full text-brown-900 flex justify-center items-center py-6 px-4 md:py-10 md:px-4 min-h-screen">
+            <div ref={contentBoxRef} className="w-full max-w-[1200px] bg-dashboard-bg rounded-3xl p-6 md:p-8 shadow-lg flex flex-col gap-4 md:gap-8">
                 <div className="w-full flex items-center justify-between flex-shrink-0">
                     <img src={MyLogo} alt="ValleyNXT Ventures Logo" className="w-28 md:w-40" />
-                    <a href="https://vclub.valleynxtventures.com/investor/signup/Mg==" ref={presentationButton} className="w-44 md:w-52 px-4 rounded-full flex-shrink-0 text-sm md:text-[15px] font-primary font-bold flex items-center justify-center gap-3 h-12 bg-[#F47A36] text-[#330000] transition-colors hover:bg-[#1C0800] hover:text-[#FFC7A8]">
+                    <a href="https://vclub.valleynxtventures.com/investor/signup/Mg==" ref={presentationButton} className="w-44 md:w-52 px-4 rounded-full flex-shrink-0 text-sm md:text-[15px] font-primary font-bold flex items-center justify-center gap-3 h-12 bg-button text-button-text transition-colors hover:bg-[#1C0800] hover:text-[#FFC7A8]">
                         <span>Explore VN Club</span>
                         <svg className="w-2 md:w-auto" height="18" viewBox="0 0 15 26" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M2.22732 0.771729L0.259766 2.75703L10.3514 12.9397L0.259766 23.1224L2.22732 25.1077L14.223 12.9397L2.22732 0.771729Z" /></svg>
                     </a>
                 </div>
-                <div className="w-full flex-grow flex flex-col md:flex-row gap-8 md:gap-12 text-[#330000] min-h-0">
+                <div className="w-full flex-grow flex flex-col md:flex-row gap-8 md:gap-12 text-[#1c0800] min-h-0">
                     <div className="w-full md:w-1/4 flex flex-col gap-6 min-h-0">
                         <div>
                             <h2 className="text-4xl md:text-5xl font-serifa leading-none">One Look<br />At Us</h2>
@@ -455,7 +455,7 @@ export default function DashboardSection() {
                         </div>
                         <div className="bg-[#1C0800] rounded-2xl p-4 md:p-6 flex-grow flex flex-col min-h-[350px] md:min-h-0 overflow-hidden">
                             <div className="flex justify-between items-center mb-2 md:mb-4 flex-shrink-0">
-                                <p ref={chartTitleRef} className="text-[#FFC7A8] text-left font-primary text-lg md:text-xl">{activeSlide.title}</p>
+                                <p ref={chartTitleRef} className="text-[#FFC7a8] text-left font-primary text-lg md:text-xl">{activeSlide.title}</p>
                                 <div className="flex gap-2">
                                     <button onClick={() => handleSlideChange(-1)} className="p-2 rounded-full bg-[#4D1600] hover:bg-[#F47A36] transition-colors" aria-label="Previous Chart"><svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg></button>
                                     <button onClick={() => handleSlideChange(1)} className="p-2 rounded-full bg-[#4D1600] hover:bg-[#F47A36] transition-colors" aria-label="Next Chart"><svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg></button>

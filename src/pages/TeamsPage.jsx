@@ -102,7 +102,7 @@ const advisory = [
 
 const TeamCategorySection = ({ title, members }) => (
     <section className="w-full max-w-7xl mx-auto px-8 py-16">
-        <h2 className="text-4xl md:text-5xl font-normal font-primary text-[#FFC7A8] text-center mb-12">{title}</h2>
+        <h2 className="text-4xl md:text-5xl font-normal font-primary text-text-main text-center mb-12">{title}</h2>
         <div className="flex flex-wrap justify-center gap-8">
             {members.map(person => (
                 <ProfileCard key={person.id} person={person} className="profile-card" />
@@ -134,7 +134,7 @@ const TeamsPage = () => {
     }, { scope: pageRef });
 
     return (
-        <div ref={pageRef} className="bg-black text-white">
+        <div ref={pageRef} className="bg-background text-text-main">
             
             {/* ✅ CHANGE: Replaced the hardcoded hero with the reusable PageHero component */}
             <PageHero 

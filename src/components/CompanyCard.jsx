@@ -92,7 +92,7 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
         <div 
             ref={cardRef}
             onClick={handleClick}
-            className="company-card relative aspect-[4/3] bg-black rounded-2xl border border-[#F85C20] flex justify-center items-center cursor-pointer p-4 overflow-hidden"
+            className="company-card relative aspect-[4/3] bg-background rounded-2xl border border-[#F85C20] flex justify-center items-center cursor-pointer p-4 overflow-hidden"
             {...props}
         >
             <div className="hidden md:block w-full h-full">
@@ -115,8 +115,8 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
                         <line x1="0" y1="1" x2="200" y2="1" stroke="#F47A36" strokeWidth="2" />
                     </svg>
                     <div className="details-content flex flex-col items-center">
-                        <h3 className="company-name text-xl md:text-2xl font-bold text-[#F47A36] mb-2">{company.name}</h3>
-                        <p className="company-description text-xs md:text-sm text-gray-200 leading-snug">{company.description}</p>
+                        <h3 className="company-name text-xl md:text-2xl font-medium font-primary text-accent mb-2">{company.name}</h3>
+                        <p className="company-description font-primary font-light text-xs md:text-sm text-text-main leading-snug">{company.description}</p>
                     </div>
                 </div>
             </div>

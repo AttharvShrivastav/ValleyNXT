@@ -115,7 +115,7 @@ const PortfolioPage = () => {
         clickTimeoutRef.current = setTimeout(() => {
             setActiveCardId(cardId);
             setPreExpandingCardId(null); // Clear pre-expansion state after it's done
-        }, 500); // 0.5-second delay
+        }); // 0.5-second delay
     };
 
     const handleToggle = (category) => {
@@ -199,7 +199,7 @@ const PortfolioPage = () => {
 
 
     return (
-        <div ref={pageRef} className="bg-black flex flex-col items-center w-full overflow-x-hidden">
+        <div ref={pageRef} className="bg-background flex flex-col items-center w-full overflow-x-hidden">
             <PageHero 
                 subtitle="Our Portfolio Companies"
                 titleLine1="VENTURES IN MOTION"
@@ -209,15 +209,15 @@ const PortfolioPage = () => {
             />
             
             <div className="w-full flex justify-center mt-12 mb-12 px-4">
-                <div className="relative w-[90%] flex items-center bg-black rounded-full border border-[#F47A36]">
-                    <div ref={sliderRef} className="absolute h-[88%] w-[95%] bg-[#F47A36] rounded-full z-0"></div>
+                <div className="relative w-[90%] flex items-center justify-center bg-background rounded-full border border-accent">
+                    <div ref={sliderRef} className="absolute h-[88%] w-[95%] bg-accent rounded-full z-0"></div>
                     
-                    <button onClick={() => handleToggle('valley')} className={`toggle-button relative z-10 px-4 md:px-8 py-2 md:py-3 text-xs sm:text-sm font-semibold text-[#FFC7A8] text-center transition-colors duration-300 flex justify-center items-center ${hasBharatBreakthrough ? 'w-1/2' : 'w-full'}`}>
+                    <button onClick={() => handleToggle('valley')} className={`toggle-button relative z-10 px-4 md:px-8 py-2 md:py-3 text-xs sm:text-sm font-semibold text-text-main text-center transition-colors duration-300 flex justify-center items-center ${hasBharatBreakthrough ? 'w-1/2' : 'w-full'}`}>
                         VALLEY NXT VENTURES
                     </button>
                     
                     {hasBharatBreakthrough && (
-                        <button onClick={() => handleToggle('bharat')} className="toggle-button relative z-10 w-1/2 px-4 md:px-8 py-2 md:py-3 text-xs sm:text-sm font-semibold text-[#FFC7A8] text-center transition-colors duration-300 flex justify-center items-center">
+                        <button onClick={() => handleToggle('bharat')} className="toggle-button relative z-10 w-1/2 px-4 md:px-8 py-2 md:py-3 text-xs sm:text-sm font-semibold text-text-main text-center transition-colors duration-300 flex justify-center items-center">
                             BHARAT BREAKTHROUGH
                         </button>
                     )}

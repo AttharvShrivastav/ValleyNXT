@@ -43,7 +43,7 @@ const BackgroundBars = ({ position = 'bottom' }) => {
                         className="flex-1"
                         style={{
                             height: bar.height,
-                            background: 'linear-gradient(to top, #F47A36, #000000 85%)'
+                            background:'linear-gradient(to top, var(--color-accent), var(--color-background) 85%)'
                         }}
                     ></div>
                 ))}
