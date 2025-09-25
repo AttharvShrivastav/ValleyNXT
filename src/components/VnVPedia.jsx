@@ -113,19 +113,21 @@ const VnvpediaSection = () => {
                 <div className="relative z-20 flex items-center justify-center w-full">
                     <div className="absolute hidden md:top-0 md:-translate-y-4 md:block">
                          <svg ref={headingRef} width="998" height="67" viewBox="0 0 998 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M118.667 64C118.667 62.5272 117.473 61.3333 116 61.3333C114.527 61.3333 113.333 62.5272 113.333 64C113.333 65.4728 114.527 66.6667 116 66.6667C117.473 66.6667 118.667 65.4728 118.667 64ZM116 64V63.5L1 63.5V64V64.5L116 64.5V64Z" fill="#F47A36"/>
-<path d="M884.667 64C884.667 62.5272 883.473 61.3333 882 61.3333C880.527 61.3333 879.333 62.5272 879.333 64C879.333 65.4728 880.527 66.6667 882 66.6667C883.473 66.6667 884.667 65.4728 884.667 64ZM997 64V63.5L882 63.5V64V64.5L997 64.5V64Z" fill="#F47A36"/>
-<line x1="995.938" y1="0.5" x2="0.000244141" y2="0.5" stroke="#F47A36"/>
-<line x1="0.5" y1="2.18557e-08" x2="0.499997" y2="64" stroke="#F47A36"/>
-<line x1="997.5" y1="2.05842e-08" x2="997.5" y2="64" stroke="#F47A36"/>
-</svg>
+
+                            <path d="M165.667 50C165.667 48.5272 164.473 47.3333 163 47.3333C161.527 47.3333 160.333 48.5272 160.333 50C160.333 51.4728 161.527 52.6667 163 52.6667C164.473 52.6667 165.667 51.4728 165.667 50ZM163 50V49.5L1 49.5V50V50.5L163 50.5V50Z" fill="#F47A36"/>
+                            <path d="M837.667 50C837.667 48.5272 836.473 47.3333 835 47.3333C833.527 47.3333 832.333 48.5272 832.333 50C832.333 51.4728 833.527 52.6667 835 52.6667C836.473 52.6667 837.667 51.4728 837.667 50ZM997 50V49.5L835 49.5V50V50.5L997 50.5V50Z" fill="#F47A36"/>
+                            <line x1="995.938" y1="0.5" x2="0.000244141" y2="0.5" stroke="#F47A36"/>
+                            <line x1="0.500008" y1="2.18557e-08" x2="0.500005" y2="50" stroke="#F47A36"/>
+                            <line x1="997.5" y1="2.05842e-08" x2="997.5" y2="50" stroke="#F47A36"/>
+
+                         </svg>
 
 
 
 
                     </div>
-                    <h2 className="heading-text text-text-main text-4xl md:text-6xl font-primary tracking-wider text-center">
-                        EXPLORE <span className="text-accent text-6xl md:text-8xl font-serifa">vnvpedia</span>
+                    <h2 className="heading-text text-text-main text-4xl md:text-4xl font-primary tracking-wider text-center">
+                        EXPLORE <span className="text-accent text-6xl md:text-6xl font-serifa">vnvpedia</span>
                     </h2>
                 </div>
             </div>

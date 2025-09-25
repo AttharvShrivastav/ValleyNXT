@@ -33,7 +33,7 @@ const PageHero = ({ subtitle, titleLine1, titleLine2, titleLine2Serif, buttonTex
                         {/* ✅ CHANGE: Applied a very tight line-height to the parent h1 */}
                         <h1 className="hero-heading font-primary text-4xl md:text-6xl text-text-main leading-[0.9] md:leading-[0.95]">
                             {/* ✅ CHANGE: Made each line a block element for clean stacking */}
-                            <span className='block font-primary font-bold'>{titleLine1}</span>
+                            <span className='block font-primary pt-0.5 font-bold'>{titleLine1}</span>
                             <span className={`block font-normal text-5xl pb-1 md:text-7xl text-accent ${titleLine2Serif ? 'font-serifa' : ''}`}>
                                 {titleLine2}
                             </span>

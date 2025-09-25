@@ -121,8 +121,8 @@ const TeamsPage = () => {
             gsap.from(card, {
                 autoAlpha: 0,
                 y: 70,
-                duration: 1,
-                ease: 'power3.out',
+                opacity: 0,
+                duration: 1.5,
                 scrollTrigger: {
                     trigger: card,
                     start: 'top 85%',
