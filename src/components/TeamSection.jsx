@@ -13,11 +13,39 @@ import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, SplitText, useGSAP);
 
-const teamMembers = [
-  { id: 1, name: "CA Anand Saklecha", title: "Founder and Head of Investment Committee", bio: "Veteran fund manager, structuring over ₹4,500 Cr in deals and guiding entrepreneurs from inception to IPO.", image: AnandSaklechaImage, linkedin: "#" },
-  { id: 2, name: "Dr. Madhu Vasepalli", title: "Founder and Managing Partner", bio: "Serial healthtech entrepreneur and investor in 17+ startups. Mentor to founders at the intersection of tech and healthcare.", image: DrMadhuImage, linkedin: "#" },
-  { id: 3, name: "Dr. Nikhil Agarwal", title: "Founder & Advisor", bio: "Architect behind India's leading incubators and 175+ startups. Pioneer in innovation ecosystems and startup policy.", image: DrNikhilImage, linkedin: "#" },
-  { id: 4, name: "Mr. Suresh Goyal", title: "Partner & Fund Manager", bio: "Infrastructure finance leader with 30+ years experience. Scaled India's largest PPP platform and managed global assets.", image: MrSureshImage, linkedin: "#" }
+const teamMembers =  [
+  {
+    id: 1,
+    name: "CA Anand Saklecha",
+    title: "Founder and Head of Investment Committee",
+    bio: "Veteran fund manager, structuring over ₹4,500 Cr in deals and guiding entrepreneurs from inception to IPO.",
+    image: AnandSaklechaImage,
+    linkedin: "https://www.linkedin.com/in/anand-saklecha-18a57716/"
+  },
+  {
+    id: 2,
+    name: "Dr. Madhu Vasepalli",
+    title: "Founder and Managing Partner",
+    bio: "Serial healthtech entrepreneur and investor in 17+ startups. Mentor to founders at the intersection of tech and healthcare.",
+    image: DrMadhuImage,
+    linkedin: "https://www.linkedin.com/in/dr-madhu-vasepalli-mds-43a24812/"
+  },
+  {
+    id: 3,
+    name: "Dr. Nikhil Agarwal",
+    title: "Founder & Advisor",
+    bio: "Architect behind India's leading incubators and 175+ startups. Pioneer in innovation ecosystems and startup policy.",
+    image: DrNikhilImage,
+    linkedin: "https://www.linkedin.com/in/drnikhilagarwalindia/"
+  },
+  {
+    id: 4,
+    name: "Mr. Suresh Goyal",
+    title: "Partner & Fund Manager",
+    bio: "Infrastructure finance leader with 30+ years experience. Scaled India's largest PPP platform and managed global assets.",
+    image: MrSureshImage,
+    linkedin: "https://www.linkedin.com/in/suresh-goyal-4534364/"
+  }
 ];
 
 const TeamSection = () => {

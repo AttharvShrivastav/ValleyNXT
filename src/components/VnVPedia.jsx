@@ -138,7 +138,7 @@ const VnvpediaSection = () => {
                 {/* DESKTOP: Buttons restored to their original state, hidden on mobile */}
                 <button
                     onClick={() => handleNavigation('prev')}
-                    className="nav-button absolute left-0 top-1/2 -translate-y-10 -translate-x-1/2 z-30 p-4 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
+                    className="nav-button absolute left-1 top-1/2 -translate-y-10 -translate-x-1/2 z-30 p-4 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
                     aria-label="Previous article"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -163,7 +163,7 @@ const VnvpediaSection = () => {
                 {/* DESKTOP: Buttons restored to their original state, hidden on mobile */}
                 <button
                     onClick={() => handleNavigation('next')}
-                    className="nav-button absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-30 p-4 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
+                    className="nav-button absolute right-1 top-1/2 -translate-y-1/2 translate-x-1/2 z-30 p-4 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
                     aria-label="Next article"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,7 +185,7 @@ const VnvpediaSection = () => {
                 </button>
                 <button
                     onClick={() => handleNavigation('next')}
-                    className="p-3 rounded-full -tr bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none"
+                    className="p-3 rounded-full bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none"
                     aria-label="Next article"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -199,7 +199,7 @@ const VnvpediaSection = () => {
                     <AnimatedCtaButton text="Explore Vnvpedia" />
                 </div>
                 <div className="block md:hidden">
-                    <a href="https://www.linkedin.com/company/valleynxtventures/about/" className="inline-block bg-dashboard-bg text-black font-bold text-lg px-8 py-4 rounded-full hover:bg-[#d98d62] transition-colors duration-300">
+                    <a href="https://www.linkedin.com/company/valleynxtventures/about/" className="inline-block w-auto bg-dashboard-bg text-black font-bold text-lg px-8 py-4 rounded-full hover:bg-[#d98d62] transition-colors duration-300">
                         Explore Vnvpedia
                     </a>
                 </div>

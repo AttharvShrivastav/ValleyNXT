@@ -70,7 +70,7 @@ Strategic partnerships, funding, and expert guidance. Building technology that m
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} className="stages-section bg-background min-h-screen w-full flex items-center justify-center relative overflow-hidden p-4">
+        <section ref={sectionRef} className="stages-section bg-background min-h-screen h-auto w-full flex items-center justify-center relative overflow-hidden p-4">
             <style>{`
               .stages-section {
                 --section-pt: 9rem; /* 144px */

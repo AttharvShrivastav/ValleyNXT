@@ -1,8 +1,6 @@
-// No changes were needed for this component. It is already fully responsive.
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from "@gsap/react";
-// ✅ CHANGE: Import SplitText directly to prevent tree-shaking issues in production.
 import { SplitText } from "gsap/SplitText";
 import WebFont from 'webfontloader';
 
@@ -11,10 +9,9 @@ import BackgroundBars from '../components/BackgroundBars';
 import StagesSection from '../components/StagesSection';
 import MibSection from '../components/MibSection';
 import Dashboard from '../components/Dashboard';
-import TeamSection from '../components/TeamSection'; // This is the preview on the homepage
+import TeamSection from '../components/TeamSection';
 import VnvpediaSection from '../components/VnVPedia';
 
-// ✅ CORRECTION: Register the plugin right after importing it.
 gsap.registerPlugin(SplitText);
 
 const Hero = () => {
@@ -29,13 +26,50 @@ const Hero = () => {
 
   useGSAP(() => {
     if (!fontsLoaded) return;
-    // This animation logic is perfect and does not need to be changed.
+
+    // --- Hero Text Entrance Animation ---
     const split = SplitText.create(heroTextRef.current, { type: "lines,words,chars" });
     const words = split.words;
     gsap.set(words, { y: '110%', rotate: '5deg', opacity: 0 });
     let tl = gsap.timeline();
     tl.to(words, { y: '0%', rotate: '0deg', opacity: 1, duration: 0.7, stagger: 0.05, ease: 'power2.out', delay: 0.5 })
       .from(buttonRef.current, { y: '100%', opacity: 0, ease: 'Power2.easeOut', }, "-=0.5");
+
+    // --- Button Hover Animation ---
+    const button = buttonRef.current;
+    if (button) {
+      const background = button.querySelector('.button-background');
+      const text = button.querySelector('h2');
+      const hoverTl = gsap.timeline({ paused: true });
+
+      hoverTl.to(background, {
+          scaleX: 1,
+          duration: 0.4,
+          ease: 'power2.inOut'
+      }).to(text, {
+          color: 'var(--color-button-text)',
+          duration: 0.4,
+          ease: 'power2.inOut'
+      }, 0)
+      // ✅ FIX: Animate the border to transparent as the background fills in
+      .to(button, {
+        borderColor: 'transparent',
+        duration: 0.4,
+        ease: 'power2.inOut'
+      }, 0);
+
+      const enterHandler = () => hoverTl.play();
+      const leaveHandler = () => hoverTl.reverse();
+      
+      button.addEventListener('mouseenter', enterHandler);
+      button.addEventListener('mouseleave', leaveHandler);
+      
+      return () => {
+        button.removeEventListener('mouseenter', enterHandler);
+        button.removeEventListener('mouseleave', leaveHandler);
+      }
+    }
+
   }, { scope: heroRef, dependencies: [fontsLoaded] });
 
   return (
@@ -46,8 +80,16 @@ const Hero = () => {
         <div className="overflow-hidden"><div>ACCELERATING</div></div>
         <div className="overflow-hidden"><div><span className="font-extrabold text-accent">GROWTH</span></div></div>
       </h1>
-      <a href='https://vclub.valleynxtventures.com/entrepreneur/signup/NA==' ref={buttonRef} className="mt-8 bg-button flex items-center justify-center h-8 w-42 z-10 md:h-12 md:w-52 md:rounded-2xl rounded-xl">
-        <h2 className='font-primary text-background text-[12px] md:text-base'>FIND FUNDING</h2>
+      
+      <a 
+        href='https://vclub.valleynxtventures.com/entrepreneur/signup/NA==' 
+        ref={buttonRef} 
+        className="relative mt-8 bg-transparent text-button border-2 border-button flex items-center justify-center h-8 w-42 z-10 md:h-12 md:w-52 md:rounded-2xl rounded-xl overflow-hidden cursor-pointer"
+      >
+        <span className="button-background absolute inset-0 bg-button scale-x-0 origin-left z-0"></span>
+        <h2 className='relative z-10 font-primary text-[12px] md:text-base'>
+          FIND FUNDING
+        </h2>
       </a>
     </div>
   );
@@ -58,7 +100,7 @@ const Hero = () => {
 const HomePage = () => {
     return (
         <main>
-            <div className="relative min-h-screen flex flex-col bg-black text-white overflow-x-hidden">
+            <div className="relative min-h-screen flex flex-col bg-background text-white overflow-x-hidden">
                 <Hero />
                 <BackgroundBars />
             </div>
