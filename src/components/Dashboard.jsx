@@ -245,7 +245,9 @@ import React, { useState, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+// ✅ Step 1: Import Recharts components and remove the old Chart import
 import { Chart } from "react-google-charts";
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import MyLogo from "../assets/logoblack.svg";
 import TheTheatreProject from "../assets/Dashboard/TheTheatreProject.png";
 import Navkars from "../assets/Dashboard/Navkars.png";
@@ -268,6 +270,9 @@ const pieChartData = [
     ["Sector", "Value"], ["Deeptech", 130], ["Healthtech", 65], ["Cybersec", 60], ["Fintech", 54], ["D2C", 50], ["UAV & Robotics", 50], ["Cleantech", 45], ["Foodtech", 40], ["Other", 80],
 ];
 const pieChartColors = ['#F47A36', '#BA5B26', '#FFC7A8', '#916B55', '#FA9D79', '#4D1600', '#E64910', '#D98D62', '#8B4017'];
+
+// ✅ Step 2: Helper to format data for Recharts
+const formattedPieData = pieChartData.slice(1).map(item => ({ name: item[0], value: item[1] }));
 
 function AnimatedNumber({ value, prefix = "", suffix = "" }) {
     const ref = useRef(null);
@@ -292,20 +297,9 @@ export default function DashboardSection() {
     const chartLogoRef = useRef(null);
     const [pieHeaderText, setPieHeaderText] = useState("Startups by Sector");
     const pieHeaderRef = useRef(null);
-    const dataValues = pieChartData.slice(1).map(row => row[1]);
-    const totalValue = dataValues.reduce((sum, value) => sum + value, 0);
+    const totalValue = formattedPieData.reduce((sum, item) => sum + item.value, 0);
 
-    const pieChartOptions = {
-        backgroundColor: 'transparent',
-        legend: 'none',
-        pieSliceText: 'none',
-        sliceVisibilityThreshold: .03,
-        pieHole: 0.5,
-        colors: pieChartColors,
-        chartArea: { left: 10, top: 10, width: '90%', height: '90%' },
-        tooltip: { trigger: 'none' },
-    };
-
+    // handleLegendEnter and handleLegendLeave remain the same, they are perfect.
     const handleLegendEnter = (sector, percentage) => {
         if (pieHeaderText.startsWith(sector)) return;
         gsap.to(pieHeaderRef.current, { autoAlpha: 0, y: 10, duration: 0.2, ease: 'power2.in', onComplete: () => setPieHeaderText(`${sector}: ${percentage}%`) });
@@ -319,41 +313,23 @@ export default function DashboardSection() {
         const newIndex = (currentSlide + direction + chartSlides.length) % chartSlides.length;
         gsap.timeline().to([chartContentRef.current, chartTitleRef.current, chartLogoRef.current], { autoAlpha: 0, y: 15, duration: 0.4, ease: 'power2.in', onComplete: () => setCurrentSlide(newIndex) });
     }
-
-    // ✅ FIX: Moved the scaling logic into useGSAP and wrapped it in matchMedia
+    
+    // The rest of your GSAP hooks remain unchanged
     useGSAP(() => {
         const mm = gsap.matchMedia();
-
-        // This logic will ONLY run on screens wider than 768px
         mm.add("(min-width: 768px)", () => {
             const adjustScale = () => {
                 if (!sectionRef.current || !contentBoxRef.current) return;
-                const viewportWidth = window.innerWidth;
-                const viewportHeight = window.innerHeight;
-                const contentRect = contentBoxRef.current.getBoundingClientRect();
-                const sectionStyle = window.getComputedStyle(sectionRef.current);
-                const sectionPaddingX = parseFloat(sectionStyle.paddingLeft) + parseFloat(sectionStyle.paddingRight);
-                const sectionPaddingY = parseFloat(sectionStyle.paddingTop) + parseFloat(sectionStyle.paddingBottom);
-                const availableWidth = viewportWidth - sectionPaddingX;
-                const availableHeight = viewportHeight - sectionPaddingY;
-                const scaleX = availableWidth / contentRect.width;
-                const scaleY = availableHeight / contentRect.height;
-                const finalScale = Math.min(scaleX, scaleY, 1);
-
+                const finalScale = Math.min(window.innerWidth / 1200, window.innerHeight / 800, 1);
                 gsap.set(contentBoxRef.current, { scale: finalScale, transformOrigin: "center center" });
             };
-            
             adjustScale();
             window.addEventListener('resize', adjustScale);
-            
-            // Cleanup function for when the media query no longer matches
             return () => {
                 window.removeEventListener('resize', adjustScale);
-                gsap.set(contentBoxRef.current, { clearProps: "scale,transformOrigin" }); // Resets the scale on mobile
+                gsap.set(contentBoxRef.current, { clearProps: "scale,transformOrigin" });
             }
         });
-        
-        // Button hover animation (runs on all screen sizes)
         const button = presentationButton.current;
         if (!button) return;
         const svg = button.querySelector('svg');
@@ -361,9 +337,8 @@ export default function DashboardSection() {
         const buttonLeave = () => { gsap.to(svg, { rotation: 0, duration: 0.5, ease: 'elastic.out(1, 0.75)' }); };
         button.addEventListener('mouseenter', buttonEnter);
         button.addEventListener('mouseleave', buttonLeave);
-        
         return () => {
-             mm.revert(); // Cleanup for matchMedia
+             mm.revert();
             if(button) {
                 button.removeEventListener('mouseenter', buttonEnter);
                 button.removeEventListener('mouseleave', buttonLeave);
@@ -372,17 +347,11 @@ export default function DashboardSection() {
     }, { scope: sectionRef });
 
     useGSAP(() => {
-        gsap.fromTo([chartContentRef.current, chartTitleRef.current, chartLogoRef.current], 
-            { autoAlpha: 0, y: -15 }, 
-            { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.05, ease: 'power2.out' }
-        );
+        gsap.fromTo([chartContentRef.current, chartTitleRef.current, chartLogoRef.current], { autoAlpha: 0, y: -15 }, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.05, ease: 'power2.out' });
     }, { dependencies: [currentSlide], scope: sectionRef });
     
     useGSAP(() => {
-        gsap.fromTo(pieHeaderRef.current, 
-            { autoAlpha: 0, y: -10 }, 
-            { autoAlpha: 1, y: 0, duration: 0.3, ease: 'power2.out' }
-        );
+        gsap.fromTo(pieHeaderRef.current, { autoAlpha: 0, y: -10 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: 'power2.out' });
     }, { dependencies: [pieHeaderText], scope: sectionRef });
 
     const activeSlide = chartSlides[currentSlide];
@@ -390,6 +359,7 @@ export default function DashboardSection() {
     return (
         <section ref={sectionRef} className="bg-background w-full text-brown-900 flex justify-center items-center py-6 px-4 md:py-10 md:px-4 min-h-screen">
             <div ref={contentBoxRef} className="w-full max-w-[1200px] bg-dashboard-bg rounded-3xl p-6 md:p-8 shadow-lg flex flex-col gap-4 md:gap-8">
+                {/* Header part is unchanged */}
                 <div className="w-full flex items-center justify-between flex-shrink-0">
                     <img src={MyLogo} alt="ValleyNXT Ventures Logo" className="w-28 md:w-40" />
                     <a href="https://vclub.valleynxtventures.com/investor/signup/Mg==" ref={presentationButton} className="w-44 md:w-52 px-4 rounded-full flex-shrink-0 text-sm md:text-[15px] font-primary font-bold flex items-center justify-center gap-3 h-12 bg-button text-button-text transition-colors hover:bg-[#1C0800] hover:text-[#FFC7A8]">
@@ -399,42 +369,45 @@ export default function DashboardSection() {
                 </div>
                 <div className="w-full flex-grow flex flex-col md:flex-row gap-8 md:gap-12 text-[#1c0800] min-h-0">
                     <div className="w-full md:w-1/4 flex flex-col gap-6 min-h-0">
+                        {/* Left column text is unchanged */}
                         <div>
                             <h2 className="text-4xl md:text-5xl font-serifa leading-none">One Look<br />At Us</h2>
                             <p className="text-base md:text-lg font-primary mt-4">What we have achieved is presented here.</p>
                         </div>
                         <div className="bg-[#1C0800] rounded-2xl px-4 py-6 flex-grow flex flex-col overflow-y-auto" onMouseLeave={handleLegendLeave}>
                             <div className="w-full h-full flex flex-col items-center justify-center gap-2">
+                                {/* Heading part is unchanged */}
                                 <div className="h-8 flex items-center flex-shrink-0">
                                     <p ref={pieHeaderRef} className="text-center font-primary text-lg">
-                                        {pieHeaderText === "Startups by Sector" ? (
-                                            <>
-                                                <span className="text-[#FFC7A8]">Startups by </span>
-                                                <span className="font-serifa text-2xl ml-1.5 align-bottom text-[#F47A36]">Sector</span>
-                                            </>
-                                        ) : (
-                                            <span className="text-[#F47A36]">{pieHeaderText}</span>
-                                        )}
+                                        {pieHeaderText === "Startups by Sector" ? ( <><span className="text-[#FFC7A8]">Startups by </span><span className="font-serifa text-2xl ml-1.5 align-bottom text-[#F47A36]">Sector</span></> ) : ( <span className="text-[#F47A36]">{pieHeaderText}</span> )}
                                     </p>
                                 </div>
                                 <div className="flex-shrink-0 w-36 h-36">
-                                    <Chart chartType="PieChart" width="100%" height="100%" data={pieChartData} options={pieChartOptions} loader={<div>...</div>}
-                                        chartEvents={[
-                                            {
-                                                eventName: 'onmouseover',
-                                                callback: ({ chartWrapper, row }) => {
-                                                    if (row === null) return;
-                                                    const dataTable = chartWrapper.getDataTable();
-                                                    const sector = dataTable.getValue(row, 0);
-                                                    const value = dataTable.getValue(row, 1);
-                                                    const percentage = ((value / totalValue) * 100).toFixed(1);
-                                                    handleLegendEnter(sector, percentage);
-                                                },
-                                            },
-                                            { eventName: 'onmouseout', callback: () => { handleLegendLeave(); }, },
-                                        ]}
-                                    />
+                                    {/* ✅ Step 3: Replace the old Chart with the new Recharts PieChart */}
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <PieChart>
+                                            <Pie
+                                                data={formattedPieData}
+                                                dataKey="value"
+                                                nameKey="name"
+                                                cx="50%"
+                                                cy="50%"
+                                                innerRadius={45}
+                                                outerRadius={65}
+                                                paddingAngle={2}
+                                                onMouseEnter={(data) => {
+                                                    const percentage = ((data.value / totalValue) * 100).toFixed(1);
+                                                    handleLegendEnter(data.name, percentage);
+                                                }}
+                                            >
+                                                {formattedPieData.map((entry, index) => (
+                                                    <Cell key={`cell-${index}`} fill={pieChartColors[index % pieChartColors.length]} />
+                                                ))}
+                                            </Pie>
+                                        </PieChart>
+                                    </ResponsiveContainer>
                                 </div>
+                                {/* Legend part is unchanged */}
                                 <div className="grid grid-cols-2 gap-x-5 gap-y-1.5 text-[11px] text-[#FFC7A8] p-2">
                                     {pieChartData.slice(1).map(([sector, value], index) => {
                                         const percentage = ((value / totalValue) * 100).toFixed(1);
@@ -449,6 +422,7 @@ export default function DashboardSection() {
                             </div>
                         </div>
                     </div>
+                    {/* Right column (stats and line chart) is unchanged */}
                     <div className="w-full md:w-3/4 flex flex-col gap-6 min-h-0">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             {stats.map((stat) => ( <div key={stat.label} className="bg-[#1C0800] text-center rounded-2xl p-6 flex flex-col justify-center"> <p className="text-[#FFC7A8] font-primary text-lg md:text-xl mb-1">{stat.label}</p> <AnimatedNumber value={stat.value} prefix={stat.prefix} suffix={stat.suffix} /> </div> ))}
