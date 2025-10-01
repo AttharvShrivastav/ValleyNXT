@@ -64,7 +64,7 @@ const Hero = ({ startAnimations }) => {
       </h1>
       <a href='https://vclub.valleynxtventures.com/entrepreneur/signup/NA==' ref={buttonRef} className="relative mt-8 bg-transparent text-button border-2 border-button flex items-center justify-center h-8 w-42 z-10 md:h-12 md:w-52 md:rounded-2xl rounded-xl overflow-hidden cursor-pointer">
         <span className="button-background absolute inset-0 bg-button scale-x-0 origin-left z-0"></span>
-        <h2 className='relative z-10 font-primary text-[12px] md:text-base'>FIND FUNDING</h2>
+        <h2 className='relative z-10 font-primary text-[12px] md:text-base'>GET FUNDING</h2>
       </a>
     </div>
   );

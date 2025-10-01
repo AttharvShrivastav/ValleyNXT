@@ -199,7 +199,7 @@ const VnvpediaSection = () => {
                     <AnimatedCtaButton text="Explore Vnvpedia" />
                 </div>
                 <div className="block md:hidden">
-                    <a href="https://www.linkedin.com/company/valleynxtventures/about/" className="inline-block w-auto bg-dashboard-bg text-black font-bold text-lg px-8 py-4 rounded-full hover:bg-[#d98d62] transition-colors duration-300">
+                    <a href="https://www.linkedin.com/company/valleynxtventures/about/" className="inline-block w-[50] bg-dashboard-bg text-black font-bold text-lg px-8 py-4 rounded-full hover:bg-[#d98d62] transition-colors duration-300">
                         Explore Vnvpedia
                     </a>
                 </div>
