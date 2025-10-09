@@ -14,9 +14,6 @@ const AnimatedCtaButton = ({ text, link = "#" }) => {
 
         const ctaText = ctaButton.querySelector('.cta-text');
         
-        // --- WIDER BUTTON CALCULATION ---
-        // Added an extra 30px of padding to the right for a wider button
-        // const expandedWidth = ctaText.offsetLeft + ctaText.offsetWidth + 60 + 30;
         const expandedWidth = Math.max(ctaText.offsetLeft + ctaText.offsetWidth + 60 + 30, 120); // Set a min width
 
         const circleTravelDistance = expandedWidth - 60;
