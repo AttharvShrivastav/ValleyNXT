@@ -262,9 +262,9 @@ const stats = [
     { label: "Startups Funded", value: 10, suffix: "+" },
 ];
 const chartSlides = [
-    { name: "The Theatre Project", title: "Financial Growth", logo: TheTheatreProject, chartData: [["Year", "Value (in Cr)"], ["FY23", 3.80], ["FY24", 5.07], ["FY25", 9.64]], chartType: "LineChart" },
-    { name: "Kyari", title: "Financial Growth", logo: Kyari, chartData: [["Year", "Financial Growth (in Cr)"], ["FY23", 3.8], ["FY24", 12.8], ["FY25", 18.72]], chartType: "LineChart" },
-    { name: "Navars", title: "Financial Growth", logo: Navkars, chartData: [["Year", "Financial Growth(in Cr)"], ["FY23", 2.25], ["FY24", 5.85], ["FY25", 7.09]], chartType: "LineChart" }
+    { name: "The Theatre Project", title: "Financial Growth (Revenue)", logo: TheTheatreProject, chartData: [["Year", "Value (in Cr)"], ["FY23", 3.80], ["FY24", 5.07], ["FY25", 9.64]], chartType: "LineChart" },
+    { name: "Kyari", title: "Financial Growth (Revenue)", logo: Kyari, chartData: [["Year", "Financial Growth (in Cr)"], ["FY23", 3.8], ["FY24", 12.8], ["FY25", 18.72]], chartType: "LineChart" },
+    { name: "Navars", title: "Financial Growth (Revenue)", logo: Navkars, chartData: [["Year", "Financial Growth(in Cr)"], ["FY23", 2.25], ["FY24", 5.85], ["FY25", 7.09]], chartType: "LineChart" }
 ];
 const pieChartData = [
     ["Sector", "Value"], ["Deeptech", 130], ["Healthtech", 65], ["Cybersec", 60], ["Fintech", 54], ["D2C", 50], ["UAV & Robotics", 50], ["Cleantech", 45], ["Foodtech", 40], ["Other", 80],
@@ -437,7 +437,41 @@ export default function DashboardSection() {
                             </div>
                             <div className="flex-grow w-full h-full flex flex-col md:flex-row items-center gap-4">
                                 <div ref={chartContentRef} className="w-full h-3/4 md:h-full md:w-3/4">
-                                    <Chart chartType={activeSlide.chartType} width="100%" height="100%" data={activeSlide.chartData} options={{ backgroundColor: "transparent", legend: { position: "none" }, hAxis: { textStyle: { color: "#FFC7A8" }, gridlines: { color: "rgba(255, 199, 168, 0.2)" } }, vAxis: { textStyle: { color: "#FFC7A8" }, gridlines: { color: "rgba(255, 199, 168, 0.2)" }, baselineColor: "transparent" }, colors: ["#F47A36"], chartArea: { backgroundColor: "transparent", left: 50, top: 20, width: '85%', height: '70%' }, curveType: "function", pointSize: 7, }} key={activeSlide.name} />
+                                    {/* <Chart chartType={activeSlide.chartType} width="100%" height="100%" data={activeSlide.chartData} options={{ backgroundColor: "transparent", legend: { position: "none" }, hAxis: { textStyle: { color: "#FFC7A8" }, gridlines: { color: "rgba(255, 199, 168, 0.2)" } }, vAxis: { textStyle: { color: "#FFC7A8" }, gridlines: { color: "rgba(255, 199, 168, 0.2)" }, baselineColor: "transparent" }, colors: ["#F47A36"], chartArea: { backgroundColor: "transparent", left: 50, top: 20, width: '85%', height: '70%' }, curveType: "function", pointSize: 7, }} key={activeSlide.name} />
+                                     */}
+                                     <Chart
+  chartType={activeSlide.chartType}
+  width="100%"
+  height="100%"
+  data={activeSlide.chartData}
+  options={{
+    backgroundColor: "transparent",
+    legend: { position: "none" },
+    hAxis: {
+      textStyle: { color: "#FFC7A8" },
+      gridlines: { color: "#fff" },
+      baselineColor: "#fff"  // hides horizontal gridlines but keeps axis
+    },
+    vAxis: {
+      textStyle: { color: "#FFC7A8" },
+      gridlines: { color: "transparent" }, // hides vertical gridlines but keeps axis
+      baselineColor: "rgba(255, 199, 168, 0.2)"  // keeps baseline color transparent for minimal look
+    },
+    colors: ["#F47A36"],
+    chartArea: {
+      backgroundColor: "transparent",
+      left: 50,
+      top: 20,
+      width: '85%',
+      height: '70%'
+    },
+    curveType: "function",
+    pointSize: 7,
+  }}
+  key={activeSlide.name}
+/>
+
+
                                 </div>
                                 <div ref={chartLogoRef} className="w-full h-1/4 md:h-full md:w-1/4 flex items-center justify-center p-2">
                                     <img src={activeSlide.logo} alt={`${activeSlide.name} Logo`} className="max-w-full max-h-16 md:max-h-24 object-contain hidden md:block" />

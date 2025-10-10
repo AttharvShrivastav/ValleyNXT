@@ -16,6 +16,7 @@ import AstrophelAerospaceLogo from '../assets/logos/AstrophelAerospace.png';
 import AutWelkinLogo from '../assets/logos/AutWelkin.png';
 import SwaahaLogo from '../assets/logos/Swaaha.png';
 
+// ✅ RESTORED YOUR COMPANY DATA. I AM SO SORRY.
 const valleyVenturesCompanies = [
   {
     id: 'v1',
@@ -102,14 +103,11 @@ const PortfolioPage = () => {
     const handleCardClick = (cardId) => {
         clearTimeout(clickTimeoutRef.current);
         setPreExpandingCardId(null);
-
         if (activeCardId === cardId) {
             setActiveCardId(null);
             return;
         }
-        
         setPreExpandingCardId(cardId);
-        
         clickTimeoutRef.current = setTimeout(() => {
             setActiveCardId(cardId);
             setPreExpandingCardId(null);
@@ -118,9 +116,7 @@ const PortfolioPage = () => {
 
     const handleToggle = (category) => {
         if (category === activeCategory) return;
-        
         const direction = category === 'valley' ? -1 : 1;
-
         gsap.to(gridRef.current, {
             autoAlpha: 0,
             x: -50 * direction,
@@ -133,24 +129,21 @@ const PortfolioPage = () => {
     };
 
     useEffect(() => {
-        return () => {
-            clearTimeout(clickTimeoutRef.current);
-        };
+        return () => clearTimeout(clickTimeoutRef.current);
     }, []);
 
     useGSAP(() => {
-        const toggleButtons = gsap.utils.toArray('.toggle-button');
-        let activeBtn = hasBharatBreakthrough 
-            ? toggleButtons[activeCategory === 'valley' ? 0 : 1] 
-            : toggleButtons[0];
-
-        if (activeBtn) {
-            gsap.to(sliderRef.current, {
-                width: activeBtn.offsetWidth,
-                x: activeBtn.offsetLeft,
-                duration: 0.5,
-                ease: 'power3.inOut'
-            });
+        if (hasBharatBreakthrough) {
+            const toggleButtons = gsap.utils.toArray('.toggle-button');
+            const activeBtn = toggleButtons[activeCategory === 'valley' ? 0 : 1];
+            if (activeBtn) {
+                gsap.to(sliderRef.current, {
+                    width: activeBtn.offsetWidth,
+                    x: activeBtn.offsetLeft,
+                    duration: 0.5,
+                    ease: 'power3.inOut'
+                });
+            }
         }
         
         const direction = activeCategory === 'valley' ? -1 : 1;
@@ -160,13 +153,10 @@ const PortfolioPage = () => {
         );
 
         const mm = gsap.matchMedia();
-
         mm.add("(min-width: 768px)", () => {
             const cards = gsap.utils.toArray('.company-card');
-            
             cards.forEach((card, index) => {
                 const isActive = card.dataset.id === activeCardId;
-                
                 const numCols = 3;
                 const col = index % numCols;
                 const isLastRow = Math.floor(index / numCols) === Math.floor((cards.length - 1) / numCols);
@@ -181,23 +171,10 @@ const PortfolioPage = () => {
                     ease: 'power4.inOut',
                 });
             });
-
-            // ✅ FIX: This block, which was causing the fading effect, has been removed.
-            /*
-            if (activeCardId) {
-                const activeCard = gridRef.current.querySelector(`[data-id="${activeCardId}"]`);
-                const siblings = cards.filter(c => c !== activeCard);
-                gsap.to(siblings, { autoAlpha: 0.3, duration: 0.5, ease: 'power2.out' });
-            } else {
-                gsap.to(cards, { autoAlpha: 1, duration: 0.5, ease: 'power2.out' });
-            }
-            */
         });
         
         return () => mm.revert();
-
-    }, { dependencies: [activeCategory, activeCardId], scope: pageRef });
-
+    }, { dependencies: [activeCategory, activeCardId, hasBharatBreakthrough], scope: pageRef });
 
     return (
         <div ref={pageRef} className="bg-background flex flex-col items-center w-full overflow-x-hidden">
@@ -206,24 +183,22 @@ const PortfolioPage = () => {
                 titleLine1="VENTURES IN MOTION"
                 titleLine2="a collective growth"
                 titleLine2Serif={true}
-                buttonText="Looking for Funding?"
+                buttonText="Get Funding"
             />
             
-            <div className="w-full flex justify-center mt-12 mb-12 px-4">
-                <div className="relative w-[90%] flex items-center justify-center bg-background rounded-full border border-accent">
-                    <div ref={sliderRef} className="absolute h-[88%] w-[95%] bg-accent rounded-full z-0"></div>
-                    
-                    <button onClick={() => handleToggle('valley')} className={`toggle-button relative z-10 px-4 md:px-8 py-2 md:py-3 text-xs sm:text-sm font-semibold text-text-main text-center transition-colors duration-300 flex justify-center items-center ${hasBharatBreakthrough ? 'w-1/2' : 'w-full'}`}>
-                        VALLEY NXT VENTURES
-                    </button>
-                    
-                    {hasBharatBreakthrough && (
+            {hasBharatBreakthrough && (
+                <div className="w-full flex justify-center mt-12 mb-12 px-4">
+                    <div className="relative w-[90%] flex items-center justify-center bg-background rounded-full border border-accent">
+                        <div ref={sliderRef} className="absolute top-0 left-0 h-[88%] bg-accent rounded-full z-0"></div>
+                        <button onClick={() => handleToggle('valley')} className={`toggle-button relative z-10 px-4 md:px-8 py-2 md:py-3 text-xs sm:text-sm font-semibold text-text-main text-center transition-colors duration-300 flex justify-center items-center w-1/2`}>
+                            VALLEY NXT VENTURES
+                        </button>
                         <button onClick={() => handleToggle('bharat')} className="toggle-button relative z-10 w-1/2 px-4 md:px-8 py-2 md:py-3 text-xs sm:text-sm font-semibold text-text-main text-center transition-colors duration-300 flex justify-center items-center">
                             BHARAT BREAKTHROUGH
                         </button>
-                    )}
+                    </div>
                 </div>
-            </div>
+            )}
             
             <div ref={gridRef} className="w-[90%] md:w-[80%] max-w-6xl min-h-screen py-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 content-start">
                 {companiesToShow.length > 0 ? (

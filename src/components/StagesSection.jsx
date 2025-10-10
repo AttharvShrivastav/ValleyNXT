@@ -16,9 +16,7 @@ const StagesSection = () => {
 
     const stages = [
       { id: 'acceleration', icon: AccelerationIcon, title: 'Acceleration', content: `Funding is just the beginning. We offer mentorship, networks, and market access so founders build smarter and scale faster, turning bold concepts into reality.`},
-      { id: 'innovation', icon: IdeationIcon, title: 'Innovation',  content: `Early-stage backing for bold ideas, with belief, capital, and hands-on support.
-Mentors who've built before, market access, and global connections.
-Raw ideas refined into breakthrough solutions.` },
+      { id: 'innovation', icon: IdeationIcon, title: 'Innovation',  content: `India, despite abundant talent, still imports critical technologies. Supporting bold founders builds self-reliance, driving disruption and transformation by backing breakthrough ideas even before sectors are defined.` },
       { id: 'breakthrough', icon: BreakthroughIcon, title: 'Breakthrough', content: `Support for ventures solving real-world problems in health, education, climate, jobs, and livelihoods.
 Strategic partnerships, funding, and expert guidance. Building technology that matters at scale.` }
     ];

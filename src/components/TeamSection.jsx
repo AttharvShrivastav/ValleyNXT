@@ -14,35 +14,35 @@ import { Link } from 'react-router-dom';
 gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, SplitText, useGSAP);
 
 const teamMembers =  [
-  {
-    id: 1,
-    name: "CA Anand Saklecha",
-    title: "Founder and Head of Investment Committee",
-    bio: "Veteran fund manager, structuring over ₹4,500 Cr in deals and guiding entrepreneurs from inception to IPO.",
-    image: AnandSaklechaImage,
-    linkedin: "https://www.linkedin.com/in/anand-saklecha-18a57716/"
-  },
-  {
-    id: 2,
-    name: "Dr. Madhu Vasepalli",
-    title: "Founder and Managing Partner",
-    bio: "Serial healthtech entrepreneur and investor in 17+ startups. Mentor to founders at the intersection of tech and healthcare.",
-    image: DrMadhuImage,
-    linkedin: "https://www.linkedin.com/in/dr-madhu-vasepalli-mds-43a24812/"
-  },
+    {
+      id: 1,
+      name: "Dr. Madhu Vasepalli",
+      title: "Founder and Managing Partner",
+      bio: "Investor in 17+ Indian and American startups and a serial healthtech entrepreneur. Founded and mentored 12+ ventures, including Ocimum Clinics, Yira Healthcare, BHS Robotics, and DEEP Trust. Actively participates in India’s startup ecosystem through Shark Tank events and panel discussions, guiding tech-first founders on innovation and growth.",
+      image: DrMadhuImage,
+      linkedin: "https://www.linkedin.com/in/dr-madhu-vasepalli-mds-43a24812/"
+    },
+    {
+      id: 2,
+      name: "Dr. Nikhil Agarwal",
+      title: "Founder & Advisor",
+      bio: "As MD of FITT at IIT Delhi, empowered 175+ startups leading in innovation. Led SIIC at IIT Kanpur, building India’s largest tech incubator with 300+ startups, ranked #1 in NIRF Innovation Ranking 2023. Headed C3iHub, India’s first cybersecurity hub, and served as former CEO of Andhra Pradesh Innovation, drafting the state’s first startup policy. Founded Entrepreneur Café, creating a global network across 110 cities supporting 45,000+ entrepreneurs.",
+      image: DrNikhilImage,
+      linkedin: "https://www.linkedin.com/in/drnikhilagarwalindia/"
+    },
   {
     id: 3,
-    name: "Dr. Nikhil Agarwal",
-    title: "Founder & Advisor",
-    bio: "Architect behind India's leading incubators and 175+ startups. Pioneer in innovation ecosystems and startup policy.",
-    image: DrNikhilImage,
-    linkedin: "https://www.linkedin.com/in/drnikhilagarwalindia/"
+    name: "CA Anand Saklecha",
+    title: "Founder and Head of Investment Committee",
+    bio: "As an ICAI MSME & Startups Committee Co-opted Member, brings 25+ years of experience in deal structuring, IPOs, and startup investments. Serves as MD & CEO of ASCO Capital, a boutique investment banking company, and Founder and Head of IC. Has structured ₹4,500+ Cr in corporate finance across 1,000+ projects, consulted 500+ companies across 50+ industries in 10+ countries, and leverages diversified global exposure with strong investor networks.",
+    image: AnandSaklechaImage,
+    linkedin: "https://www.linkedin.com/in/anand-saklecha-18a57716/"
   },
   {
     id: 4,
     name: "Mr. Suresh Goyal",
     title: "Partner & Fund Manager",
-    bio: "Infrastructure finance leader with 30+ years experience. Scaled India's largest PPP platform and managed global assets.",
+    bio: "Finance veteran with 30+ years in infrastructure investing and asset management. As former MD & CEO of NHIT, scaled India’s largest PPP road platform to ₹48,000 Cr and led Macquarie’s Infrastructure Funds across India and Southeast Asia. Brings deep expertise in boardrooms, policy, and capital markets for public and private sector investments.",
     image: MrSureshImage,
     linkedin: "https://www.linkedin.com/in/suresh-goyal-4534364/"
   }
@@ -140,10 +140,10 @@ const TeamSection = () => {
                     </svg>
                     <div className="overflow-hidden relative z-10">
                         <h2 className="main-heading text-2xl sm:text-3xl md:text-4xl text-text-main font-primary leading-tight">
-                            ALIGNED LEADERS
+                            Visionary Leaders
                             <br />
                             <span className='font-serifa leading-[-10] text-4xl sm:text-5xl md:text-6xl font-normal text-accent'>
-                                building the next
+                                shaping tomorrow
                             </span>
                         </h2>
                     </div>
@@ -156,7 +156,7 @@ const TeamSection = () => {
                     ))}
                 </div>
 
-                <div className="flex justify-center mt-16">
+                <div className="flex bg-red justify-center mt-16">
                     <Link to="/team" className="team-cta-button relative w-[60px] h-[60px] cursor-pointer">
                         <div className="cta-background absolute inset-0 w-[60px] h-[60px] bg-CTA-button-bg rounded-full flex items-center">
                            <div className="cta-text-container absolute left-[30px] overflow-hidden">

@@ -29,11 +29,11 @@ const Header = () => {
   );
 };
 
-// ✅ CHANGE: The Layout component now accepts and spreads extra props (...props)
 const Layout = ({ startAnimations, ...props }) => {
   const location = useLocation();
 
   useEffect(() => {
+      window.scrollTo(0, 0);
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 100); 
@@ -41,7 +41,6 @@ const Layout = ({ startAnimations, ...props }) => {
   }, [location.pathname]);
 
   return (
-    // ✅ CHANGE: The style prop (containing visibility) is now applied here
     <div className='bg-background text-text-main overflow-x-hidden' {...props}>
       <Header />
       <Routes>
@@ -82,7 +81,6 @@ export default function App() {
         />
       )}
       <BrowserRouter>
-        {/* ✅ CHANGE: The style prop is passed to Layout to control visibility */}
         <Layout 
           startAnimations={isPreloaderFinished} 
           style={{ visibility: isPreloaderFinished ? 'visible' : 'hidden' }}

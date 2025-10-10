@@ -13,7 +13,6 @@ import VnvpediaSection from '../components/VnVPedia';
 
 gsap.registerPlugin(SplitText);
 
-// ✅ CHANGE: Hero now accepts the startAnimations prop
 const Hero = ({ startAnimations }) => {
   const heroRef = useRef();
   const heroTextRef = useRef();
@@ -25,7 +24,6 @@ const Hero = ({ startAnimations }) => {
   }, []);
 
   useGSAP(() => {
-    // ✅ CHANGE: Animation now waits for fonts AND the preloader to finish
     if (!fontsLoaded || !startAnimations) return;
 
     const split = SplitText.create(heroTextRef.current, { type: "lines,words,chars" });
@@ -52,7 +50,7 @@ const Hero = ({ startAnimations }) => {
         button.removeEventListener('mouseleave', leaveHandler);
       }
     }
-  }, { scope: heroRef, dependencies: [fontsLoaded, startAnimations] }); // ✅ CHANGE: Add startAnimations to dependency array
+  }, { scope: heroRef, dependencies: [fontsLoaded, startAnimations] });
 
   return (
     <div ref={heroRef} className="flex w-full flex-col items-center justify-center bg-background h-screen">
@@ -70,7 +68,6 @@ const Hero = ({ startAnimations }) => {
   );
 };
 
-// ✅ CHANGE: HomePage now accepts and passes down the startAnimations prop
 const HomePage = ({ startAnimations }) => {
     return (
         <main>

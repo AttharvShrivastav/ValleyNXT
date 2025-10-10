@@ -99,7 +99,6 @@ const Footer = () => {
                             ValleyNXT Ventures ©
                         </h3>
                     </div>
-                    {/* ✅ FIXED: Changed responsive prefixes from md: to lg: */}
                     <div className="w-full flex flex-col text-[#BA5B26] lg:flex-row lg:items-end lg:space-x-16 mt-12 md:mt-0">
                         <nav className="flex flex-col space-y-2 text-lg mb-8 md:mb-0" ref={el => textElementsRef.current[1] = el}>
                             <a href="#home" className="hover:text-orange-400 transition-colors w-max">Home</a>

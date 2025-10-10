@@ -29,9 +29,11 @@ const ProfileCard = ({ person, className }) => {
     const handleImageError = (e) => { e.target.style.display = 'none'; };
 
     return (
+        // ✅ FIX: Reverted to original h-[360px] for performance
         <div ref={card} className={`relative flex-shrink-0 w-[280px] h-[360px] bg-profilecard-bg rounded-[35px] overflow-hidden cursor-pointer ${className}`}>
             <div className="card-overlay absolute bottom-0 left-0 z-20 w-full h-0 bg-container-bg text-[#f1d6c4] flex flex-col justify-start text-left overflow-hidden">
-                <div className="p-6">
+                {/* ✅ FIX: Added h-full, overflow-y-auto, and adjusted padding for scrollability */}
+                <div className="h-full overflow-y-auto pl-6 pr-8 py-6">
                     <h4 className="text-lg font-bold text-text-main mb-1">{person.name}</h4>
                     <span className="block text-xs text-accent mb-4">{person.title}</span>
                     <p className="text-sm text-text-main leading-relaxed">{person.bio}</p>
@@ -44,10 +46,10 @@ const ProfileCard = ({ person, className }) => {
                         src={person.image} 
                         alt={person.name} 
                         onError={handleImageError} 
+                        // ✅ FIX: Reverted to original image positioning
                         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full"
                     />
                 )}
-                {/* ✅ FIX: Increased right-padding to pr-14 to create space for the icon */}
                 <div className="absolute text-left bottom-6 left-6 right-6 pr-14">
                     <h3 className="text-xl font-bold text-white [text-shadow:1px_1px_3px_rgba(0,0,0,0.5)]">
                         {person.name}
