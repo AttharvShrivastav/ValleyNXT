@@ -4,7 +4,7 @@ import { useGSAP } from '@gsap/react';
 import PageHero from '../components/PageHero';
 import CompanyCard from '../components/CompanyCard';
 
-import CloudworxStudioLogo from '../assets/logos/CloudWorx.png';
+// import CloudworxStudioLogo from '../assets/logos/CloudWorx.png';
 import KyariLogo from '../assets/logos/Kyari.png';
 import TheatreProjectLogo from '../assets/logos/TheatreProject.png';
 import Kelvin6kLogo from '../assets/logos/Kelvin.png';
@@ -17,9 +17,6 @@ import AutWelkinLogo from '../assets/logos/AutoWelkin.png';
 import SwaahaLogo from '../assets/logos/Swaaha.png';
 import Footer from '../components/Footer';
 
-// ✅ EXAMPLE: A placeholder SVG component. You can replace this with your actual SVG code.
-// ✅ FIX: This is the corrected version of your constant.
-// I have removed the invalid `style` attribute and simplified the gradient ID for reliability.
 const CloudworxStudioSVG = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
         {/* The invalid style="" attribute has been removed from this <g> tag */}
