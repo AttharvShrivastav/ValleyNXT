@@ -11,7 +11,7 @@ import Dashboard from '../components/Dashboard';
 import TeamSection from '../components/TeamSection';
 import VnvpediaSection from '../components/VnVPedia';
 import Footer from '../components/Footer';
-import FaqSection from '../components/FAQSection';
+import FaqSection from '../components/FaqSection';
 
 gsap.registerPlugin(SplitText);
 
