@@ -20,11 +20,33 @@ const CloseIcon = ({ onClick }) => (
     </button>
 );
 
+/**
+ * ✅ NEW: A helper component to render the correct logo type.
+ * It checks for a `logoComponent` (for SVG JSX) first, then falls back
+ * to a `logoUrl` (for image files), and finally to a generic fallback.
+ */
+const LogoDisplay = ({ company, className }) => {
+    // If a JSX component is provided for the logo, render it.
+    if (company.logoComponent) {
+        // We clone the element to pass down the necessary className for styling.
+        return React.cloneElement(company.logoComponent, { className });
+    }
+    
+    // If a URL is provided, render it in an <img> tag.
+    if (company.logoUrl) {
+        return <img src={company.logoUrl} alt={`${company.name} logo`} className={className} />;
+    }
+
+    // If neither is provided, use the fallback logo.
+    return <img src={FallbackLogo} alt="Fallback logo" className={className} />;
+};
+
+
 const CompanyCard = ({ company, onClick, isActive, ...props }) => {
     const cardRef = useRef(null);
     const timeline = useRef();
     const [isFlipped, setIsFlipped] = useState(false);
-    const isInitialMount = useRef(true); // Ref to track initial render
+    const isInitialMount = useRef(true);
 
     const handleClick = () => {
         if (window.innerWidth < 768) {
@@ -82,8 +104,6 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
 
     // Mobile flip animation
     useGSAP(() => {
-        // ✅ FIX: Prevent Flip animation on initial render to solve both
-        // the intermittent visibility bug and the click-blocking issue.
         if (isInitialMount.current) {
             isInitialMount.current = false;
             return;
@@ -111,18 +131,18 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
             {/* --- DESKTOP VIEW --- */}
             <div className="hidden md:block w-full h-full">
                 <div className="logo-initial absolute inset-0 flex justify-center items-center">
-                    <img 
-                        src={company.logo || FallbackLogo} 
-                        alt={`${company.name} logo`} 
+                    {/* ✅ CHANGE: Replaced <img> with the new LogoDisplay component. */}
+                    <LogoDisplay 
+                        company={company}
                         className="max-w-[80%] max-h-[50%] object-contain"
                     />
                 </div>
                 <div className="details-panel absolute inset-0 p-6 flex flex-col justify-center items-center text-center opacity-0 pointer-events-none">
                     <CloseIcon onClick={handleCloseClick} />
                     <div className="logo-expanded w-1/3 h-[30%] flex justify-center items-center">
-                        <img 
-                           src={company.logo || FallbackLogo} 
-                           alt={`${company.name} logo`} 
+                        {/* ✅ CHANGE: Replaced <img> with the new LogoDisplay component. */}
+                        <LogoDisplay 
+                           company={company}
                            className="max-w-full max-h-full object-contain"
                         />
                     </div>
@@ -139,16 +159,17 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
             {/* --- MOBILE VIEW --- */}
             <div className="md:hidden relative w-full h-full flex justify-center items-center">
                 <div className={`logo-panel-mobile w-full h-full flex flex-col justify-center items-center text-center transition-opacity duration-300 ${isFlipped ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                    <img 
-                        src={company.logo || FallbackLogo} 
-                        alt={`${company.name} logo`} 
+                    {/* ✅ CHANGE: Replaced <img> with the new LogoDisplay component. */}
+                    <LogoDisplay 
+                        company={company}
                         className="max-w-[80%] max-h-[50%] object-contain"
                     />
                 </div>
                 <div className={`details-panel-mobile absolute inset-0 w-full h-full p-6 flex flex-col items-center justify-center text-center transition-opacity duration-300 ${isFlipped ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                     <CloseIcon onClick={handleCloseClick} />
                     <div className="w-1/3 mb-4">
-                        <img src={company.logo || FallbackLogo} alt={`${company.name} logo`} className="max-w-full h-auto object-contain" />
+                        {/* ✅ CHANGE: Replaced <img> with the new LogoDisplay component. */}
+                        <LogoDisplay company={company} className="max-w-full h-auto object-contain" />
                     </div>
                     <div>
                         <h3 className="text-xl md:text-2xl font-bold text-[#F47A36] mb-2">{company.name}</h3>
