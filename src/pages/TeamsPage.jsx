@@ -17,6 +17,7 @@ import MrApurvaImage from '../assets/MrApurva.png';
 
 import HarshwardhanSaklechaImage from '../assets/1.png';
 import DhairyaJainImage from '../assets/2.png';
+import Footer from '../components/Footer';
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 
@@ -148,6 +149,7 @@ const TeamsPage = () => {
             <TeamCategorySection title="THE LEADERS" members={founders} />
             <TeamCategorySection title="THE ADVISORY" members={advisory} />
             <TeamCategorySection title="THE INVESTMENT TEAM" members={investmentTeam} />
+            <Footer />
         </div>
     );
 };

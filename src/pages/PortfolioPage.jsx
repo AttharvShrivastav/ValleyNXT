@@ -15,6 +15,7 @@ import SocialHardwareLogo from '../assets/logos/SocialHardware.png';
 import AstrophelAerospaceLogo from '../assets/logos/AstrophelAerospace.png';
 import AutWelkinLogo from '../assets/logos/AutWelkin.png';
 import SwaahaLogo from '../assets/logos/Swaaha.png';
+import Footer from '../components/Footer';
 
 // ✅ RESTORED YOUR COMPANY DATA. I AM SO SORRY.
 const valleyVenturesCompanies = [
@@ -177,6 +178,7 @@ const PortfolioPage = () => {
     }, { dependencies: [activeCategory, activeCardId, hasBharatBreakthrough], scope: pageRef });
 
     return (
+        <>
         <div ref={pageRef} className="bg-background flex flex-col items-center w-full overflow-x-hidden">
             <PageHero 
                 subtitle="Our Portfolio Companies"
@@ -219,6 +221,8 @@ const PortfolioPage = () => {
                 )}
             </div>
         </div>
+            <Footer />
+            </>
     );
 };
 

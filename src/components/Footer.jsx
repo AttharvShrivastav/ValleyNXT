@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+// ✅ CHANGE: Removed useLocation as it's no longer needed.
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/all';
@@ -13,26 +14,37 @@ const Footer = () => {
     const footerRef = useRef(null);
     const bridgeRef = useRef(null);
     const textElementsRef = useRef([]);
+    textElementsRef.current = [];
+
+    const addToRefs = (el) => {
+        if (el && !textElementsRef.current.includes(el)) {
+            textElementsRef.current.push(el);
+        }
+    };
 
     useGSAP(() => {
         const mm = gsap.matchMedia();
-        const textElements = textElementsRef.current.filter(Boolean);
+        const textElements = textElementsRef.current;
+
+        if (textElements.length === 0) return;
 
         const split = new SplitText(textElements, { type: "lines", linesClass: "split-line" });
+
         split.lines.forEach((line) => {
-            const wrapper = document.createElement("div");
-            wrapper.style.overflow = "hidden";
-            if (line.firstChild) {
-                wrapper.appendChild(line.firstChild);
-                line.appendChild(wrapper);
-            }
+            const innerContent = line.innerHTML;
+            line.innerHTML = '';
+            line.style.overflow = 'hidden';
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = innerContent;
+            line.appendChild(wrapper);
         });
+        
         const linesContent = split.lines.map(line => line.querySelector('div')).filter(Boolean);
 
         mm.add("(min-width: 768px)", () => {
             gsap.set(bridgeRef.current, { yPercent: 100, autoAlpha: 0 });
             gsap.set(linesContent, { yPercent: 100, opacity: 0 });
-            
+             
             gsap.set([bridgeRef.current, ...linesContent], { willChange: 'transform, opacity' });
 
             const tl = gsap.timeline({
@@ -81,6 +93,7 @@ const Footer = () => {
             mm.revert();
         };
 
+    // ✅ CHANGE: Removed the dependency array. The hook will now run once when the component mounts.
     }, { scope: sectionRef });
 
     return (
@@ -94,23 +107,23 @@ const Footer = () => {
                     />
                 </div>
                 <div className="relative z-10 h-full p-8 py-16 md:p-12 lg:p-16 flex flex-col justify-between overflow-hidden">
-                    <div ref={el => textElementsRef.current[0] = el}>
-                        <h3 className="text-2xl text-[#BA5B26] md:text-3xl font-primary tracking-wider">
+                    <div>
+                        <h3 ref={addToRefs} className="text-2xl text-[#BA5B26] md:text-3xl font-primary tracking-wider">
                             ValleyNXT Ventures ©
                         </h3>
                     </div>
                     <div className="w-full flex flex-col text-[#BA5B26] lg:flex-row lg:items-end lg:space-x-16 mt-12 md:mt-0">
-                        <nav className="flex flex-col space-y-2 text-lg mb-8 md:mb-0" ref={el => textElementsRef.current[1] = el}>
-                            <a href="#home" className="hover:text-orange-400 transition-colors w-max">Home</a>
-                            <a href="/portfolio" className="hover:text-orange-400 transition-colors w-max">Portfolio</a>
-                            <a href="/team" className="hover:text-orange-400 transition-colors w-max">Team</a>
-                            <a href="https://vclub.valleynxtventures.com/entrepreneur/signup/NA==" className="hover:text-orange-400 transition-colors w-max">VN Club</a>
+                        <nav className="flex flex-col space-y-2 text-lg mb-8 md:mb-0">
+                            <a ref={addToRefs} href="#home" className="hover:text-orange-400 transition-colors w-max">Home</a>
+                            <a ref={addToRefs} href="/portfolio" className="hover:text-orange-400 transition-colors w-max">Portfolio</a>
+                            <a ref={addToRefs} href="/team" className="hover:text-orange-400 transition-colors w-max">Team</a>
+                            <a ref={addToRefs} href="https://vclub.valleynxtventures.com/entrepreneur/signup/NA==" className="hover:text-orange-400 transition-colors w-max">VN Club</a>
                         </nav>
-                        <div className="flex flex-col space-y-2 text-base text-[#BA5B26]" ref={el => textElementsRef.current[2] = el}>
-                            <p><span className='text-[#8B4017]'>AIF Name:</span> Bharat Breakthrough Fund I</p>
-                            <p><span className='text-[#8B4017]'>AIF Category:</span> Category 1</p>
-                            <p><span className='text-[#8B4017]'>SEBI Registration Number:</span> IN/AIF1/25-26/1892</p>
-                            <p><span className='text-[#8B4017]'>Fund Manager:</span> ValleyNXT Management LLP </p>
+                        <div className="flex flex-col space-y-2 text-base text-[#BA5B26]">
+                            <p ref={addToRefs}><span className='text-[#8B4017]'>AIF Name:</span> Bharat Breakthrough Fund I</p>
+                            <p ref={addToRefs}><span className='text-[#8B4017]'>AIF Category:</span> Category 1</p>
+                            <p ref={addToRefs}><span className='text-[#8B4017]'>SEBI Registration Number:</span> IN/AIF1/25-26/1892</p>
+                            <p ref={addToRefs}><span className='text-[#8B4017]'>Fund Manager:</span> ValleyNXT Management LLP </p>
                         </div>
                     </div>
                 </div>

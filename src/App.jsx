@@ -1,4 +1,4 @@
-import {React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,7 +9,8 @@ import HomePage from './pages/HomePage';
 import TeamsPage from './pages/TeamsPage';
 import PortfolioPage from './pages/PortfolioPage';
 import NavMenu from './components/NavMenu';
-import Footer from './components/Footer';
+// ✅ CHANGE: Footer is no longer part of the main layout.
+// import Footer from './components/Footer'; 
 import logoBlack from './assets/LogoBlack.png';
 import logoLight from './assets/LogoWhite.png';
 
@@ -32,12 +33,8 @@ const Header = () => {
 const Layout = ({ startAnimations, ...props }) => {
   const location = useLocation();
 
-  useEffect(() => {
-      window.scrollTo(0, 0);
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100); 
-    return () => clearTimeout(timer);
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (
@@ -48,7 +45,7 @@ const Layout = ({ startAnimations, ...props }) => {
         <Route path="/team" element={<TeamsPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
       </Routes>
-      <Footer />
+      {/* ✅ CHANGE: Removed Footer from here. It will now live inside each page component. */}
     </div>
   );
 };
@@ -61,7 +58,7 @@ export default function App() {
     const onPageLoad = () => {
       setTimeout(() => {
         setIsPageLoaded(true);
-      }, 500); 
+      }, 500);
     };
 
     if (document.readyState === 'complete') {
@@ -75,14 +72,14 @@ export default function App() {
   return (
     <ThemeProvider>
       {!isPreloaderFinished && (
-        <Preloader 
-          isLoaded={isPageLoaded} 
-          onExitComplete={() => setIsPreloaderFinished(true)} 
+        <Preloader
+          isLoaded={isPageLoaded}
+          onExitComplete={() => setIsPreloaderFinished(true)}
         />
       )}
       <BrowserRouter>
-        <Layout 
-          startAnimations={isPreloaderFinished} 
+        <Layout
+          startAnimations={isPreloaderFinished}
           style={{ visibility: isPreloaderFinished ? 'visible' : 'hidden' }}
         />
       </BrowserRouter>

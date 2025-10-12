@@ -10,6 +10,8 @@ import MibSection from '../components/MibSection';
 import Dashboard from '../components/Dashboard';
 import TeamSection from '../components/TeamSection';
 import VnvpediaSection from '../components/VnVPedia';
+import Footer from '../components/Footer';
+import FaqSection from '../components/FAQSection';
 
 gsap.registerPlugin(SplitText);
 
@@ -80,6 +82,8 @@ const HomePage = ({ startAnimations }) => {
             <Dashboard />
             <TeamSection />
             <VnvpediaSection />
+            <FaqSection />
+            <Footer />
         </main>
     );
 };
