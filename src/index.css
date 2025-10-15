@@ -12,28 +12,30 @@
     --font-secondary: "Montserrat", sans-serif;
     --font-serifa: "Georgia", serif;
 
-    --color-button: #863b33;
-    --color-button-text: #ffc7a8;
+    --color-button: #3E3E75;
+    --color-button-text: #FFFFFF;
 
-  --color-background: #EBE6DD;
-  --color-text-main: #512520;
-  --color-text-dark: #512520;
+  --color-background: #FFFFFF;
+  --color-text-main: #0F3386;
+  --color-text-dark: #0F3386;
 
-  --color-accent: #FF682C;
+  --color-stages-bg : #EFF4FF;
+
+  --color-accent: #0B66C2;
   --color-accent-rgb: 255, 104, 44;
 
 
-  --color-container-bg: #F5D6C2;
-  --color-dashboard-bg: #FFC7A8;
+  --color-container-bg: #EFF4FF;
+  --color-dashboard-bg: #EFF4FF;
 
-  --color-profilecard-bg: #F5D6C2;
+  --color-profilecard-bg: #EFF4FF;
 
-  --color-CTA-button-bg: #F99C7A;
-  --color-CTA-button-text: #2b1107;
+  --color-CTA-button-bg: #3E3E75;
+  --color-CTA-button-text: #FFFFFF;
 
-  --color-footer-bg: #FFC7A8;
-  --color-footer-text: #BA5B26;
-  --color-footer-text-accent: #8B4017;
+  --color-footer-bg: #EFF4FF;
+  --color-footer-text: #3E3E75;
+  --color-footer-text-accent: #0B66C2;
 }
 
 /* 3. Define the overrides for when dark mode is active */
@@ -47,6 +49,8 @@
   --color-button-text: #1C0800;
   --color-accent: #F47A36;
   --color-accent-rgb: 244, 122, 54; 
+
+  --color-stages-bg : #000000;
 
 
   --color-container-bg: #00000020;

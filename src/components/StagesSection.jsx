@@ -144,7 +144,7 @@ Strategic partnerships, funding, and expert guidance. Building technology that m
                         <div
                             key={stage.id}
                             ref={el => cardsRef.current[index] = el}
-                            className={`stage-card flex flex-col items-center text-center p-8 border-2 border-accent rounded-3xl bg-background w-full max-w-sm h-auto md:w-auto lg:w-[22vw] md:max-w-[380px] md:order-none ${orderClass} ${transformClass}`}
+                            className={`stage-card flex flex-col items-center text-center p-8 border-2 border-accent rounded-3xl bg-stages-bg w-full max-w-sm h-auto md:w-auto lg:w-[22vw] md:max-w-[380px] md:order-none ${orderClass} ${transformClass}`}
                         >
                             <div 
                                 className="h-1/3 w-full mb-8 flex items-center justify-center"

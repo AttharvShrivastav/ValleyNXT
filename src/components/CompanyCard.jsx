@@ -125,7 +125,7 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
         <div 
             ref={cardRef}
             onClick={handleClick}
-            className="company-card relative aspect-[4/3] bg-background rounded-2xl border border-[#F85C20] flex justify-center items-center cursor-pointer p-4 overflow-hidden"
+            className="company-card relative aspect-[4/3] bg-background rounded-2xl border border-accent flex justify-center items-center cursor-pointer p-4 overflow-hidden"
             {...props}
         >
             {/* --- DESKTOP VIEW --- */}
@@ -147,7 +147,7 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
                         />
                     </div>
                     <svg className="horizontal-line w-full max-w-[200px] my-4" height="2" viewBox="0 0 200 2">
-                        <line x1="0" y1="1" x2="200" y2="1" stroke="#F47A36" strokeWidth="2" />
+                        <line x1="0" y1="1" x2="200" y2="1" stroke="var(--color-accent)" strokeWidth="2" />
                     </svg>
                     <div className="details-content flex flex-col items-center">
                         <h3 className="company-name text-xl md:text-2xl font-medium font-primary text-accent mb-2">{company.name}</h3>

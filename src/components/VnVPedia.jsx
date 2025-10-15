@@ -149,12 +149,18 @@ const VnvpediaSection = () => {
                 <div className="relative z-20 flex items-center justify-center w-full">
                     <div className="absolute hidden md:top-0 md:-translate-y-4 md:block">
                          <svg ref={headingRef} width="998" height="67" viewBox="0 0 998 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M165.667 50C165.667 48.5272 164.473 47.3333 163 47.3333C161.527 47.3333 160.333 48.5272 160.333 50C160.333 51.4728 161.527 52.6667 163 52.6667C164.473 52.6667 165.667 51.4728 165.667 50ZM163 50V49.5L1 49.5V50V50.5L163 50.5V50Z" fill="#F47A36"/>
-                            <path d="M837.667 50C837.667 48.5272 836.473 47.3333 835 47.3333C833.527 47.3333 832.333 48.5272 832.333 50C832.333 51.4728 833.527 52.6667 835 52.6667C836.473 52.6667 837.667 51.4728 837.667 50ZM997 50V49.5L835 49.5V50V50.5L997 50.5V50Z" fill="#F47A36"/>
-                            <line x1="995.938" y1="0.5" x2="0.000244141" y2="0.5" stroke="#F47A36"/>
-                            <line x1="0.500008" y1="2.18557e-08" x2="0.500005" y2="50" stroke="#F47A36"/>
-                            <line x1="997.5" y1="2.05842e-08" x2="997.5" y2="50" stroke="#F47A36"/>
-                         </svg>
+  <path 
+    d="M165.667 50C165.667 48.5272 164.473 47.3333 163 47.3333C161.527 47.3333 160.333 48.5272 160.333 50C160.333 51.4728 161.527 52.6667 163 52.6667C164.473 52.6667 165.667 51.4728 165.667 50ZM163 50V49.5L1 49.5V50V50.5L163 50.5V50Z" 
+    fill="var(--color-accent)" 
+  />
+  <path 
+    d="M837.667 50C837.667 48.5272 836.473 47.3333 835 47.3333C833.527 47.3333 832.333 48.5272 832.333 50C832.333 51.4728 833.527 52.6667 835 52.6667C836.473 52.6667 837.667 51.4728 837.667 50ZM997 50V49.5L835 49.5V50V50.5L997 50.5V50Z"
+    fill="var(--color-accent)" 
+  />
+  <line x1="995.938" y1="0.5" x2="0.000244141" y2="0.5" stroke="var(--color-accent)" />
+  <line x1="0.500008" y1="2.18557e-08" x2="0.500005" y2="50" stroke="var(--color-accent)" />
+  <line x1="997.5" y1="2.05842e-08" x2="997.5" y2="50" stroke="var(--color-accent)" />
+</svg>
                     </div>
                     <h2 className="heading-text text-text-main text-4xl md:text-4xl font-primary tracking-wider text-center">
                         EXPLORE <span className="text-accent text-6xl md:text-6xl font-serifa">vnvpedia</span>
@@ -178,9 +184,9 @@ const VnvpediaSection = () => {
 
                 {/* This is the "content div" that holds the bordered elements */}
                 <div className="relative w-full max-w-[76rem] h-full">
-                    <div className="back-plate absolute inset-0 w-full h-full md:h-[26rem] top-1/2 -translate-y-1/2 border-2 border-[#F47A36] rounded-[35px] z-10 hidden md:block"></div>
+                    <div className="back-plate absolute inset-0 w-full h-full md:h-[26rem] top-1/2 -translate-y-1/2 border-2 border-accent rounded-[35px] z-10 hidden md:block"></div>
                     
-                    <div className="main-card relative md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full max-w-full md:max-w-[68rem] h-auto md:h-[30rem] border-2 border-[#f47a36] bg-[#FAD9C5] rounded-[35px] text-center shadow-lg flex items-center justify-center p-8 md:p-12 z-20 overflow-hidden mt-16 md:mt-0">
+                    <div className="main-card relative md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full max-w-full md:max-w-[68rem] h-auto md:h-[30rem] border-2 border-accent bg-dashboard-bg rounded-[35px] text-center shadow-lg flex items-center justify-center p-8 md:p-12 z-20 overflow-hidden mt-16 md:mt-0">
                         <div className="relative z-10 w-full max-w-2xl min-h-[250px] md:min-h-full h-full flex items-center justify-center">
                             <div ref={el => contentRefs.current[0] = el} className="absolute w-full">
                                 <h3 className="text-2xl md:text-4xl font-primary font-normal mb-6 text-accent">{vnvpediaArticles[0].title}</h3>

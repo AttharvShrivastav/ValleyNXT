@@ -752,16 +752,23 @@ const VentureServices = () => {
         <div ref={pinRef} className="flex w-screen flex-col md:h-screen">
           <div className="main-heading-container w-full text-center relative flex flex-col items-center justify-center">
               <div className="heading-svg-container absolute left-1/2 -translate-x-1/2 w-full max-w-[1100px] hidden md:block px-4">
-                  <svg ref={headingSvgRef} width="100%" height="100%" viewBox="0 0 1112 149" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 3L327.086 3" fill="none" stroke="#F47A36" strokeWidth="1.5" />
-                    <circle cx="327.086" cy="3" r="2.5" fill="#F47A36" />
-                    <path d="M736 93L1112 93" fill="none" stroke="#F47A36" strokeWidth="1.5" />
-                    <circle cx="736" cy="93" r="2.5" fill="#F47A36" />
-                    <path d="M0 148.428L1112 148.428" fill="none" stroke="#F47A36" strokeWidth="1.5" />
-                    <path d="M0.572369 3L0.572369 148" fill="none" stroke="#F47A36" strokeWidth="1.5" />
-                    <path d="M1111.57 93L1111.57 148" fill="none" stroke="#F47A36" strokeWidth="1.5" />
-                  </svg>
-              </div>
+  <svg 
+    ref={headingSvgRef} 
+    width="100%" 
+    height="100%" 
+    viewBox="0 0 1112 149" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M0 3L327.086 3" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" />
+    <circle cx="327.086" cy="3" r="2.5" fill="var(--color-accent)" />
+    <path d="M736 93L1112 93" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" />
+    <circle cx="736" cy="93" r="2.5" fill="var(--color-accent)" />
+    <path d="M0 148.428L1112 148.428" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" />
+    <path d="M0.572369 3L0.572369 148" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" />
+    <path d="M1111.57 93L1111.57 148" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" />
+  </svg>
+</div>
               <div className="relative z-10 max-w-[900px] w-full flex justify-center items-center p-4">
                   <h1 className='text-2xl sm:text-3xl md:text-4xl font-primary leading-tight'>
                     THREE PILLARS,<br />
@@ -788,7 +795,7 @@ const VentureServices = () => {
                 ))}
               </div>
               <div className="col-span-4 flex flex-col justify-center items-center gap-6 p-4">
-                <div className="svg-container w-[320px] h-[320px] rounded-2xl flex items-center justify-center" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255, 104, 44, 0.7) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
+                <div className="svg-container w-[320px] h-[320px] rounded-2xl flex items-center justify-center" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, var(--color-accent) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
                   <svg width="300" height="300" viewBox="0 0 100 100">
                     {ventureData.svg.paths.mentorship.map((path, i) => ( <path key={`path-${i}`} className="morph-path fill-none stroke-accent" d={path} strokeWidth="0.5" /> ))}
                     {ventureData.svg.dots.mentorship.map((dot, i) => ( <circle key={`dot-${i}`} className="morph-dot fill-accent" r="2.5" cx={dot.cx} cy={dot.cy} /> ))}
