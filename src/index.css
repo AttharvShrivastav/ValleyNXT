@@ -26,12 +26,18 @@
 
 
   --color-container-bg: #EFF4FF;
+
   --color-dashboard-bg: #EFF4FF;
+  --color-dashboard-text-dark: #512520;
+  --color-dashboard-internal-bg: #202039;
+  --color-dashboard-text-white: #D0DEFF;
+
+  
 
   --color-profilecard-bg: #EFF4FF;
 
-  --color-CTA-button-bg: #3E3E75;
-  --color-CTA-button-text: #FFFFFF;
+  --color-CTA-button-bg: #EFF4FF;
+  --color-CTA-button-text: #0F3386;
 
   --color-footer-bg: #EFF4FF;
   --color-footer-text: #3E3E75;
@@ -54,7 +60,12 @@
 
 
   --color-container-bg: #00000020;
+
+
   --color-dashboard-bg: #FFC7A8;
+  --color-dashboard-text-dark: #512520;
+  --color-dashboard-internal-bg: #1C0800;
+  --color-dashboard-text-white: #FFC7A8;
 
   --color-profilecard-bg: #592000;
   --color-profilecard-hover:rgba(89, 33, 0, 0.693)0;

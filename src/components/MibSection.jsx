@@ -804,7 +804,7 @@ const VentureServices = () => {
               </div>
               <svg className="glow-svg absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible">
                 <path className="motion-path" fill="none" stroke="none" />
-                <line className="trace-line" x1="-15" y1="0" x2="15" y2="0" stroke="#FFC7A8" strokeWidth="2" />
+                <line className="trace-line" x1="-15" y1="0" x2="15" y2="0" stroke="var(--color-accent)" strokeWidth="2" />
               </svg>
             </div>
           </div>
