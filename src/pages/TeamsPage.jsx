@@ -17,6 +17,7 @@ import MrApurvaImage from '../assets/MrApurva.png';
 
 import HarshwardhanSaklechaImage from '../assets/1.png';
 import DhairyaJainImage from '../assets/2.png';
+import AdityaSharmaImage from '../assets/AdityaSharma.png';
 import Footer from '../components/Footer';
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
@@ -61,7 +62,7 @@ const investmentTeam = [
         id: 8,
         name: "CA Harshwardhan Saklecha",
         title: "Vice President",
-        bio: "Chartered Accountant and AIF Fund Manager. Brings advanced skills in VC, financial modeling, and deal structuring.",
+        bio: "CA Harshwardhan Saklecha is the Vice President at ValleyNXT Ventures. A Chartered Accountant and AIF Fund Manager, he brings expertise in venture capital, financial modeling, and deal structuring. He is a skilled finance professional with experience in investment banking and alternative investment funds, strengthened by his Management Development Program at ISB Hyderabad.",
         image: HarshwardhanSaklechaImage,
         linkedin: "https://www.linkedin.com/in/harshwardhan-saklecha/"
     },
@@ -69,9 +70,17 @@ const investmentTeam = [
         id: 9,
         name: "CS Dhairya Jain",
         title: "Investor Relation & Compliance Officer",
-        bio: "Company Secretary with expertise in fund-raise, due diligence, and compliance. Experience handling global investments.",
+        bio: "Dhairya Jain is a Company Secretary (ICSI) and plays a key role in investor relations and compliance at ValleyNXT Ventures. He handles fund-raising, due diligence, FEMA compliance, valuation, intellectual property work, and assists with managing offshore companies in the US, UK, and Singapore. His expertise ensures smooth governance and regulatory compliance for the firm's investment activities.",
         image: DhairyaJainImage,
         linkedin: "https://www.linkedin.com/in/jaindhairya/"
+    },
+    {
+        id: 13,
+        name: "Aditya Sharma",
+        title: "Investment Associate",
+        bio: "1.5+ years of venture capital experience across early-stage investments in deeptech, consumer, mobility, and fintech. Hands-on experience in due diligence, financial modeling, valuation analysis, and IC memo preparation  Actively supporting portfolio founders with business strategy, KPI tracking, fundraising, and investor relations. MBA in Finance & Business Analytics (BML Munjal University) and a B.Com (Devi Ahilya Vishwavidyalaya).",
+        image: AdityaSharmaImage,
+        linkedin: "https://www.linkedin.com/in/aditya-sharma88/"
     },
 ];
 const advisory = [
