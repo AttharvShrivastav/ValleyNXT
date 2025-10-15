@@ -42,6 +42,9 @@
   --color-footer-bg: #EFF4FF;
   --color-footer-text: #3E3E75;
   --color-footer-text-accent: #0B66C2;
+
+  --color-brigde: #0B66C2;
+  --color-icon: #000;
 }
 
 /* 3. Define the overrides for when dark mode is active */
@@ -78,6 +81,9 @@
   --color-footer-text: #ba5b26;
   --color-footer-text-accent: #8B4017;
 
+  --color-brigde: #ba5b26;
+
+  --color-icon: #fff;
 }
 
 body {
