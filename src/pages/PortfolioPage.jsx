@@ -441,6 +441,7 @@ const PortfolioPage = () => {
                     titleLine2="a collective growth"
                     titleLine2Serif={true}
                     buttonText="Get Funding"
+                    buttonLink="https://vclub.valleynxtventures.com/entrepreneur/signup/NA=="
                 />
                 
                 {hasBharatBreakthrough && (

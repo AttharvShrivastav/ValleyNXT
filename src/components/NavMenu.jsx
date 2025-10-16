@@ -20,7 +20,7 @@ const ThemeToggle = () => {
         >
             {theme === 'light' ? (
                 // Moon Icon
-                <svg xmlns="http://www.w.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
                 </svg>
             ) : (
@@ -164,6 +164,10 @@ const NavMenu = () => {
           <p>195, Asco Capital </p>
           <p>Sch.No.78 Part II Near Daisy Dales School</p>
           <p>Indore, Madhya Pradesh</p>
+          {/* ✅ FINAL FIX: Changed the <p> tag to an <a> tag with a `mailto` link. */}
+          <a href="mailto:info@valleynxtventures.com" className="block hover:text-text-main transition-colors duration-300">
+            info@valleynxtventures.com
+          </a>
         </div>
         
         <div className="absolute bottom-8 right-6 sm:right-8 text-xs sm:text-sm text-text-secondary font-light space-y-2">

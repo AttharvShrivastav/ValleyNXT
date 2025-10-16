@@ -51,7 +51,7 @@ const Footer = () => {
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     pin: footerRef.current,
-                    start: "top 50%",
+                    start: "top 40%",
                     end: "+=100%", 
                     scrub: 0.5,
                     invalidateOnRefresh: true,
@@ -84,7 +84,8 @@ const Footer = () => {
                     trigger: footerRef.current,
                     start: "top 90%",
                     toggleActions: "play none none none",
-                }
+                },
+                markers: true,
             });
         });
 
