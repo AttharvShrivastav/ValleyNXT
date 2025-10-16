@@ -12,6 +12,7 @@ import NavMenu from './components/NavMenu';
 // Footer is no longer imported here
 import logoBlack from './assets/LogoBlack.png';
 import logoLight from './assets/LogoWhite.png';
+import Footer from './components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
