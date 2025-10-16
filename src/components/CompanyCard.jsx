@@ -150,8 +150,8 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
                         <line x1="0" y1="1" x2="200" y2="1" stroke="var(--color-accent)" strokeWidth="2" />
                     </svg>
                     <div className="details-content flex flex-col items-center">
-                        <h3 className="company-name text-xl md:text-2xl font-medium font-primary text-accent mb-2">{company.name}</h3>
-                        <p className="company-description font-primary font-light text-xs md:text-sm text-text-main leading-snug">{company.description}</p>
+                        <h3 className="company-name text-xl md:text-xl font-medium font-primary text-accent mb-2">{company.name}</h3>
+                        <p className="company-description font-primary font-light text-base md:text-base text-text-main leading-snug">{company.description}</p>
                     </div>
                 </div>
             </div>

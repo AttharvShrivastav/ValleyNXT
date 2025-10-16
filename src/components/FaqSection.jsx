@@ -7,40 +7,40 @@ gsap.registerPlugin(useGSAP);
 // Content for the FAQ section
 const faqData = [
     {
-        question: "What is Valley NXT Ventures and what is its objective?",
-        answer: "Valley NXT Ventures (VNV) is an early-stage venture platform focused on backing bold and innovative founders building transformative technologies. Our objective is to support startups that drive self-reliance, innovation, and sustainable growth across emerging sectors."
+        question: "What is ValleyNXT Ventures and what is its objective?",
+        answer: "ValleyNXT Ventures is an early-stage venture platform focused on backing bold and innovative founders building transformative technologies. Our objective is to support startups that drive self-reliance, innovation, and sustainable growth across emerging sectors."
     },
     {
-        question: "Who can be part of VNV?",
-        answer: "Entrepreneurs, innovators, and early-stage founders with scalable, tech-driven ideas can become part of VNV’s ecosystem. We also collaborate with angel investors, mentors, and industry experts who share our vision for enabling deep-tech and impact-led innovation."
+        question: "Who can be part of ValleyNXT Ventures?",
+        answer: "Entrepreneurs, innovators, and early-stage founders with scalable, tech-driven ideas can become part of ValleyNXT Ventures's ecosystem. We also collaborate with angel investors, mentors, and industry experts who share our vision for enabling deep-tech and impact-led innovation."
     },
     {
-        question: "How can we connect with VNV?",
-        answer: "You can reach us through our website’s Contact or Apply section, email us at connect@valleynxt.com, or follow our updates on LinkedIn. Founders can also submit their startup pitch decks directly via our online form for evaluation."
+        question: "How can we connect with ValleyNXT Ventures?",
+        answer: "You can reach us through our website's Contact or Apply section, email us at connect@valleynxt.com, or follow our updates on LinkedIn. Founders can also submit their startup pitch decks directly via our online form for evaluation."
     },
     {
-        question: "How many companies are part of VNV’s portfolio?",
-        answer: "VNV has invested in 10+ portfolio companies spanning sectors like deep-tech, healthtech, fintech, and sustainability — with several more in the pipeline."
+        question: "How many companies are part of ValleyNXT Ventures's portfolio?",
+        answer: "ValleyNXT Ventures has invested in 10+ portfolio companies spanning sectors like deep-tech, healthtech, fintech, and sustainability — with several more in the pipeline."
     },
     {
-        question: "At what stage does VNV invest?",
+        question: "At what stage does ValleyNXT Ventures invest?",
         answer: "We primarily invest at the pre-seed to Series A stages, supporting founders from idea validation to market expansion."
     },
     {
-        question: "What type of startups does VNV focus on?",
+        question: "What type of startups does ValleyNXT Ventures focus on?",
         answer: "Our focus areas include deep-tech, AI, healthtech, SaaS, and sustainability-driven innovations that solve real-world challenges and have global potential."
     },
     {
-        question: "Does VNV provide only funding or also mentorship?",
-        answer: "Beyond capital, VNV provides hands-on support, mentorship, access to industry experts, and investor networks to help startups scale sustainably."
+        question: "Does ValleyNXT Ventures provide only funding or also mentorship?",
+        answer: "Beyond capital, ValleyNXT Ventures provides hands-on support, mentorship, access to industry experts, and investor networks to help startups scale sustainably."
     },
     {
-        question: "What makes VNV different from other venture funds?",
-        answer: "Valley NXT Ventures stands out by backing founders early, pairing them with mentors who’ve built before, and giving them real market access — not red tape. With global connections and deep India roots, we enable startups to scale faster and smarter."
+        question: "What makes ValleyNXT Ventures different from other venture funds?",
+        answer: "ValleyNXT Ventures stands out by backing founders early, pairing them with mentors who've built before, and giving them real market access — not red tape. With global connections and deep India roots, we enable startups to scale faster and smarter."
     },
     {
-        question: "Where is Valley NXT Ventures based?",
-        answer: "VNV is headquartered in India, with a growing network of partners, investors, and mentors across global innovation hubs."
+        question: "Where is ValleyNXT Ventures based?",
+        answer: "ValleyNXT Ventures is headquartered in India, with a growing network of partners, investors, and mentors across global innovation hubs."
     }
 ];
 

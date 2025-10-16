@@ -78,7 +78,7 @@ const investmentTeam = [
         id: 13,
         name: "Aditya Sharma",
         title: "Investment Associate",
-        bio: "1.5+ years of venture capital experience across early-stage investments in deeptech, consumer, mobility, and fintech. Hands-on experience in due diligence, financial modeling, valuation analysis, and IC memo preparation  Actively supporting portfolio founders with business strategy, KPI tracking, fundraising, and investor relations. MBA in Finance & Business Analytics (BML Munjal University) and a B.Com (Devi Ahilya Vishwavidyalaya).",
+        bio: "Aditya is an Investment Associate at ValleyNXT Ventures with 1.5+ years of venture capital experience across early-stage investments in deeptech, consumer, mobility, and fintech. He has hands-on experience in financial modeling, valuation analysis, and IC memo preparation. He actively supports portfolio founders with business strategy, KPI tracking, fundraising, and investor relations. He holds an MBA in Finance & Business Analytics from BML Munjal University and a B.Com from Devi Ahilya Vishwavidyalaya.",
         image: AdityaSharmaImage,
         linkedin: "https://www.linkedin.com/in/aditya-sharma88/"
     },
@@ -86,9 +86,9 @@ const investmentTeam = [
 const advisory = [
     {
         id: 10,
-        name: "Mr. Apurva Chamaria",
+        name: "Dr. Apurva Chamaria",
         title: "Global Head of VC & Startup Partnerships, Google",
-        bio: "Top angel investor with 100+ startup investments and 10+ exits. Ecosystem builder shaping India’s tech landscape.",
+        bio: "Top angel investor with 100+ startup investments and 10+ exits. Ecosystem builder shaping India's tech landscape.",
         image: MrApurvaImage,
         linkedin: "https://www.linkedin.com/in/apurvachamaria/"
     },
@@ -113,7 +113,8 @@ const advisory = [
 const TeamCategorySection = ({ title, members }) => (
     <section className="w-full max-w-7xl mx-auto px-8 py-16">
         <h2 className="text-4xl md:text-5xl font-normal font-primary text-text-main text-center mb-12">{title}</h2>
-        <div className="flex flex-wrap justify-center gap-8">
+        {/* ✅ FINAL FIX: Using Flexbox with `justify-center` provides the most robust and adaptive centering for any number of cards. */}
+        <div className="flex flex-wrap justify-center gap-6">
             {members.map(person => (
                 <ProfileCard key={person.id} person={person} className="profile-card" />
             ))}
@@ -149,14 +150,14 @@ const TeamsPage = () => {
             {/* ✅ CHANGE: Replaced the hardcoded hero with the reusable PageHero component */}
             <PageHero 
                 subtitle="MEET OUR TEAM"
-                titleLine1="THE FOURTH PILLAR"
-                titleLine2="of our story"
+                titleLine1="Visionary Leaders"
+                titleLine2="shaping tomorrow"
                 titleLine2Serif={true}
-                buttonText="Contact us for available positions"
+                // buttonText="Contact us for available positions"
             />
 
             <TeamCategorySection title="THE LEADERS" members={founders} />
-            <TeamCategorySection title="THE ADVISORY" members={advisory} />
+            <TeamCategorySection title="THE ADVISORS" members={advisory} />
             <TeamCategorySection title="THE INVESTMENT TEAM" members={investmentTeam} />
             <Footer />
         </div>

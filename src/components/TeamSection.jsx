@@ -92,10 +92,8 @@ const TeamSection = () => {
                 stagger: 0.05 
             });
 
-            //  .fromTo(topHorizontalLine, { drawSVG: "100% 100%" }, { drawSVG: "0% 100%", duration: 0.5 })
             masterTl.to(topRightCircle, { scale: 1, duration: 0.3 }, "-=0.2")
             .fromTo(topRightLine, {drawSVG: "100% 100%"}, { drawSVG: "100%", duration: 0.8, ease: 'power2.inOut' })
-            //   .to(topRightCircle, { scale: 1, duration: 0.3 }, "-=0.2")
               .to(leftVertical, { drawSVG: "100%", duration: 0.3, ease: 'none' })
               .to(bigHorizontal, { drawSVG: "100%", duration: 0.8, ease: 'power2.inOut' })
               .to(rightVertical, { drawSVG: "100%", duration: 0.2, ease: 'none' })
@@ -149,14 +147,14 @@ const TeamSection = () => {
                     </div>
                 </div>
 
-                {/* ✅ FIX: Uses Grid for mobile/tablet, but switches to Flexbox on desktop to restore original layout */}
-                <div className="card-container grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row lg:justify-center justify-items-center gap-8">
+                {/* ✅ FIX: Switched to a consistent grid layout. It is now 1, 2, and then 4 columns on larger screens. */}
+                <div className="card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-8">
                     {teamMembers.map(person => (
                         <ProfileCard key={person.id} person={person} />
                     ))}
                 </div>
 
-                <div className="flex bg-red justify-center mt-16">
+                <div className="flex justify-center mt-16">
                     <Link to="/team" className="team-cta-button relative w-[60px] h-[60px] cursor-pointer">
                         <div className="cta-background absolute inset-0 w-[60px] h-[60px] bg-CTA-button-bg rounded-full flex items-center">
                            <div className="cta-text-container absolute left-[30px] overflow-hidden">
