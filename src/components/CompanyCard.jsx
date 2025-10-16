@@ -20,6 +20,15 @@ const CloseIcon = ({ onClick }) => (
     </button>
 );
 
+// ✅ NEW: Component for the external link icon
+const WebsiteLinkIcon = () => (
+    <svg className="w-5 h-5 text-accent opacity-80 group-hover:opacity-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M7 17L17 7"></path>
+        <path d="M7 7h10v10"></path>
+    </svg>
+);
+
+
 const LogoDisplay = ({ company, className }) => {
     if (company.logoComponent) {
         return React.cloneElement(company.logoComponent, { className });
@@ -29,6 +38,7 @@ const LogoDisplay = ({ company, className }) => {
     }
     return <img src={FallbackLogo} alt="Fallback logo" className={className} />;
 };
+
 
 const CompanyCard = ({ company, onClick, isActive, ...props }) => {
     const cardRef = useRef(null);
@@ -118,9 +128,23 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
         <div 
             ref={cardRef}
             onClick={handleClick}
-            className="company-card relative aspect-[4/3] bg-background rounded-2xl border border-accent flex justify-center items-center cursor-pointer p-4 overflow-hidden"
+            className="company-card group relative aspect-[4/3] bg-background rounded-2xl border border-accent flex justify-center items-center cursor-pointer p-4 overflow-hidden"
             {...props}
         >
+            {/* ✅ NEW: Added a conditional link to the company's website */}
+            {company.website && (
+                 <a
+                    href={company.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="absolute top-4 left-4 z-20 p-1 rounded-full bg-background/50 hover:bg-background/80 transition-all duration-300 transform scale-0 group-hover:scale-100"
+                    aria-label={`${company.name} website`}
+                >
+                    <WebsiteLinkIcon />
+                </a>
+            )}
+
             {/* --- DESKTOP VIEW --- */}
             <div className="hidden md:block w-full h-full">
                 <div className="logo-initial absolute inset-0 flex justify-center items-center">
@@ -141,10 +165,8 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
                         <line x1="0" y1="1" x2="200" y2="1" stroke="var(--color-accent)" strokeWidth="2" />
                     </svg>
                     <div className="details-content flex flex-col items-center">
-                        {/* ✅ CHANGE: Reduced font size for the company name from `text-xl` to `text-lg`. */}
-                        <h3 className="company-name text-lg font-medium font-primary text-accent mb-2">{company.name}</h3>
-                        {/* ✅ CHANGE: Reduced font size for description from `text-base` to `text-sm` and adjusted line-height. */}
-                        <p className="company-description font-primary font-light text-sm text-text-main leading-relaxed">{company.description}</p>
+                        <h3 className="company-name text-[12px] font-medium font-primary text-accent mb-2">{company.name}</h3>
+                        <p className="company-description font-primary font-light text-[10px] text-text-main leading-relaxed">{company.description}</p>
                     </div>
                 </div>
             </div>
@@ -163,7 +185,7 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
                         <LogoDisplay company={company} className="max-w-full h-auto object-contain" />
                     </div>
                     <div>
-                        <h3 className="text-xl md:text-2xl font-bold text-[#F47A36] mb-2">{company.name}</h3>
+                        <h3 className="text-xl md:text-2xl font-bold text-accent mb-2">{company.name}</h3>
                         <p className="text-xs md:text-sm text-text-main leading-snug">{company.description}</p>
                     </div>
                 </div>
