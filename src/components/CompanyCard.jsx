@@ -20,27 +20,15 @@ const CloseIcon = ({ onClick }) => (
     </button>
 );
 
-/**
- * ✅ NEW: A helper component to render the correct logo type.
- * It checks for a `logoComponent` (for SVG JSX) first, then falls back
- * to a `logoUrl` (for image files), and finally to a generic fallback.
- */
 const LogoDisplay = ({ company, className }) => {
-    // If a JSX component is provided for the logo, render it.
     if (company.logoComponent) {
-        // We clone the element to pass down the necessary className for styling.
         return React.cloneElement(company.logoComponent, { className });
     }
-    
-    // If a URL is provided, render it in an <img> tag.
     if (company.logoUrl) {
         return <img src={company.logoUrl} alt={`${company.name} logo`} className={className} />;
     }
-
-    // If neither is provided, use the fallback logo.
     return <img src={FallbackLogo} alt="Fallback logo" className={className} />;
 };
-
 
 const CompanyCard = ({ company, onClick, isActive, ...props }) => {
     const cardRef = useRef(null);
@@ -65,33 +53,39 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
         }
     };
 
-    // Desktop animation timeline setup
     useGSAP(() => {
         const mm = gsap.matchMedia();
+        let timeout; 
 
         mm.add("(min-width: 768px)", () => {
-            const initialLogo = cardRef.current.querySelector('.logo-initial');
-            const detailsPanel = cardRef.current.querySelector('.details-panel');
-            const expandedLogo = cardRef.current.querySelector('.logo-expanded');
-            const horizontalLine = cardRef.current.querySelector('.horizontal-line');
-            const name = cardRef.current.querySelector('.company-name');
-            const description = cardRef.current.querySelector('.company-description');
-            const closeButton = cardRef.current.querySelector('.close-button');
-            
-            timeline.current = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } })
-                .to(initialLogo, { autoAlpha: 0, duration: 0.3 })
-                .set(detailsPanel, { autoAlpha: 1 })
-                .from(expandedLogo, { autoAlpha: 0, scale: 0.9, duration: 0.4 }, ">0.1")
-                .from(horizontalLine, { drawSVG: "50% 50%", duration: 0.5 }, "<0.1")
-                .from([name, description], { autoAlpha: 0, y: 10, stagger: 0.15, duration: 0.4 }, ">-0.3")
-                .from(closeButton, { autoAlpha: 0, scale: 0.5, duration: 0.3 }, "<");
+            timeout = setTimeout(() => {
+                const initialLogo = cardRef.current.querySelector('.logo-initial');
+                const detailsPanel = cardRef.current.querySelector('.details-panel');
+                const expandedLogo = cardRef.current.querySelector('.logo-expanded');
+                const horizontalLine = cardRef.current.querySelector('.horizontal-line');
+                const name = cardRef.current.querySelector('.company-name');
+                const description = cardRef.current.querySelector('.company-description');
+                const closeButton = cardRef.current.querySelector('.close-button');
+                
+                gsap.set(detailsPanel, { autoAlpha: 0 });
+
+                timeline.current = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } })
+                    .to(initialLogo, { autoAlpha: 0, duration: 0.3 })
+                    .set(detailsPanel, { autoAlpha: 1 })
+                    .from(expandedLogo, { autoAlpha: 0, scale: 0.9, duration: 0.4 }, ">0.1")
+                    .from(horizontalLine, { drawSVG: "50% 50%", duration: 0.5 }, "<0.1")
+                    .from([name, description], { autoAlpha: 0, y: 10, stagger: 0.15, duration: 0.4 }, ">-0.3")
+                    .from(closeButton, { autoAlpha: 0, scale: 0.5, duration: 0.3 }, "<");
+            }, 0);
         });
 
-        return () => mm.revert();
+        return () => {
+            clearTimeout(timeout);
+            mm.revert();
+        };
 
     }, { scope: cardRef });
 
-    // Play/reverse desktop timeline
     useGSAP(() => {
         if (timeline.current) {
             if (isActive) {
@@ -102,7 +96,6 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
         }
     }, { dependencies: [isActive] });
 
-    // Mobile flip animation
     useGSAP(() => {
         if (isInitialMount.current) {
             isInitialMount.current = false;
@@ -131,16 +124,14 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
             {/* --- DESKTOP VIEW --- */}
             <div className="hidden md:block w-full h-full">
                 <div className="logo-initial absolute inset-0 flex justify-center items-center">
-                    {/* ✅ CHANGE: Replaced <img> with the new LogoDisplay component. */}
                     <LogoDisplay 
                         company={company}
                         className="max-w-[80%] max-h-[50%] object-contain"
                     />
                 </div>
-                <div className="details-panel absolute inset-0 p-6 flex flex-col justify-center items-center text-center opacity-0 pointer-events-none">
+                <div className="details-panel absolute inset-0 p-6 flex flex-col justify-center items-center text-center">
                     <CloseIcon onClick={handleCloseClick} />
                     <div className="logo-expanded w-1/3 h-[30%] flex justify-center items-center">
-                        {/* ✅ CHANGE: Replaced <img> with the new LogoDisplay component. */}
                         <LogoDisplay 
                            company={company}
                            className="max-w-full max-h-full object-contain"
@@ -150,8 +141,10 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
                         <line x1="0" y1="1" x2="200" y2="1" stroke="var(--color-accent)" strokeWidth="2" />
                     </svg>
                     <div className="details-content flex flex-col items-center">
-                        <h3 className="company-name text-xl md:text-xl font-medium font-primary text-accent mb-2">{company.name}</h3>
-                        <p className="company-description font-primary font-light text-base md:text-base text-text-main leading-snug">{company.description}</p>
+                        {/* ✅ CHANGE: Reduced font size for the company name from `text-xl` to `text-lg`. */}
+                        <h3 className="company-name text-lg font-medium font-primary text-accent mb-2">{company.name}</h3>
+                        {/* ✅ CHANGE: Reduced font size for description from `text-base` to `text-sm` and adjusted line-height. */}
+                        <p className="company-description font-primary font-light text-sm text-text-main leading-relaxed">{company.description}</p>
                     </div>
                 </div>
             </div>
@@ -159,7 +152,6 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
             {/* --- MOBILE VIEW --- */}
             <div className="md:hidden relative w-full h-full flex justify-center items-center">
                 <div className={`logo-panel-mobile w-full h-full flex flex-col justify-center items-center text-center transition-opacity duration-300 ${isFlipped ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                    {/* ✅ CHANGE: Replaced <img> with the new LogoDisplay component. */}
                     <LogoDisplay 
                         company={company}
                         className="max-w-[80%] max-h-[50%] object-contain"
@@ -168,7 +160,6 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
                 <div className={`details-panel-mobile absolute inset-0 w-full h-full p-6 flex flex-col items-center justify-center text-center transition-opacity duration-300 ${isFlipped ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                     <CloseIcon onClick={handleCloseClick} />
                     <div className="w-1/3 mb-4">
-                        {/* ✅ CHANGE: Replaced <img> with the new LogoDisplay component. */}
                         <LogoDisplay company={company} className="max-w-full h-auto object-contain" />
                     </div>
                     <div>

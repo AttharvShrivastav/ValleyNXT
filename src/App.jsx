@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,8 +9,7 @@ import HomePage from './pages/HomePage';
 import TeamsPage from './pages/TeamsPage';
 import PortfolioPage from './pages/PortfolioPage';
 import NavMenu from './components/NavMenu';
-// ✅ CHANGE: Footer is no longer part of the main layout.
-// import Footer from './components/Footer'; 
+// Footer is no longer imported here
 import logoBlack from './assets/LogoBlack.png';
 import logoLight from './assets/LogoWhite.png';
 
@@ -38,14 +37,16 @@ const Layout = ({ startAnimations, ...props }) => {
   }, [location.pathname]);
 
   return (
-    <div className='bg-background text-text-main overflow-x-hidden' {...props}>
+    // ✅ FINAL FIX: Removed the `overflow-x-hidden` class.
+    // This class creates a new scrolling context that conflicts with ScrollTrigger's pinning mechanism.
+    // Removing it resolves the "double scrollbar" issue.
+    <div className='bg-background text-text-main' {...props}>
       <Header />
       <Routes>
         <Route path="/" element={<HomePage startAnimations={startAnimations} />} />
         <Route path="/team" element={<TeamsPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
       </Routes>
-      {/* ✅ CHANGE: Removed Footer from here. It will now live inside each page component. */}
     </div>
   );
 };

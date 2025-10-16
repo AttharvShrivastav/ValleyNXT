@@ -29,10 +29,10 @@ const ProfileCard = ({ person, className }) => {
     const handleImageError = (e) => { e.target.style.display = 'none'; };
 
     return (
-        // ✅ FINAL FIX: Defined responsive card sizes. Larger on tablet (md), slightly smaller on desktop (lg) to fit 4-in-a-row.
         <div ref={card} className={`relative flex-shrink-0 w-[240px] h-[340px] md:w-[280px] md:h-[360px] lg:w-[240px] lg:h-[340px] bg-profilecard-bg rounded-[35px] overflow-hidden cursor-pointer ${className}`}>
             <div className="card-overlay absolute bottom-0 left-0 z-20 w-full h-0 bg-container-bg text-[#f1d6c4] flex flex-col justify-start text-left overflow-hidden">
-                <div className="h-full overflow-y-auto pl-6 pr-8 py-6">
+                {/* ✅ FINAL FIX: Added `custom-scrollbar` class and adjusted padding for the new slim scrollbar. */}
+                <div className="h-full overflow-y-auto custom-scrollbar pl-6 pr-4 py-6">
                     <h4 className="text-lg font-bold text-text-main mb-1">{person.name}</h4>
                     <span className="block text-xs text-accent mb-4">{person.title}</span>
                     <p className="text-sm text-text-main leading-relaxed">{person.bio}</p>
@@ -48,7 +48,6 @@ const ProfileCard = ({ person, className }) => {
                         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full"
                     />
                 )}
-                {/* ✅ FINAL FIX: Adjusted padding and font sizes for optimal text placement at all card sizes. */}
                 <div className="absolute text-left bottom-5 left-5 right-5 pr-10 pt-12">
                     <h3 className="text-lg font-bold text-white [text-shadow:1px_1px_3px_rgba(0,0,0,0.8)]">
                         {person.name}
