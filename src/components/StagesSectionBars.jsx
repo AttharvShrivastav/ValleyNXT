@@ -17,10 +17,9 @@ const StagesSectionBars = () => {
     useGSAP(() => {
         if (!barsContainerRef.current) return;
         
-        // Using a more reliable 'scaleY' animation.
         gsap.from(barsContainerRef.current.children, {
             scaleY: 0,
-            transformOrigin: 'top', // Bars animate downwards from the top.
+            transformOrigin: 'top', 
             duration: 2.5,
             ease: 'power2.out',
             stagger: {
@@ -38,21 +37,20 @@ const StagesSectionBars = () => {
     return (
         <div ref={componentRootRef} className="absolute top-0 left-0 right-0 h-1/2 md:h-2/3 opacity-80 z-0 overflow-hidden">
             
-            {/* LOGIC CHANGE: No more transform. Bars are aligned to the top ('items-start'). */}
             <div
                 ref={barsContainerRef}
-                className="absolute top-0 left-0 right-0 grid items-start h-full w-full"
-                style={{ 
-                    gridTemplateColumns: 'repeat(11, 1fr)', // Using CSS Grid for gapless columns.
-                }}
+                className="absolute top-0 left-0 right-0 flex items-start h-full w-full"
             >
                 {bars.map((bar, index) => (
                     <div
                         key={index}
-                        className=""
+                        // ✅ FIX: Removed `flex-1` className
+                        className="" 
                         style={{
                             height: bar.height,
-                            // The gradient is flipped to create the reflection effect without rotation.
+                            // By explicitly calculating the width, we prevent the browser's
+                            // rounding errors that were causing the gap.
+                            width: 'calc(100% / 11)',
                             background: 'linear-gradient(to bottom, var(--color-accent), var(--color-background) 85%)',
                         }}
                     ></div>
