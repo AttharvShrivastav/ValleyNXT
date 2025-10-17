@@ -35,8 +35,6 @@ const StagesSectionBars = () => {
     }, { scope: componentRootRef });
 
     return (
-        // ✅ FINAL FIX: Added `overflow-hidden` to match the working BackgroundBars component.
-        // This forces the browser to correctly calculate the flexbox layout without sub-pixel gaps.
         <div ref={componentRootRef} className="absolute top-0 left-0 right-0 h-1/2 md:h-2/3 opacity-80 z-0 overflow-hidden">
             <div
                 ref={barsContainerRef}
@@ -50,7 +48,6 @@ const StagesSectionBars = () => {
                         style={{
                             height: bar.height,
                             background: 'linear-gradient(to top, var(--color-accent), var(--color-background) 85%)',
-                            // The negative margin is no longer needed with the parent's overflow fix.
                         }}
                     ></div>
                 ))}
