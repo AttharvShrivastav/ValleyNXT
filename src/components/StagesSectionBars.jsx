@@ -14,17 +14,18 @@ const StagesSectionBars = () => {
         height: `${a * 100}%`
     }));
 
-
     useGSAP(() => {
         if (!barsContainerRef.current) return;
         
+        // Using a more reliable 'scaleY' animation.
         gsap.from(barsContainerRef.current.children, {
-            clipPath: 'inset(100% 0 0 0)',
+            scaleY: 0,
+            transformOrigin: 'top', // Bars animate downwards from the top.
             duration: 2.5,
             ease: 'power2.out',
             stagger: {
                 amount: 2,
-                from: 'end'
+                from: 'start'
             },
             scrollTrigger: {
                 trigger: componentRootRef.current,
@@ -36,23 +37,23 @@ const StagesSectionBars = () => {
 
     return (
         <div ref={componentRootRef} className="absolute top-0 left-0 right-0 h-1/2 md:h-2/3 opacity-80 z-0 overflow-hidden">
-            {/* ✅ **THE FIX:** Switched from Flexbox to CSS Grid for more reliable column calculation */}
+            
+            {/* LOGIC CHANGE: No more transform. Bars are aligned to the top ('items-start'). */}
             <div
                 ref={barsContainerRef}
-                className="absolute bottom-0 left-0 right-0 grid items-end h-full w-full"
+                className="absolute top-0 left-0 right-0 grid items-start h-full w-full"
                 style={{ 
-                    gridTemplateColumns: 'repeat(11, 1fr)', // Create 11 perfectly divided fractional columns
-                    transform: 'rotate(180deg)' 
+                    gridTemplateColumns: 'repeat(11, 1fr)', // Using CSS Grid for gapless columns.
                 }}
             >
                 {bars.map((bar, index) => (
-                    // ✅ Removed `flex-1` as it's no longer needed with Grid
                     <div
                         key={index}
-                        className="" // `flex-1` has been removed
+                        className=""
                         style={{
                             height: bar.height,
-                            background: 'linear-gradient(to top, var(--color-accent), var(--color-background) 85%)',
+                            // The gradient is flipped to create the reflection effect without rotation.
+                            background: 'linear-gradient(to bottom, var(--color-accent), var(--color-background) 85%)',
                         }}
                     ></div>
                 ))}
