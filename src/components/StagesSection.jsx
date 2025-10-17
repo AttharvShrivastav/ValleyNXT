@@ -637,7 +637,6 @@ Strategic partnerships, funding, and expert guidance. Building technology that m
                                   backgroundSize: '20px 20px',
                                 }}
                             >
-                              {/* The SVG component is now rendered directly instead of an img tag */}
                               {stage.icon}
                             </div>
                             <h3 className="text-lg font-secondary font-regular text-text-main uppercase mb-4">{stage.title}</h3>

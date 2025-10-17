@@ -55,7 +55,7 @@ const BackgroundBars = ({
     }, { dependencies: [position, startAnimations, triggerOnScroll, scrollTriggerRef] });
 
     return (
-        <div className={`absolute left-0 right-0 h-1/2 md:h-2/3 opacity-80 z-0 overflow-hidden ${position === 'top' ? 'top-0' : 'bottom-0'}`}>
+        <div className={`absolute min-w-screen left-0 right-0 h-1/2 md:h-2/3 opacity-80 z-0 overflow-hidden ${position === 'top' ? 'top-0' : 'bottom-0'}`}>
             <div
                 ref={barsContainerRef}
                 className="absolute bottom-0 left-0 right-0 flex items-end h-full w-full"
@@ -64,10 +64,9 @@ const BackgroundBars = ({
                 {bars.map((bar, index) => (
                     <div
                         key={index}
-                        className="" /* ✅ CHANGE 1: Removed 'flex-1' */
+                        className=""
                         style={{
                             height: bar.height,
-                            /* ✅ CHANGE 2: Added explicit width calculation */
                             width: `calc(100% / ${bars.length})`,
                             background:'linear-gradient(to top, var(--color-accent), var(--color-background) 85%)'
                         }}
