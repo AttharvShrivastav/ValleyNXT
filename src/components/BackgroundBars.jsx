@@ -1,11 +1,16 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import React, { useRef } from 'react';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-// ✅ CHANGE: Component now accepts the startAnimations prop
-const BackgroundBars = ({ position = 'bottom', startAnimations }) => {
+const BackgroundBars = ({ 
+    position = 'bottom', 
+    startAnimations, 
+    triggerOnScroll = false,
+    scrollTriggerRef 
+}) => {
     const barsContainerRef = useRef(null);
 
     const heights = [100, 90, 70, 60, 40, 25, 40, 60, 70, 90, 100];
@@ -14,21 +19,38 @@ const BackgroundBars = ({ position = 'bottom', startAnimations }) => {
     }));
 
     useGSAP(() => {
-        // ✅ CHANGE: Animation now waits for the preloader to finish
-        if (!startAnimations) return;
+        if (!barsContainerRef.current) return;
 
-        gsap.from(barsContainerRef.current.children, {
+        const animationConfig = {
             scaleY: 0,
-            transformOrigin: position === 'top' ? 'top' : 'bottom',
+            transformOrigin: position === 'top' ? 'bottom' : 'bottom',
             duration: 2.5,
             ease: 'power2.out',
             stagger: {
                 amount: 2,
                 from: 'start'
             },
-            delay: 0.3
-        });
-    }, { scope: barsContainerRef, dependencies: [position, startAnimations] }); // ✅ CHANGE: Add startAnimations to dependency array
+        };
+
+        if (triggerOnScroll && scrollTriggerRef?.current) {
+            gsap.from(barsContainerRef.current.children, {
+                ...animationConfig,
+                scrollTrigger: {
+                    trigger: scrollTriggerRef.current,
+                    // ✅ THE FIX: Starts the animation when the top of the section hits the
+                    // center of the viewport. This ensures it's visible before animating.
+                    start: 'top center', 
+                    toggleActions: 'play none none none',
+                }
+            });
+        } else if (startAnimations) {
+            gsap.from(barsContainerRef.current.children, {
+                ...animationConfig,
+                delay: 0.3
+            });
+        }
+
+    }, { dependencies: [position, startAnimations, triggerOnScroll, scrollTriggerRef] });
 
     return (
         <div className={`absolute left-0 right-0 h-1/2 md:h-2/3 opacity-80 z-0 overflow-hidden ${position === 'top' ? 'top-0' : 'bottom-0'}`}>
