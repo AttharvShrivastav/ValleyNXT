@@ -36,15 +36,20 @@ const StagesSectionBars = () => {
 
     return (
         <div ref={componentRootRef} className="absolute top-0 left-0 right-0 h-1/2 md:h-2/3 opacity-80 z-0 overflow-hidden">
+            {/* ✅ **THE FIX:** Switched from Flexbox to CSS Grid for more reliable column calculation */}
             <div
                 ref={barsContainerRef}
-                className="absolute bottom-0 left-0 right-0 flex items-end h-full w-full"
-                style={{ transform: 'rotate(180deg)' }}
+                className="absolute bottom-0 left-0 right-0 grid items-end h-full w-full"
+                style={{ 
+                    gridTemplateColumns: 'repeat(11, 1fr)', // Create 11 perfectly divided fractional columns
+                    transform: 'rotate(180deg)' 
+                }}
             >
                 {bars.map((bar, index) => (
+                    // ✅ Removed `flex-1` as it's no longer needed with Grid
                     <div
                         key={index}
-                        className="flex-1"
+                        className="" // `flex-1` has been removed
                         style={{
                             height: bar.height,
                             background: 'linear-gradient(to top, var(--color-accent), var(--color-background) 85%)',
