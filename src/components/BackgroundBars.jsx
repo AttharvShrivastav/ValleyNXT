@@ -64,9 +64,11 @@ const BackgroundBars = ({
                 {bars.map((bar, index) => (
                     <div
                         key={index}
-                        className="flex-1"
+                        className="" /* ✅ CHANGE 1: Removed 'flex-1' */
                         style={{
                             height: bar.height,
+                            /* ✅ CHANGE 2: Added explicit width calculation */
+                            width: `calc(100% / ${bars.length})`,
                             background:'linear-gradient(to top, var(--color-accent), var(--color-background) 85%)'
                         }}
                     ></div>
