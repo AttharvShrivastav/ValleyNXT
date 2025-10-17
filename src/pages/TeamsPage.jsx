@@ -28,7 +28,7 @@ const founders = [
         id: 1,
         name: "Dr. Madhu Vasepalli",
         title: "Founder and Managing Partner",
-        bio: "Investor in 17+ Indian and American startups and a serial healthtech entrepreneur. Founded and mentored 12+ ventures, including Ocimum Clinics, Yira Healthcare, BHS Robotics, and DEEP Trust. Actively participates in India’s startup ecosystem through Shark Tank events and panel discussions, guiding tech-first founders on innovation and growth.",
+        bio: "Serial Healthtech entrepreneur and investor in 17+ Indian American startups, having founded and mentored 12+ ventures while guiding tech founders via Shark Tank and panels in India's ecosystem.",
         image: DrMadhuImage,
         linkedin: "https://www.linkedin.com/in/dr-madhu-vasepalli-mds-43a24812/"
       },
@@ -36,7 +36,7 @@ const founders = [
         id: 2,
         name: "Dr. Nikhil Agarwal",
         title: "Founder & Advisor",
-        bio: "As MD of FITT at IIT Delhi, empowered 175+ startups leading in innovation. Led SIIC at IIT Kanpur, building India’s largest tech incubator with 300+ startups, ranked #1 in NIRF Innovation Ranking 2023. Headed C3iHub, India’s first cybersecurity hub, and served as former CEO of Andhra Pradesh Innovation, drafting the state’s first startup policy. Founded Entrepreneur Café, creating a global network across 110 cities supporting 45,000+ entrepreneurs.",
+        bio: "MD of FITT at IIT Delhi empowering 175+ startups, former leader of top-ranked SIIC incubator at IIT Kanpur with 300+ startups, Head of C3iHub, ex-CEO drafting Andhra Pradesh's first startup policy, and Founder of Entrepreneur Café supporting 45,000+ entrepreneurs globally.",
         image: DrNikhilImage,
         linkedin: "https://www.linkedin.com/in/drnikhilagarwalindia/"
       },
@@ -44,7 +44,7 @@ const founders = [
       id: 3,
       name: "CA Anand Saklecha",
       title: "Founder and Head of Investment Committee",
-      bio: "As an ICAI MSME & Startups Committee Co-opted Member, brings 25+ years of experience in deal structuring, IPOs, and startup investments. Serves as MD & CEO of ASCO Capital, a boutique investment banking company, and Founder and Head of IC. Has structured ₹4,500+ Cr in corporate finance across 1,000+ projects, consulted 500+ companies across 50+ industries in 10+ countries, and leverages diversified global exposure with strong investor networks.",
+      bio: "ICAI Startup and MSME Committee member, having 25+ years of experience in advising over 500 MSMEs and Startups. Serves as MD & CEO of ASCO Capital, a boutique investment banking company, and Founder and Head of IC.",
       image: AnandSaklechaImage,
       linkedin: "https://www.linkedin.com/in/anand-saklecha-18a57716/"
     },
@@ -52,7 +52,7 @@ const founders = [
       id: 4,
       name: "Mr. Suresh Goyal",
       title: "Partner & Fund Manager",
-      bio: "Finance veteran with 30+ years in infrastructure investing and asset management. As former MD & CEO of NHIT, scaled India’s largest PPP road platform to ₹48,000 Cr and led Macquarie’s Infrastructure Funds across India and Southeast Asia. Brings deep expertise in boardrooms, policy, and capital markets for public and private sector investments.",
+      bio: "Infrastructure finance veteran with 30+ years in investing and asset management, former MD & CEO scaling NHIT to ₹48,000 Cr PPP platform and leading Macquarie’s funds across India-Southeast Asia, expert in boardrooms, policy, and capital markets.",
       image: MrSureshImage,
       linkedin: "https://www.linkedin.com/in/suresh-goyal-4534364/"
     }
@@ -62,7 +62,7 @@ const investmentTeam = [
         id: 8,
         name: "CA Harshwardhan Saklecha",
         title: "Vice President",
-        bio: "CA Harshwardhan Saklecha is the Vice President at ValleyNXT Ventures. A Chartered Accountant and AIF Fund Manager, he brings expertise in venture capital, financial modeling, and deal structuring. He is a skilled finance professional with experience in investment banking and alternative investment funds, strengthened by his Management Development Program at ISB Hyderabad.",
+        bio: "Vice President at ValleyNXT Ventures, expert in venture capital, financial modeling, deal structuring, investment banking, and alternative investments, with Management Development Program from ISB Hyderabad.",
         image: HarshwardhanSaklechaImage,
         linkedin: "https://www.linkedin.com/in/harshwardhan-saklecha/"
     },
@@ -70,7 +70,7 @@ const investmentTeam = [
         id: 9,
         name: "CS Dhairya Jain",
         title: "Investor Relation & Compliance Officer",
-        bio: "Dhairya Jain is a Company Secretary (ICSI) and plays a key role in investor relations and compliance at ValleyNXT Ventures. He handles fund-raising, due diligence, FEMA compliance, valuation, intellectual property work, and assists with managing offshore companies in the US, UK, and Singapore. His expertise ensures smooth governance and regulatory compliance for the firm's investment activities.",
+        bio: "Company Secretary (ICSI) at ValleyNXT Ventures specializing in investor relations and compliance, handling fund-raising, due diligence, FEMA, valuation, IP, and offshore entities in US, UK, Singapore for seamless governance.",
         image: DhairyaJainImage,
         linkedin: "https://www.linkedin.com/in/jaindhairya/"
     },
@@ -78,7 +78,7 @@ const investmentTeam = [
         id: 13,
         name: "Aditya Sharma",
         title: "Investment Associate",
-        bio: "Aditya is an Investment Associate at ValleyNXT Ventures with 1.5+ years of venture capital experience across early-stage investments in deeptech, consumer, mobility, and fintech. He has hands-on experience in financial modeling, valuation analysis, and IC memo preparation. He actively supports portfolio founders with business strategy, KPI tracking, fundraising, and investor relations. He holds an MBA in Finance & Business Analytics from BML Munjal University and a B.Com from Devi Ahilya Vishwavidyalaya.",
+        bio: "Venture capital professional with 1.5+ years in early-stage deeptech, consumer, mobility, fintech investments, skilled in due diligence, modeling, valuation, and founder support on strategy and fundraising; MBA Finance & Analytics (BML Munjal) and B.Com.",
         image: AdityaSharmaImage,
         linkedin: "https://www.linkedin.com/in/aditya-sharma88/"
     },

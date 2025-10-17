@@ -51,7 +51,7 @@ const StagesSectionBars = () => {
                             height: bar.height,
                             background: 'linear-gradient(to top, var(--color-accent), var(--color-background) 85%)',
                             // This small negative margin forces a tiny overlap, hiding the gaps.
-                            marginLeft: '-1px'
+                            // marginLeft: '-1px'
                         }}
                     ></div>
                 ))}
