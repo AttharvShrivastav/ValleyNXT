@@ -21,6 +21,7 @@ const BackgroundBars = ({
     useGSAP(() => {
         if (!barsContainerRef.current) return;
 
+        // Shared animation configuration for consistency
         const animationConfig = {
             scaleY: 0,
             transformOrigin: position === 'top' ? 'bottom' : 'bottom',
@@ -32,18 +33,19 @@ const BackgroundBars = ({
             },
         };
 
+        // Conditionally apply either a ScrollTrigger or a time-based delay
         if (triggerOnScroll && scrollTriggerRef?.current) {
+            // New logic for scroll-triggered animation
             gsap.from(barsContainerRef.current.children, {
                 ...animationConfig,
                 scrollTrigger: {
                     trigger: scrollTriggerRef.current,
-                    // ✅ THE FIX: Starts the animation when the top of the section hits the
-                    // center of the viewport. This ensures it's visible before animating.
-                    start: 'top center', 
+                    start: 'top 80%',
                     toggleActions: 'play none none none',
                 }
             });
         } else if (startAnimations) {
+            // Original logic for the hero section animation
             gsap.from(barsContainerRef.current.children, {
                 ...animationConfig,
                 delay: 0.3
