@@ -196,9 +196,9 @@ const VentureServices = () => {
                     <div className="flex flex-col items-center gap-0">
                       {/* ✅ FIX: Increased Tailwind font size for standard desktops */}
                       <h1 className="text-5xl font-primary pb-5 font-normal leading-none">{item.title}</h1>
-                      <h2 className="text-sm font-secondary font-normal text-accent">{item.subtitle}</h2>
+                      <h2 className="text-lg font-secondary font-normal text-accent">{item.subtitle}</h2>
                     </div>
-                    <p className="text-sm font-secondary leading-relaxed">{item.description}</p>
+                    <p className="text-lg font-secondary leading-relaxed">{item.description}</p>
                   </div>
                 ))}
               </div>
