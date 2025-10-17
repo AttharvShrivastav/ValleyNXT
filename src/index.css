@@ -45,6 +45,8 @@
 
   --color-brigde: #0B66C2;
   --color-icon: #0B66C2;
+
+  --color-arrow-text : #fff;
 }
 
 /* 3. Define the overrides for when dark mode is active */
@@ -83,33 +85,11 @@
   --color-brigde: #ba5b26;
 
   --color-icon: #fff;
+
+  -color-arrow-text : #000;
 }
 
-/* Custom Global Scrollbar */
-/* This targets the main scrollbar in Webkit-based browsers (Chrome, Safari, Edge) */
 
-/* Sets the width of the scrollbar */
-html::-webkit-scrollbar {
-  width: 8px;
-}
-
-/* Makes the background track invisible */
-html::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Styles the scrollbar thumb (the draggable part) */
-html::-webkit-scrollbar-thumb {
-  background-color: var(--color-accent); /* Your site's accent color */
-  border-radius: 10px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-/* Darkens the thumb slightly on hover for a nice effect */
-html::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-accent);
-}
 
 body {
   background-color: var(--color-background);

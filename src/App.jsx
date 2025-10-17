@@ -38,9 +38,7 @@ const Layout = ({ startAnimations, ...props }) => {
   }, [location.pathname]);
 
   return (
-    // ✅ FINAL FIX: Removed the `overflow-x-hidden` class.
-    // This class creates a new scrolling context that conflicts with ScrollTrigger's pinning mechanism.
-    // Removing it resolves the "double scrollbar" issue.
+
     <div className='bg-background overflow-x-hidden text-text-main' {...props}>
       <Header />
       <Routes>

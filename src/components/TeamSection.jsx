@@ -138,7 +138,7 @@ const TeamSection = () => {
                     </svg>
                     <div className="overflow-hidden relative z-10">
                         <h2 className="main-heading text-2xl sm:text-3xl md:text-4xl text-text-main font-primary leading-tight">
-                            Visionary Leaders
+                            VISIONARY LEADERS
                             <br />
                             <span className='font-serifa leading-[-10] text-4xl sm:text-5xl md:text-6xl font-normal text-accent'>
                                 shaping tomorrow

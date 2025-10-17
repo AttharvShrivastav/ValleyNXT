@@ -174,7 +174,7 @@ const VnvpediaSection = () => {
                 {/* Button is now a sibling, positioned absolutely to the new parent's edge */}
                 <button
                     onClick={() => handleNavigation('prev')}
-                    className="nav-button absolute left-0 top-1/2 -translate-y-1/4 z-30 p-4 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
+                    className="nav-button absolute left-0 top-1/2 -translate-y-1/4 z-30 p-4 rounded-full bg-accent text-arrow-text hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
                     aria-label="Previous article"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -203,7 +203,7 @@ const VnvpediaSection = () => {
                 {/* Button is now a sibling, positioned absolutely to the new parent's edge */}
                 <button
                     onClick={() => handleNavigation('next')}
-                    className="nav-button absolute right-0 top-1/2 -translate-y-1/4 z-30 p-4 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
+                    className="nav-button absolute right-0 top-1/2 -translate-y-1/4 z-30 p-4 rounded-full bg-accent text-arrow-text hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
                     aria-label="Next article"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -215,7 +215,7 @@ const VnvpediaSection = () => {
             <div className="w-full flex md:hidden items-center justify-center gap-8 mt-8">
                 <button
                     onClick={() => handleNavigation('prev')}
-                    className="p-3 rounded-full bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none"
+                    className="p-3 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none"
                     aria-label="Previous article"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -224,7 +224,7 @@ const VnvpediaSection = () => {
                 </button>
                 <button
                     onClick={() => handleNavigation('next')}
-                    className="p-3 rounded-full bg-[#f47a36] text-black hover:scale-110 transition-transform duration-300 focus:outline-none"
+                    className="p-3 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none"
                     aria-label="Next article"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

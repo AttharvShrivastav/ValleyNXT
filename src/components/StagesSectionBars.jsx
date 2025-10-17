@@ -36,7 +36,7 @@ const StagesSectionBars = () => {
     }, { scope: componentRootRef });
 
     return (
-        <div ref={componentRootRef} className="absolute top-0 left-0 right-0 h-1/2 md:h-2/3 opacity-80 z-0 ">
+        <div ref={componentRootRef} className="absolute w-full top-0 left-0 right-0 h-1/2 md:h-2/3 opacity-80 z-0 ">
             <div
                 ref={barsContainerRef}
                 className="absolute bottom-0 left-0 right-0 flex items-end h-full w-full"
