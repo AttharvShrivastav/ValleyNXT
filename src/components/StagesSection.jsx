@@ -296,7 +296,61 @@ Strategic partnerships, funding, and expert guidance. Building technology that m
 
     return (
         <section ref={sectionRef} className="stages-section bg-background min-h-screen h-auto w-full flex items-center justify-center relative overflow-hidden p-4">
-            
+            <style>{`
+              .stages-section {
+                --section-pt: 9rem; /* 144px */
+                padding-top: var(--section-pt);
+              }
+              .stages-grid {
+                /* ✅ FIX: Set mobile gap first */
+                --grid-gap: 2rem; /* 32px for mobile */
+                gap: var(--grid-gap);
+              }
+              .stage-card {
+                transform-origin: bottom;
+                /* ✅ FIX: Default transform for mobile is none */
+                transform: translateY(0);
+              }
+
+              /* ✅ FIX: All desktop-specific transforms and gaps are now scoped */
+              @media (min-width: 768px) {
+                .stages-grid {
+                  --card-offset-y: 6rem; /* 96px */
+                  --grid-gap: 4rem; /* 64px for desktop */
+                  transform: translateY(-6rem); /* Equivalent of -translate-y-24 */
+                }
+                .staggered-card {
+                  transform: translateY(var(--card-offset-y));
+                }
+                .center-card {
+                  transform: translateY(0);
+                }
+              }
+
+              @media (min-width: 768px) and (max-width: 1024px) {
+                .stages-grid {
+                  --grid-gap: 2rem; /* 32px */
+                }
+                .stage-card {
+                  width: 280px;
+                }
+              }
+
+              @media (min-width: 768px) and (max-height: 800px) {
+                .stages-section {
+                  --section-pt: 5rem; /* 80px */
+                }
+                .stages-grid {
+                  --card-offset-y: 4rem; /* 64px */
+                }
+                .staggered-card {
+                  transform: translateY(var(--card-offset-y)) scale(0.85);
+                }
+                .center-card {
+                  transform: scale(0.85);
+                }
+              }
+            `}</style>
             <StagesSectionBars />
             
             <div className="stages-grid flex flex-col md:grid md:grid-cols-3 md:items-end relative z-10">
