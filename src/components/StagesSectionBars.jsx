@@ -45,12 +45,12 @@ const StagesSectionBars = () => {
                     <div
                         key={index}
                         // ✅ FIX: Removed `flex-1` className
-                        className="" 
+                        className="flex-1" 
                         style={{
                             height: bar.height,
                             // By explicitly calculating the width, we prevent the browser's
                             // rounding errors that were causing the gap.
-                            width: 'calc(100% / 11)',
+                            // width: 'calc(100% / 11)',
                             background: 'linear-gradient(to bottom, var(--color-accent), var(--color-background) 85%)',
                         }}
                     ></div>
