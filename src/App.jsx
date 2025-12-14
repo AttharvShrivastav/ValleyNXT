@@ -12,7 +12,7 @@ import NavMenu from './components/NavMenu';
 // Footer is no longer imported here
 import logoBlack from './assets/LogoBlack.png';
 import logoLight from './assets/LogoWhite.png';
-import Footer from './components/Footer';
+import AcceleratorPage from './pages/AcceleratorPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,6 +45,7 @@ const Layout = ({ startAnimations, ...props }) => {
         <Route path="/" element={<HomePage startAnimations={startAnimations} />} />
         <Route path="/team" element={<TeamsPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
+        <Route path="/accelerator" element={<AcceleratorPage />} />
       </Routes>
     </div>
   );

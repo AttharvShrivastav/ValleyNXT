@@ -158,6 +158,15 @@ const NavMenu = () => {
           </div>
           
           <div className="link-separator h-0.5 bg-accent"></div>
+
+          <div className="link-item overflow-hidden">
+  <Link to="/accelerator" onClick={toggleMenu} className="relative block text-4xl md:text-5xl font-normal transition-colors duration-300 group">
+    <span className="relative z-10 py-4 transition-colors font-primary duration-300 group-hover:text-accent block pl-8">ACCELERATOR</span>
+    <div className="absolute top-0 right-0 h-full w-0 bg-gradient-to-r from-background/50 to-accent transition-all duration-300 group-hover:w-full"></div>
+  </Link>
+</div>
+
+<div className="link-separator h-0.5 bg-accent"></div>
         </div>
 
         <div className="absolute bottom-8 left-6 sm:left-8 text-xs sm:text-sm text-text-secondary font-light">
