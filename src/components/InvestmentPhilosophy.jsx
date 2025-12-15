@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTheme } from "../context/ThemeProvider"; 
 import GradientNumber from "../components/GradientNumber";
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const philosophies = [
   { id: "01", title: "Deeptech & Tech First", focus: "Spacetech, Defense Tech, Robotics, AI/ML, Quantum, Semiconductor, Healthtech, Cybersecurity", philosophy: "Investing in IP-driven companies and transformative innovations that create high entry barriers and capture exponential alpha." },
@@ -54,6 +55,8 @@ export default function InvestmentPhilosophy() {
   useGSAP(() => {
     const mm = gsap.matchMedia();
     mm.add("(min-width: 768px)", () => {
+      ScrollTrigger.refresh();
+
       gsap.fromTo(".philosophy-title", 
         { y: 30, opacity: 0 },
         {
@@ -77,14 +80,13 @@ export default function InvestmentPhilosophy() {
         }
       );
     });
-  }, { scope: sectionRef });
+  }, { scope: sectionRef, dependencies: [theme], revertOnUpdate: true });
 
   return (
-    <section ref={sectionRef} className="w-full bg-background py-16 px-4 md:py-24 md:px-4 flex flex-col items-center">
+    <section ref={sectionRef} className="w-full bg-background py-8 px-2 sm:py-16 sm:px-4 md:py-24 flex flex-col items-center">
       
-      {/* Header */}
-      <div className="philosophy-title text-center max-w-4xl mb-12 md:mb-16">
-        <h2 className={`text-4xl md:text-5xl font-primary font-bold mb-4 ${isDark ? 'text-white' : 'text-text-main'}`}>
+      <div className="philosophy-title text-center max-w-4xl mb-8 md:mb-16 px-4">
+        <h2 className={`text-3xl md:text-5xl font-primary font-bold mb-4 ${isDark ? 'text-white' : 'text-text-main'}`}>
           Investment <span className="text-accent">Philosophy</span>
         </h2>
         <p className={`text-sm md:text-base font-primary leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -92,7 +94,7 @@ export default function InvestmentPhilosophy() {
         </p>
       </div>
 
-      <div className="cards-container w-full max-w-[1400px] flex flex-col md:flex-row justify-between items-stretch gap-5">
+      <div className="cards-container w-full max-w-[1400px] flex flex-col md:flex-row justify-between items-stretch gap-5 px-2 md:px-0">
         {philosophies.map((item, index) => {
           const isFirst = index === 0;
           const isHovered = index === hoveredIndex;
@@ -119,39 +121,43 @@ export default function InvestmentPhilosophy() {
           return (
             <div 
               key={item.id} 
-              // Reduced Height: min-h-[540px] (Was 600px)
-              className="philosophy-card relative flex flex-col w-full md:w-[26rem] lg:w-[28rem] shrink min-h-[540px] group cursor-default"
+              // UPDATED: Used 'h-auto' on mobile so card stretches to fit content. 'min-h-[540px]' kept for Desktop.
+              className="philosophy-card relative flex flex-col w-full md:w-[26rem] lg:w-[28rem] shrink h-auto md:min-h-[50px] pb-3 group cursor-default"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
               <FolderBg filled={isFirst} isHovered={isHovered} isDark={isDark} />
 
-              <div className="relative z-10 px-16 pt-32 pb-12 flex flex-col h-full justify-start transition-colors duration-300">
+              {/* UPDATED: 'pt-20' (was 24) on mobile to save space. 'px-8' ensures content doesn't hit edges. */}
+              <div className="relative z-10 px-8 pt-20 pb-10 md:px-16 md:pt-32 md:pb-12 flex flex-col h-full justify-start transition-colors duration-300">
                 
-                <div className="absolute top-10 right-12 pointer-events-none">
+                <div className="absolute top-6 right-6 md:top-10 md:right-12 pointer-events-none">
                    <GradientNumber 
                      number={item.id} 
                      theme={theme}
                      variant={isActive ? "fill" : "outline"}
-                     className="w-16 h-16" 
+                     className="w-12 h-12 md:w-16 md:h-16" 
                    />
                 </div>
 
-                <div className="mt-2 flex-grow flex flex-col">
-                  <h3 className={`text-2xl font-bold font-primary mb-8 ${titleColor} transition-colors duration-300 leading-tight`}>
+                {/* KEPT: 'mx-2' as requested for breathability */}
+                <div className="mx-2 flex-grow flex flex-col">
+                  {/* UPDATED: 'mb-4' (was 6) on mobile to tighten vertical gap */}
+                  <h3 className={`text-xl md:text-2xl font-bold font-primary mb-4 md:mb-8 ${titleColor} transition-colors duration-300 leading-tight`}>
                     {item.title}
                   </h3>
 
-                  <div className="flex flex-col gap-8">
+                  {/* UPDATED: 'gap-4' (was 6) on mobile */}
+                  <div className="flex flex-col gap-4 md:gap-8">
                     <div>
-                      <p className={`text-xs font-bold font-primary uppercase tracking-widest mb-3 ${labelColor} transition-colors duration-300`}>
+                      <p className={`text-[10px] md:text-xs font-bold font-primary uppercase tracking-widest mb-2 md:mb-3 ${labelColor} transition-colors duration-300`}>
                         Focus Areas:
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {tags.map((tag, i) => (
                           <span 
                             key={i} 
-                            className={`px-3 py-1 rounded-full text-xs font-medium font-primary border transition-colors duration-300 ${tagClass}`}
+                            className={`px-2 py-1 md:px-3 rounded-full text-[10px] md:text-xs font-medium font-primary border transition-colors duration-300 ${tagClass}`}
                           >
                             {tag}
                           </span>
@@ -160,7 +166,7 @@ export default function InvestmentPhilosophy() {
                     </div>
                     
                     <div>
-                      <p className={`text-xs font-bold font-primary uppercase tracking-widest mb-3 ${labelColor} transition-colors duration-300`}>
+                      <p className={`text-[10px] md:text-xs font-bold font-primary uppercase tracking-widest mb-2 md:mb-3 ${labelColor} transition-colors duration-300`}>
                         Philosophy:
                       </p>
                       <p className={`text-sm font-primary leading-relaxed ${textColor} transition-colors duration-300`}>

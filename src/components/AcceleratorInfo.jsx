@@ -2,13 +2,14 @@ import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import { useTheme } from '../context/ThemeProvider'; 
 
 const pageContent = {
     header: {
-        title: <>Empowering Innovation<br /> <span className='font-serifa leading-[-10] text-3xl sm:text-5xl md:text-6xl font-normal text-accent'>Accelerating Growth</span></>,
+        // UPDATED: Reduced font sizes (text-2xl sm:text-4xl md:text-5xl)
+        title: <>Empowering Innovation<br /> <span className='font-serifa leading-[-10] text-2xl sm:text-4xl md:text-5xl font-normal text-accent'>Accelerating Growth</span></>,
         buttonText: "APPLY FOR ACCELERATION",
-        buttonLink: "#apply",
+        buttonLink: "https://vclub.valleynxtventures.com/entrepreneur/signup/NA==",
         description: "Where early momentum is captured, sharpened, and amplified into sustained market leadership. A 9-month accelerator that strengthens fundamentals, accelerates growth, and builds investor-ready enterprises across deeptech, consumer, and sustainability sectors."
     },
     cards: [
@@ -38,8 +39,12 @@ const pageContent = {
 
 const AcceleratorInfo = () => {
     const containerRef = useRef(null);
+    const { theme } = useTheme();
 
     useGSAP(() => {
+        // Force refresh on load
+        ScrollTrigger.refresh();
+
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
@@ -64,7 +69,11 @@ const AcceleratorInfo = () => {
             ease: "power2.out"
         }, "-=0.4");
 
-    }, { scope: containerRef });
+    }, { 
+        scope: containerRef, 
+        dependencies: [theme], 
+        revertOnUpdate: true 
+    });
 
     return (
         <section ref={containerRef} className="w-full py-20 px-6 sm:px-12 bg-background transition-colors duration-300">
@@ -73,7 +82,8 @@ const AcceleratorInfo = () => {
                 {/* --- HEADER SECTION --- */}
                 <div className="flex flex-col lg:flex-row justify-between items-start gap-10 mb-16">
                     <div className="lg:w-1/2">
-                        <h2 className="info-header-element text-4xl md:text-5xl text-text-main font-bold font-primary text-pri leading-tight mb-8">
+                        {/* UPDATED: Reduced main H2 sizes (text-3xl md:text-4xl) */}
+                        <h2 className="info-header-element text-3xl md:text-4xl text-text-main font-bold font-primary text-pri leading-tight mb-8">
                             {pageContent.header.title}
                         </h2>
                         <a href={pageContent.header.buttonLink} className="inline-block px-8 py-3 bg-button text-button-text font-semibold rounded-full">
@@ -98,7 +108,8 @@ const AcceleratorInfo = () => {
                                     : 'bg-card-bg-dark text-darkcard-text'
                                 }`}
                         >
-                            <h3 className="text-xl font-primary font-bold mb-6">
+                            {/* UPDATED: Reduced card title size (text-lg) */}
+                            <h3 className="text-lg font-primary font-bold mb-6">
                                 {card.title}
                             </h3>
                             <p className={`text-sm md:text-base font-secondary leading-relaxed ${card.theme === 'light' ? 'opacity-90 max-w-2xl' : 'opacity-90'}`}>
