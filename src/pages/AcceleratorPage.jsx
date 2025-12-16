@@ -56,8 +56,8 @@ const AcceleratorPage = () => {
     <>
       <main className="w-full min-h-screen pt-24 px-6 sm:px-12 bg-background text-text-main transition-colors duration-300">
         <PageHero 
-            titleLine1="Empowering Innovation"
-            titleLine2="Accelerating Growth"
+            titleLine1="Startups That Matter"
+            titleLine2="Solutions That Scale"
             titleLine2Serif={true}
             buttonText="Get Accelerated"
             buttonLink="https://vclub.valleynxtventures.com/entrepreneur/signup/NA=="

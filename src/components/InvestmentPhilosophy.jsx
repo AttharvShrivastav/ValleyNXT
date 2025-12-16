@@ -14,8 +14,9 @@ const philosophies = [
 ];
 
 // Custom SVG Background
-const FolderBg = ({ filled, isHovered, isDark }) => {
-  const isActive = filled || isHovered;
+const FolderBg = ({ isHovered, isDark }) => {
+  // FIXED: Only active if hovered (no default active state)
+  const isActive = isHovered;
 
   let fill = "transparent";
   let stroke = isDark ? "rgba(255, 255, 255, 0.5)" : "var(--color-text-main, #202039)";
@@ -83,7 +84,7 @@ export default function InvestmentPhilosophy() {
   }, { scope: sectionRef, dependencies: [theme], revertOnUpdate: true });
 
   return (
-    <section ref={sectionRef} className="w-full bg-background py-8 px-2 sm:py-16 sm:px-4 md:py-24 flex flex-col items-center">
+    <section ref={sectionRef} className="w-full bg-background py-8 px-1 sm:py-16 sm:px-4 md:py-24 flex flex-col items-center">
       
       <div className="philosophy-title text-center max-w-4xl mb-8 md:mb-16 px-4">
         <h2 className={`text-3xl md:text-5xl font-primary font-bold mb-4 ${isDark ? 'text-white' : 'text-text-main'}`}>
@@ -94,11 +95,11 @@ export default function InvestmentPhilosophy() {
         </p>
       </div>
 
-      <div className="cards-container w-full max-w-[1400px] flex flex-col md:flex-row justify-between items-stretch gap-5 px-2 md:px-0">
+      <div className="cards-container w-full max-w-[1400px] flex flex-col md:flex-row justify-between items-stretch gap-5 px-0 md:px-0">
         {philosophies.map((item, index) => {
-          const isFirst = index === 0;
+          // FIXED: Active ONLY if hovered.
           const isHovered = index === hoveredIndex;
-          const isActive = isFirst || isHovered;
+          const isActive = isHovered;
 
           const tags = item.focus.split(',').map(tag => tag.trim());
 
@@ -121,14 +122,12 @@ export default function InvestmentPhilosophy() {
           return (
             <div 
               key={item.id} 
-              // UPDATED: Used 'h-auto' on mobile so card stretches to fit content. 'min-h-[540px]' kept for Desktop.
-              className="philosophy-card relative flex flex-col w-full md:w-[26rem] lg:w-[28rem] shrink h-auto md:min-h-[50px] pb-3 group cursor-default"
+              className="philosophy-card relative flex flex-col w-full md:w-[26rem] lg:w-[28rem] shrink h-auto md:min-h-[540px] group cursor-default"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <FolderBg filled={isFirst} isHovered={isHovered} isDark={isDark} />
+              <FolderBg isHovered={isHovered} isDark={isDark} />
 
-              {/* UPDATED: 'pt-20' (was 24) on mobile to save space. 'px-8' ensures content doesn't hit edges. */}
               <div className="relative z-10 px-8 pt-20 pb-10 md:px-16 md:pt-32 md:pb-12 flex flex-col h-full justify-start transition-colors duration-300">
                 
                 <div className="absolute top-6 right-6 md:top-10 md:right-12 pointer-events-none">
@@ -140,14 +139,11 @@ export default function InvestmentPhilosophy() {
                    />
                 </div>
 
-                {/* KEPT: 'mx-2' as requested for breathability */}
-                <div className="mx-2 flex-grow flex flex-col">
-                  {/* UPDATED: 'mb-4' (was 6) on mobile to tighten vertical gap */}
+                <div className="flex-grow flex flex-col">
                   <h3 className={`text-xl md:text-2xl font-bold font-primary mb-4 md:mb-8 ${titleColor} transition-colors duration-300 leading-tight`}>
                     {item.title}
                   </h3>
 
-                  {/* UPDATED: 'gap-4' (was 6) on mobile */}
                   <div className="flex flex-col gap-4 md:gap-8">
                     <div>
                       <p className={`text-[10px] md:text-xs font-bold font-primary uppercase tracking-widest mb-2 md:mb-3 ${labelColor} transition-colors duration-300`}>

@@ -16,7 +16,7 @@ const faqData = [
     },
     {
         question: "How can we connect with ValleyNXT Ventures?",
-        answer: "You can reach us through our website's Contact or Apply section, email us at connect@valleynxt.com, or follow our updates on LinkedIn. Founders can also submit their startup pitch decks directly via our online form for evaluation."
+        answer: "You can reach us through our website's Contact or Apply section, email us at info@valleynxt.com, or follow our updates on LinkedIn. Founders can also submit their startup pitch decks directly via our online form for evaluation."
     },
     {
         question: "How many companies are part of ValleyNXT Ventures's portfolio?",

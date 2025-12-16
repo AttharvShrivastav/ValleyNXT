@@ -124,6 +124,7 @@ const Footer = () => {
                             <a ref={addToRefs} href="#home" className="hover:text-orange-400 transition-colors w-max">Home</a>
                             <a ref={addToRefs} href="/portfolio" className="hover:text-orange-400 transition-colors w-max">Portfolio</a>
                             <a ref={addToRefs} href="/team" className="hover:text-orange-400 transition-colors w-max">Team</a>
+                            <a ref={addToRefs} href="/accelerator" className="hover:text-orange-400 transition-colors w-max">Acceleration</a>
                             <a ref={addToRefs} href="https://vclub.valleynxtventures.com/entrepreneur/signup/NA==" className="hover:text-orange-400 transition-colors w-max">VN Club</a>
                         </nav>
                         <div className="flex flex-col space-y-2 text-base text-footer-text">

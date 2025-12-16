@@ -6,7 +6,6 @@ import { useTheme } from '../context/ThemeProvider';
 
 const pageContent = {
     header: {
-        // UPDATED: Reduced font sizes (text-2xl sm:text-4xl md:text-5xl)
         title: <>Empowering Innovation<br /> <span className='font-serifa leading-[-10] text-2xl sm:text-4xl md:text-5xl font-normal text-accent'>Accelerating Growth</span></>,
         buttonText: "APPLY FOR ACCELERATION",
         buttonLink: "https://vclub.valleynxtventures.com/entrepreneur/signup/NA==",
@@ -18,21 +17,24 @@ const pageContent = {
             title: "Building Category Leaders",
             text: "Through rigorous founder mentorship, market alignment, and investor readiness frameworks, startups emerge as dominant players in their sectors. The program transforms high-potential ventures into resilient, IP-driven enterprises capable of sustained competitive advantage and long-term market leadership.",
             widthClass: "lg:w-1/2", 
-            theme: "light" 
+            // UPDATED: Now interactive (Light -> Dark on Hover)
+            theme: "interactive" 
         },
         {
             id: 2,
             title: "Investor Readiness & Capital Access",
             text: "Structured pathway to institutional funding confidence, financial discipline, and strategic positioning for IPO, secondary sale, or strategic acquisition within 3-5 years.",
             widthClass: "lg:w-1/4",
-            theme: "dark"
+            // UPDATED: Now interactive
+            theme: "interactive" 
         },
         {
             id: 3,
             title: "Global Ecosystem Access",
             text: "International immersion across Singapore, London, and Silicon Valley. Direct access to mentors, investors, and cross-border partnership opportunities (S2S, S2G, S2B).",
             widthClass: "lg:w-1/4",
-            theme: "dark"
+            // UPDATED: Now interactive
+            theme: "interactive"
         }
     ]
 };
@@ -42,7 +44,6 @@ const AcceleratorInfo = () => {
     const { theme } = useTheme();
 
     useGSAP(() => {
-        // Force refresh on load
         ScrollTrigger.refresh();
 
         const tl = gsap.timeline({
@@ -82,7 +83,6 @@ const AcceleratorInfo = () => {
                 {/* --- HEADER SECTION --- */}
                 <div className="flex flex-col lg:flex-row justify-between items-start gap-10 mb-16">
                     <div className="lg:w-1/2">
-                        {/* UPDATED: Reduced main H2 sizes (text-3xl md:text-4xl) */}
                         <h2 className="info-header-element text-3xl md:text-4xl text-text-main font-bold font-primary text-pri leading-tight mb-8">
                             {pageContent.header.title}
                         </h2>
@@ -99,24 +99,45 @@ const AcceleratorInfo = () => {
 
                 {/* --- CARDS SECTION --- */}
                 <div className="flex flex-col lg:flex-row gap-6 w-full">
-                    {pageContent.cards.map((card) => (
-                        <div 
-                            key={card.id}
-                            className={`info-card w-full ${card.widthClass} rounded-2xl p-8 flex flex-col justify-between min-h-[320px] transition-colors duration-300
-                                ${card.theme === 'light' 
-                                    ? 'bg-card-bg-light border border-accent text-lightcard-text' 
-                                    : 'bg-card-bg-dark text-darkcard-text'
-                                }`}
-                        >
-                            {/* UPDATED: Reduced card title size (text-lg) */}
-                            <h3 className="text-lg font-primary font-bold mb-6">
-                                {card.title}
-                            </h3>
-                            <p className={`text-sm md:text-base font-secondary leading-relaxed ${card.theme === 'light' ? 'opacity-90 max-w-2xl' : 'opacity-90'}`}>
-                                {card.text}
-                            </p>
-                        </div>
-                    ))}
+                    {pageContent.cards.map((card) => {
+                        let cardClasses = "";
+                        let textClasses = "";
+                        
+                        // LOGIC: All cards are now 'interactive'
+                        if (card.theme === 'interactive') {
+                            // Default: Light bg, accent border, dark text (lightcard-text)
+                            // Hover: Dark bg, transparent border, white text (darkcard-text)
+                            cardClasses = `
+                                bg-card-bg-light border border-accent text-lightcard-text
+                                hover:bg-card-bg-dark hover:border-transparent hover:text-darkcard-text
+                                group cursor-default transition-all duration-300
+                            `;
+                            // Text opacity/color changes on hover
+                            textClasses = "opacity-90 max-w-2xl group-hover:text-darkcard-text group-hover:opacity-100";
+                        } else if (card.theme === 'dark') {
+                            // Fallback if needed
+                            cardClasses = "bg-card-bg-dark text-darkcard-text";
+                            textClasses = "opacity-90";
+                        } else {
+                            // Fallback if needed
+                            cardClasses = "bg-card-bg-light border border-accent text-lightcard-text";
+                            textClasses = "opacity-90 max-w-2xl";
+                        }
+
+                        return (
+                            <div 
+                                key={card.id}
+                                className={`info-card w-full ${card.widthClass} rounded-2xl p-8 flex flex-col justify-between min-h-[320px] transition-colors duration-300 ${cardClasses}`}
+                            >
+                                <h3 className="text-lg font-primary font-bold mb-6">
+                                    {card.title}
+                                </h3>
+                                <p className={`text-sm md:text-base font-secondary leading-relaxed transition-colors duration-300 ${textClasses}`}>
+                                    {card.text}
+                                </p>
+                            </div>
+                        );
+                    })}
                 </div>
 
             </div>

@@ -36,23 +36,39 @@ export default function PartnersSection() {
 
   useGSAP(
     () => {
-      const mm = gsap.matchMedia();
-      
-      mm.add("(min-width: 768px)", () => {
-        ScrollTrigger.refresh();
+      // FIX: Removed 'mm.add' matchMedia wrapper so animations run on MOBILE too.
+      ScrollTrigger.refresh();
 
-        // Reveal Text
-        gsap.fromTo(textRef.current,
-            { opacity: 0, x: -50 },
-            { opacity: 1, x: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: sectionRef.current, start: "top 80%" }}
-        );
+      // Reveal Text
+      gsap.fromTo(textRef.current,
+          { opacity: 0, x: -50 },
+          { 
+            opacity: 1, 
+            x: 0, 
+            duration: 1, 
+            ease: "power3.out", 
+            scrollTrigger: { 
+              trigger: sectionRef.current, 
+              start: "top 80%" 
+            }
+          }
+      );
 
-        // Reveal Grid Items
-        gsap.fromTo(".partner-logo",
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "back.out(1.7)", scrollTrigger: { trigger: gridRef.current, start: "top 85%" }}
-        );
-      });
+      // Reveal Grid Items
+      gsap.fromTo(".partner-logo",
+          { opacity: 0, y: 30 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.8, 
+            stagger: 0.1, 
+            ease: "back.out(1.7)", 
+            scrollTrigger: { 
+              trigger: gridRef.current, 
+              start: "top 85%" 
+            }
+          }
+      );
     },
     { scope: sectionRef, dependencies: [theme], revertOnUpdate: true }
   );
