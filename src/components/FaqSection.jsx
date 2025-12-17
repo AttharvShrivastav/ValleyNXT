@@ -8,7 +8,7 @@ gsap.registerPlugin(useGSAP);
 const faqData = [
     {
         question: "What is ValleyNXT Ventures and what is its objective?",
-        answer: "ValleyNXT Ventures is an early-stage venture platform focused on backing bold and innovative founders building transformative technologies. Our objective is to support startups that drive self-reliance, innovation, and sustainable growth across emerging sectors."
+        answer: "ValleyNXT Ventures operates a hybrid VC-accelerator model designed to back startups building in DeepTech, Consumer, and Sustainability-led sectors. The platform combines early-stage capital with a structured acceleration program, hands-on mentorship, and deep ecosystem access to help startups move from idea to scale with speed and discipline. With a strong focus on innovation, defensibility, and real-world impact, ValleyNXT supports founders not just with funding, but with strategy, governance, market access, and execution muscle—basically, where bold tech meets grown-up venture building. Our objective is to support startups that drive self-reliance, innovation, and sustainable growth across emerging sectors."
     },
     {
         question: "Who can be part of ValleyNXT Ventures?",
@@ -67,7 +67,7 @@ const FaqItem = ({ item, index, activeIndex, handleToggle }) => {
 
     return (
         // ✅ CHANGE: Replaced `border-b` with a full border, rounded corners, margin, and overflow-hidden.
-        <div className="border border-accent/30 mb-3 overflow-hidden">
+        <div className="border rounded-3xl border-accent/30 mb-3 overflow-hidden">
             <button
                 onClick={() => handleToggle(index)}
                 className="flex justify-between items-center w-full px-6 py-3 text-left transition-colors hover:bg-accent/5"

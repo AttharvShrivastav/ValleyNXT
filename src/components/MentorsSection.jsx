@@ -24,7 +24,7 @@ const mentors = [
     title: "CEO, Moglix, Singapore",
     bio: "Leading one of Asia's largest B2B commerce platforms.",
     image: RahulGargImage,
-    linkedin: "#"
+    linkedin: "https://www.linkedin.com/in/rahulgarg/"
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ const mentors = [
     title: "Director KongBasile Consulting, Silicon Valley",
     bio: "Expert in bridging Silicon Valley innovation with global markets.",
     image: DeepikaNaharasImage,
-    linkedin: "#"
+    linkedin: "https://www.linkedin.com/in/deepikanaharas/"
   },
   {
     id: 3,
@@ -40,7 +40,7 @@ const mentors = [
     title: "Partner, Priscus Finance, Paris",
     bio: "Veteran in cross-border finance and strategic investments.",
     image: SanjeevRaoImage,
-    linkedin: "#"
+    linkedin: "https://www.linkedin.com/in/sanjeev-rao-a75226/"
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const mentors = [
     title: "Ex- CEO/CFO/COO Standard Chartered Bank India/ASEAN",
     bio: "Veteran banker with leadership roles across India and ASEAN markets.",
     image: SanjeevAgrawalImage,
-    linkedin: "#"
+    linkedin: "https://www.linkedin.com/in/sanjeev-agrawal-240a26b/"
   },
   {
     id: 5,
@@ -56,7 +56,7 @@ const mentors = [
     title: "Chairman, AI Committee, ICAI",
     bio: "Driving AI adoption and standards within the accounting profession.",
     image: UmeshSharmaImage,
-    linkedin: "#"
+    linkedin: "https://www.linkedin.com/in/ca-umesh-sharma-ab6b7433/"
   },
   {
     id: 6,
@@ -64,7 +64,7 @@ const mentors = [
     title: "Independent Director, Aether Industries",
     bio: "Expert in corporate governance and industrial strategy.",
     image: ArunKanodiyaImage,
-    linkedin: "#"
+    linkedin: "https://www.linkedin.com/feed/"
   }
 ];
 
