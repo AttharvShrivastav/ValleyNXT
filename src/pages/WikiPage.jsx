@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Footer from '../components/Footer';
-import AnimatedCtaButton from '../components/AnimatedCtaButton'; // Adjust path if needed
 import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import ReadMoreButton from '../components/ReadMoreButton';
