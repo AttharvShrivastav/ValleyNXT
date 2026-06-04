@@ -14,9 +14,9 @@ import logoBlack from './assets/LogoBlack.png';
 import logoLight from './assets/LogoWhite.png';
 import AcceleratorPage from './pages/AcceleratorPage';
 import WikiPage from './pages/WikiPage';
-import { InsightsEventsPage } from './pages/InsightsEventsPage';
 import { AccessibilityGrievancePage } from './pages/AccessibilityGrievancePage';
 import SingleBlogPage from './pages/SingleBlogPage';
+import InsightsEventsPage from './pages/InsightsEventsPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
