@@ -13,6 +13,10 @@ import NavMenu from './components/NavMenu';
 import logoBlack from './assets/LogoBlack.png';
 import logoLight from './assets/LogoWhite.png';
 import AcceleratorPage from './pages/AcceleratorPage';
+import WikiPage from './pages/WikiPage';
+import { InsightsEventsPage } from './pages/InsightsEventsPage';
+import { AccessibilityGrievancePage } from './pages/AccessibilityGrievancePage';
+import SingleBlogPage from './pages/SingleBlogPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,6 +50,11 @@ const Layout = ({ startAnimations, ...props }) => {
         <Route path="/team" element={<TeamsPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/accelerator" element={<AcceleratorPage />} />
+        {/* NEW ROUTES */}
+        <Route path="/wiki" element={<WikiPage />} />
+        <Route path="/wiki/:slug" element={<SingleBlogPage />} /> {/* NEW DYNAMIC ROUTE */}
+        <Route path="/insights-and-events" element={<InsightsEventsPage />} />
+        <Route path="/accessibility-grievance" element={<AccessibilityGrievancePage />} />
       </Routes>
     </div>
   );
