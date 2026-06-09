@@ -6,20 +6,24 @@ import { SplitText } from 'gsap/all';
 
 import PageHero from '../components/PageHero'; // ✅ IMPORT: Added the PageHero component
 import ProfileCard from '../components/ProfileCard';
-import AnandSaklechaImage from '../assets/AnandSaklecha.png';
-import DrMadhuImage from '../assets/DrMadhu.png';
-import DrNikhilImage from '../assets/DrNikhil.png';
-import MrSureshImage from '../assets/MrSureshImage.png';
+import AnandSaklechaImage from '../assets/Team/8.png';
+import DrMadhuImage from '../assets/Team/9.png';
+import DrNikhilImage from '../assets/Team/7.png';
+import MrSureshImage from '../assets/Team/6.png';
 
-import DrInderjitImage from '../assets/DrInderjit.png';
-import DrNaziaImage from '../assets/DrNazia.png';
-import MrApurvaImage from '../assets/MrApurva.png';
+import DrInderjitImage from '../assets/Team/5.png';
+import DrNaziaImage from '../assets/Team/2.png';
+import MrApurvaImage from '../assets/Team/1.png';
 
-import HarshwardhanSaklechaImage from '../assets/1.png';
-import DhairyaJainImage from '../assets/2.png';
-import AdityaSharmaImage from '../assets/AdityaSharma.png';
-import AnkitSaxenaImage from '../assets/AnkitSaxena.png';
+import HarshwardhanSaklechaImage from '../assets/Team/3.png';
+import DhairyaJainImage from '../assets/Team/4.png';
+import AdityaSharmaImage from '../assets/Team/10.png';
 import Footer from '../components/Footer';
+
+// ✅ NEW IMPORTS: Added Acceleration Team images
+import AnkitSaxenaImage from '../assets/AnkitSaxena.png'; 
+import NehaSrivastavaImage from '../assets/1.png';
+import ShivangiKashyapImage from '../assets/ShivangiKashyap.png';
 
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
@@ -61,14 +65,6 @@ const founders = [
 ];
 
 const investmentTeam = [
-    {
-        id: 14, // Assigned a new unique ID
-        name: "Ankit Saxena",
-        title: "Head Acceleration",
-        bio: "Startup acceleration and investment leader focusing on driving profitability above valuation. Formerly led investments at SIIC IIT Kanpur and served as VP of Investments at FITT, IIT Delhi, bringing extensive experience in entrepreneurship promotion and scaling government-backed innovation ecosystems.",
-        image: AnkitSaxenaImage,
-        linkedin: "https://www.linkedin.com/in/ankitsaxena771/"
-    },
     {
         id: 8,
         name: "CA Harshwardhan Saklecha",
@@ -123,6 +119,34 @@ const advisory = [
     },
 ];
 
+
+const accelerationTeam = [
+  {
+    id: 14,
+    name: "Ankit Saxena",
+    title: "Acceleration Advisor",
+    bio: "Startup acceleration and investment leader focusing on driving profitability above valuation. Formerly led investments at SIIC IIT Kanpur and served as VP of Investments at FITT, IIT Delhi, bringing extensive experience in entrepreneurship promotion and scaling government-backed innovation ecosystems.",
+    image: AnkitSaxenaImage,
+    linkedin: "https://www.linkedin.com/in/ankitsaxena771/"
+  },
+  {
+    id: 15,
+    name: "Neha Srivastava",
+    title: "Senior Manager Acceleration",
+    bio: "Results-oriented program manager with extensive experience directing flagship incubation frameworks for GoI ministries. Previously managed deeptech, cleantech, and social impact portfolios at SIIC IIT Kanpur and FITT IIT Delhi, anchoring key public-private ecosystem scale-ups.",
+    image: NehaSrivastavaImage,
+    linkedin: "https://www.linkedin.com/in/neeha-srrivastava/"
+  },
+  {
+    id: 16,
+    name: "Shivangi Kashyap",
+    title: "Assistant Manager Acceleration",
+    bio: "Ecosystem specialist bringing a strong data science and analytical background to portfolio health. Having served as Senior Lead Programs and a Young Professional Fellow at FITT IIT Delhi, she specializes in executing strategic milestones and managing programmatic data visualization workflows.",
+    image: ShivangiKashyapImage,
+    linkedin: "https://www.linkedin.com/in/shivangi-kashyap-937b271a0" 
+  }
+];
+
 const TeamCategorySection = ({ title, members }) => (
     <section className="w-full max-w-7xl mx-auto px-8 py-16">
         <h2 className="text-4xl md:text-5xl font-normal font-primary text-text-main text-center mb-12">{title}</h2>
@@ -172,6 +196,7 @@ const TeamsPage = () => {
             <TeamCategorySection title="THE LEADERS" members={founders} />
             <TeamCategorySection title="THE ADVISORS" members={advisory} />
             <TeamCategorySection title="THE INVESTMENT TEAM" members={investmentTeam} />
+            <TeamCategorySection title="THE ACCELERATION TEAM" members={accelerationTeam} />
             <Footer />
         </div>
     );
