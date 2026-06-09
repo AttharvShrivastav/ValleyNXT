@@ -18,7 +18,9 @@ import MrApurvaImage from '../assets/MrApurva.png';
 import HarshwardhanSaklechaImage from '../assets/1.png';
 import DhairyaJainImage from '../assets/2.png';
 import AdityaSharmaImage from '../assets/AdityaSharma.png';
+import AnkitSaxenaImage from '../assets/AnkitSaxena.png';
 import Footer from '../components/Footer';
+
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 
@@ -57,7 +59,16 @@ const founders = [
       linkedin: "https://www.linkedin.com/in/suresh-goyal-4534364/"
     }
 ];
+
 const investmentTeam = [
+    {
+        id: 14, // Assigned a new unique ID
+        name: "Ankit Saxena",
+        title: "Head Acceleration",
+        bio: "Startup acceleration and investment leader focusing on driving profitability above valuation. Formerly led investments at SIIC IIT Kanpur and served as VP of Investments at FITT, IIT Delhi, bringing extensive experience in entrepreneurship promotion and scaling government-backed innovation ecosystems.",
+        image: AnkitSaxenaImage,
+        linkedin: "https://www.linkedin.com/in/ankitsaxena771/"
+    },
     {
         id: 8,
         name: "CA Harshwardhan Saklecha",
@@ -83,6 +94,8 @@ const investmentTeam = [
         linkedin: "https://www.linkedin.com/in/aditya-sharma88/"
     },
 ];
+
+
 const advisory = [
     {
         id: 10,

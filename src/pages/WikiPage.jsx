@@ -7,18 +7,14 @@ import { allBlogsData } from '../utils/blogData';
 
 
 const WikiPage = () => {
-    // Production state for pagination
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 6;
 
-    // Calculate pages and slice data
     const totalPages = Math.ceil((allBlogsData.length - 1) / itemsPerPage);
-    const latestRelease = allBlogsData[0]; // Assuming the first item is the featured one
+    const latestRelease = allBlogsData[0];
     const gridBlogs = allBlogsData.slice(1).slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
     return (
         <main className="min-h-screen flex flex-col bg-background text-text-main overflow-x-hidden pt-32">
-
-            {/* 1. HERO SECTION */}
             <div className="relative">
                 <PageHero
                     subtitle="VNV PEDIA"
@@ -26,21 +22,14 @@ const WikiPage = () => {
                     titleLine2="shape innovation"
                     titleLine2Serif={true}
                 />
-
             </div>
 
-            {/* MAIN CONTENT CONTAINER */}
             <div className="w-[90%] md:w-[85%] max-w-7xl mx-auto flex-grow flex flex-col pb-24">
-
-                {/* 2. FEATURED BLOG (Latest Releases) */}
                 <section className="mt-12 md:mt-16 w-full">
                     <h2 className="text-3xl md:text-4xl font-primary font-bold mb-8 md:mb-12">
                         Latest <span className="font-serifa text-accent font-normal">Releases</span>
                     </h2>
-
                     <div className="flex flex-col lg:flex-row bg-container-bg border border-accent/20 rounded-[2.5rem] overflow-hidden">
-
-                        {/* Left Content */}
                         <div className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center items-start">
                             <span className="px-4 py-1.5 rounded-full border border-accent text-[10px] text-accent tracking-widest uppercase mb-8">
                                 Innovation
