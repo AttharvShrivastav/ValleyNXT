@@ -2,10 +2,11 @@ import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { SplitText } from 'gsap/all';
+import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(SplitText);
 
-const ReadMoreButton = ({ text = "Read More", link = "#" }) => {
+const ReadMoreButton = ({ text = "Read More", link = "#", state }) => {
     const buttonRef = useRef(null);
 
     useGSAP(() => {
@@ -13,14 +14,18 @@ const ReadMoreButton = ({ text = "Read More", link = "#" }) => {
         if (!ctaButton) return;
 
         const ctaText = ctaButton.querySelector('.cta-text');
+        
         const baseSize = 44; // Figma circle size
-        const leftOffset = 36; // Where the text container begins
+        const leftOffset = 20; // Match left-[20px] in CSS
         
-        // Measure exact text width (including padding) to prevent clipping
-        const textWidth = ctaText.offsetWidth;
+        // KEY FIX: Use scrollWidth to get the true un-clamped width of the text.
+        // When the parent is 44px, offsetWidth gets clamped, causing the circle to stop short.
+        const textWidth = ctaText.scrollWidth; 
         
-        // Calculate exact travel distance so the circle clears the text
-        const circleTravelDistance = leftOffset + textWidth - 24; 
+        const paddingRight = 16; // Gap between the end of the text and the circle
+        
+        // Calculate exact travel distance
+        const circleTravelDistance = leftOffset + textWidth + paddingRight; 
         const expandedWidth = circleTravelDistance + baseSize;
 
         const splitButtonText = new SplitText(ctaText, { type: "words", wordsClass: "cta-word" });
@@ -56,13 +61,21 @@ const ReadMoreButton = ({ text = "Read More", link = "#" }) => {
 
     }, { scope: buttonRef });
 
+    // Handle both external 'href' links and internal React Router 'Link' routing seamlessly
+    const isExternal = link.startsWith('http');
+    const ButtonTag = isExternal ? 'a' : Link;
+    const buttonProps = isExternal 
+        ? { href: link, target: "_blank", rel: "noopener noreferrer" } 
+        : { to: link, state: state };
+
     return (
-        <a ref={buttonRef} href={link} className="relative w-[44px] h-[44px] cursor-pointer inline-block">
-            {/* Light blue background matching the Figma design */}
-            <div className="cta-background absolute inset-0 w-[44px] h-[44px] bg-[#E2EDFA] dark:bg-accent/20 rounded-full flex items-center">
-               <div className="cta-text-container absolute left-[14px] overflow-hidden">
-                   {/* pr-8 provides the necessary padding so the text doesn't touch the circle */}
-                   <div className="cta-text text-[15px] font-primary font-semibold text-text-main dark:text-white whitespace-nowrap">
+        <ButtonTag ref={buttonRef} {...buttonProps} className="relative w-[44px] h-[44px] cursor-pointer inline-block overflow-visible">
+            {/* Added overflow-hidden to background so it clips the text cleanly while expanding */}
+            <div className="cta-background absolute inset-0 w-[44px] h-[44px] bg-[#E2EDFA] dark:bg-accent/20 rounded-full flex items-center overflow-hidden">
+               
+               {/* KEY FIX: Added w-max to prevent text from being squished by the 44px parent constraint */}
+               <div className="cta-text-container absolute left-[20px] py-1 w-max">
+                   <div className="cta-text text-[15px] font-primary font-semibold text-text-main dark:text-white whitespace-nowrap leading-none mt-0.5 w-max">
                         {text}
                    </div>
                </div>
@@ -74,7 +87,7 @@ const ReadMoreButton = ({ text = "Read More", link = "#" }) => {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
             </div>
-        </a>
+        </ButtonTag>
     );
 };
 
