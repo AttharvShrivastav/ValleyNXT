@@ -30,7 +30,7 @@ const valleyVenturesCompanies = [
         id: 'v1',
         name: 'Cloudworx Studio',
         logoUrl: CloudWorxLogo,
-        website: 'https://www.cloudworx.ai', // ✅ ADDED: Add company website URL here
+        website: 'https://www.cloudworx.ai',
         description: 'Provides a web-based environment for building 3D applications and workflows without coding. '
     },
     
@@ -199,6 +199,8 @@ const PortfolioPage = () => {
                     titleLine2Serif={true}
                     buttonText="Get Funding"
                     buttonLink="https://vclub.valleynxtventures.com/entrepreneur/signup/NA=="
+                    // ACCESSIBILITY FIX: Pass unified aria-label to prevent SC 3.2.4 error
+                    ariaLabel="Sign up for entrepreneur funding"
                 />
                 
                 {hasBharatBreakthrough && (

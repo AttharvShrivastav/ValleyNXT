@@ -120,7 +120,7 @@ const Footer = () => {
                                 <Link ref={addToRefs} to="/portfolio" className="hover:text-accent transition-colors w-max">Portfolio</Link>
                                 <Link ref={addToRefs} to="/team" className="hover:text-accent transition-colors w-max">Team</Link>
                                 <Link ref={addToRefs} to="/accelerator" className="hover:text-accent transition-colors w-max">Acceleration</Link>
-                                <a ref={addToRefs} href="https://vclub.valleynxtventures.com/entrepreneur/signup/NA==" className="hover:text-accent transition-colors w-max">VN Club</a>
+                                <a ref={addToRefs} href="https://vclub.valleynxtventures.com/entrepreneur/signup/NA==" aria-label="Sign up for entrepreneur funding" className="hover:text-accent transition-colors w-max">VN Club</a>
                             </nav>
                             <div className="flex flex-col space-y-2 text-base text-footer-text z-30">
                                 <p ref={addToRefs}><span className='text-footer-text-accent'>AIF Name:</span> Bharat Breakthrough Fund I</p>

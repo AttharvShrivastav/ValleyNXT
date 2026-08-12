@@ -10,24 +10,23 @@ gsap.registerPlugin(Flip, DrawSVGPlugin);
 const CloseIcon = ({ onClick }) => (
     <button 
         onClick={onClick} 
-        className="close-button absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-background/50 hover:bg-background/80 transition-colors"
-        aria-label="Close"
+        className="close-button absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-background/50 hover:bg-background/80 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        aria-label="Close details"
     >
-        <svg className="w-4 h-4 text-text-main" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* ACCESSIBILITY FIX: Silenced SVG */}
+        <svg aria-hidden="true" focusable="false" className="w-4 h-4 text-text-main" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
     </button>
 );
 
-// ✅ NEW: Component for the external link icon
 const WebsiteLinkIcon = () => (
-    <svg className="w-5 h-5 text-accent opacity-80 group-hover:opacity-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg aria-hidden="true" focusable="false" className="w-5 h-5 text-accent opacity-80 group-hover:opacity-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M7 17L17 7"></path>
         <path d="M7 7h10v10"></path>
     </svg>
 );
-
 
 const LogoDisplay = ({ company, className }) => {
     if (company.logoComponent) {
@@ -38,7 +37,6 @@ const LogoDisplay = ({ company, className }) => {
     }
     return <img src={FallbackLogo} alt="Fallback logo" className={className} />;
 };
-
 
 const CompanyCard = ({ company, onClick, isActive, ...props }) => {
     const cardRef = useRef(null);
@@ -54,6 +52,14 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
         }
     };
 
+    // ACCESSIBILITY FIX: Added keyboard handler so Enter/Space trigger the click
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault(); // Prevent page scroll on Spacebar
+            handleClick();
+        }
+    };
+
     const handleCloseClick = (e) => {
         e.stopPropagation();
         if (window.innerWidth < 768) {
@@ -65,32 +71,29 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
 
     useGSAP(() => {
         const mm = gsap.matchMedia();
-        let timeout; 
 
         mm.add("(min-width: 768px)", () => {
-            timeout = setTimeout(() => {
-                const initialLogo = cardRef.current.querySelector('.logo-initial');
-                const detailsPanel = cardRef.current.querySelector('.details-panel');
-                const expandedLogo = cardRef.current.querySelector('.logo-expanded');
-                const horizontalLine = cardRef.current.querySelector('.horizontal-line');
-                const name = cardRef.current.querySelector('.company-name');
-                const description = cardRef.current.querySelector('.company-description');
-                const closeButton = cardRef.current.querySelector('.close-button');
-                
-                gsap.set(detailsPanel, { autoAlpha: 0 });
+            // BUG FIX: Removed setTimeout to prevent React 18 Strict Mode from breaking GSAP .from() tweens
+            const initialLogo = cardRef.current.querySelector('.logo-initial');
+            const detailsPanel = cardRef.current.querySelector('.details-panel');
+            const expandedLogo = cardRef.current.querySelector('.logo-expanded');
+            const horizontalLine = cardRef.current.querySelector('.horizontal-line');
+            const name = cardRef.current.querySelector('.company-name');
+            const description = cardRef.current.querySelector('.company-description');
+            const closeButton = cardRef.current.querySelector('.close-button');
+            
+            gsap.set(detailsPanel, { autoAlpha: 0 });
 
-                timeline.current = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } })
-                    .to(initialLogo, { autoAlpha: 0, duration: 0.3 })
-                    .set(detailsPanel, { autoAlpha: 1 })
-                    .from(expandedLogo, { autoAlpha: 0, scale: 0.9, duration: 0.4 }, ">0.1")
-                    .from(horizontalLine, { drawSVG: "50% 50%", duration: 0.5 }, "<0.1")
-                    .from([name, description], { autoAlpha: 0, y: 10, stagger: 0.15, duration: 0.4 }, ">-0.3")
-                    .from(closeButton, { autoAlpha: 0, scale: 0.5, duration: 0.3 }, "<");
-            }, 0);
+            timeline.current = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } })
+                .to(initialLogo, { autoAlpha: 0, duration: 0.3 })
+                .set(detailsPanel, { autoAlpha: 1 })
+                .from(expandedLogo, { autoAlpha: 0, scale: 0.9, duration: 0.4 }, ">0.1")
+                .from(horizontalLine, { drawSVG: "50% 50%", duration: 0.5 }, "<0.1")
+                .from([name, description], { autoAlpha: 0, y: 10, stagger: 0.15, duration: 0.4 }, ">-0.3")
+                .from(closeButton, { autoAlpha: 0, scale: 0.5, duration: 0.3 }, "<");
         });
 
         return () => {
-            clearTimeout(timeout);
             mm.revert();
         };
 
@@ -128,18 +131,21 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
         <div 
             ref={cardRef}
             onClick={handleClick}
-            className="company-card group relative aspect-[4/3] bg-background rounded-2xl border border-accent flex justify-center items-center cursor-pointer p-4 overflow-hidden"
+            onKeyDown={handleKeyDown} // ACCESSIBILITY FIX: Keyboard support
+            tabIndex="0"              // ACCESSIBILITY FIX: Allows tabbing
+            role="button"             // ACCESSIBILITY FIX: Semantic meaning
+            aria-expanded={isActive || isFlipped} // ACCESSIBILITY FIX: State management
+            className="company-card group relative aspect-[4/3] bg-background rounded-2xl border border-accent flex justify-center items-center cursor-pointer p-4 overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             {...props}
         >
-            {/* ✅ NEW: Added a conditional link to the company's website */}
             {company.website && (
                  <a
                     href={company.website}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="absolute top-4 left-4 z-20 p-1 rounded-full bg-background/50 hover:bg-background/80 transition-all duration-300 transform scale-0 group-hover:scale-100"
-                    aria-label={`${company.name} website`}
+                    className="absolute top-4 left-4 z-20 p-1 rounded-full bg-background/50 hover:bg-background/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent transition-all duration-300 transform scale-0 group-hover:scale-100 group-focus:scale-100"
+                    aria-label={`Visit ${company.name} website`}
                 >
                     <WebsiteLinkIcon />
                 </a>
@@ -161,7 +167,8 @@ const CompanyCard = ({ company, onClick, isActive, ...props }) => {
                            className="max-w-full max-h-full object-contain"
                         />
                     </div>
-                    <svg className="horizontal-line w-full max-w-[200px] my-4" height="2" viewBox="0 0 200 2">
+                    {/* ACCESSIBILITY FIX: Silenced decorative SVG line */}
+                    <svg aria-hidden="true" focusable="false" className="horizontal-line w-full max-w-[200px] my-4" height="2" viewBox="0 0 200 2">
                         <line x1="0" y1="1" x2="200" y2="1" stroke="var(--color-accent)" strokeWidth="2" />
                     </svg>
                     <div className="details-content flex flex-col items-center">

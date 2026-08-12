@@ -4,23 +4,22 @@ import { useGSAP } from "@gsap/react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeProvider";
 
-// Import both logo assets
 import logoBlack from "../assets/LogoBlack.png";
 import logoLight from "../assets/LogoWhite.png";
 
-// A simple toggle component with Sun and Moon icons
 const ThemeToggle = () => {
      const { theme, toggleTheme } = useTheme();
 
      return (
           <button
                onClick={toggleTheme}
-               className="text-text-main hover:text-accent transition-colors duration-300 p-2 rounded-full"
+               className="text-text-main hover:text-accent transition-colors duration-300 p-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
           >
                {theme === "light" ? (
-                    // Moon Icon
                     <svg
+                         aria-hidden="true"
+                         focusable="false"
                          xmlns="http://www.w3.org/2000/svg"
                          className="h-6 w-6"
                          fill="none"
@@ -35,8 +34,9 @@ const ThemeToggle = () => {
                          />
                     </svg>
                ) : (
-                    // Sun Icon
                     <svg
+                         aria-hidden="true"
+                         focusable="false"
                          xmlns="http://www.w3.org/2000/svg"
                          className="h-6 w-6"
                          fill="none"
@@ -57,10 +57,11 @@ const ThemeToggle = () => {
 
 const NavMenu = () => {
      const [isOpen, setIsOpen] = useState(false);
-     const { theme } = useTheme(); // Get theme for the logo
+     const { theme } = useTheme();
      const menuContainer = useRef(null);
      const navLinksContainer = useRef(null);
      const menuButtonRef = useRef(null);
+     const closeButtonRef = useRef(null);
      const timelineRef = useRef(null);
 
      const toggleMenu = () => {
@@ -91,7 +92,6 @@ const NavMenu = () => {
                     { x: "0%", opacity: 1, duration: 0.8, ease: "power3.out" },
                );
 
-               // Let GSAP query the scope directly
                const linkSeparators = gsap.utils.toArray(".link-separator");
                timelineRef.current.from(
                     linkSeparators,
@@ -127,9 +127,55 @@ const NavMenu = () => {
           if (isOpen) {
                gsap.to(menuButtonRef.current, { opacity: 0, duration: 0.3 });
                timelineRef.current.play();
+
+               // ACCESSIBILITY FIX: Instant focus so the user doesn't wait 1.5s for GSAP to finish
+               setTimeout(() => {
+                    closeButtonRef.current?.focus();
+               }, 50);
           } else {
-               timelineRef.current.reverse();
+               timelineRef.current.reverse().then(() => {
+                    menuButtonRef.current?.focus();
+               });
           }
+     }, [isOpen]);
+
+     // Focus Trap and Escape Key logic
+     useEffect(() => {
+          const handleKeyDown = (e) => {
+               if (!isOpen) return;
+
+               if (e.key === "Escape") {
+                    setIsOpen(false);
+                    return;
+               }
+
+               if (e.key === "Tab") {
+                    const focusableElements =
+                         menuContainer.current.querySelectorAll(
+                              "a[href], button:not([disabled]), textarea, input, select",
+                         );
+                    const firstElement = focusableElements[0];
+                    const lastElement =
+                         focusableElements[focusableElements.length - 1];
+
+                    if (e.shiftKey) {
+                         // Reverse Tab
+                         if (document.activeElement === firstElement) {
+                              lastElement.focus();
+                              e.preventDefault();
+                         }
+                    } else {
+                         // Forward Tab
+                         if (document.activeElement === lastElement) {
+                              firstElement.focus();
+                              e.preventDefault();
+                         }
+                    }
+               }
+          };
+
+          window.addEventListener("keydown", handleKeyDown);
+          return () => window.removeEventListener("keydown", handleKeyDown);
      }, [isOpen]);
 
      return (
@@ -137,9 +183,15 @@ const NavMenu = () => {
                <button
                     ref={menuButtonRef}
                     onClick={toggleMenu}
-                    className="fixed top-6 right-6 sm:top-8 sm:right-8 z-[100] text-text-main dark:text-text-secondary cursor-pointer"
+                    // ACCESSIBILITY FIX: Dynamic aria-label based on state
+                    aria-label={isOpen ? "Close main menu" : "Open main menu"}
+                    aria-expanded={isOpen}
+                    aria-controls="nav-menu-container"
+                    className="fixed top-6 right-6 sm:top-8 sm:right-8 z-[100] text-text-main dark:text-text-secondary cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
                >
                     <svg
+                         aria-hidden="true"
+                         focusable="false"
                          xmlns="http://www.w3.org/2000/svg"
                          className="h-8 w-8"
                          fill="none"
@@ -156,13 +208,14 @@ const NavMenu = () => {
                </button>
 
                <div
+                    id="nav-menu-container"
                     ref={menuContainer}
                     className={`fixed inset-0 z-40 w-screen bg-background text-text-main flex flex-col justify-center font-primary font-light px-6 sm:px-8 hidden opacity-0`}
                >
                     <Link
                          to="/"
                          onClick={toggleMenu}
-                         className="absolute top-2 left-6 sm:top-0 sm:left-8 z-50"
+                         className="absolute top-2 left-6 sm:top-0 sm:left-8 z-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
                     >
                          <img
                               className="w-[80px] h-[80px] sm:w-[140px] sm:h-[140px]"
@@ -171,14 +224,17 @@ const NavMenu = () => {
                          />
                     </Link>
 
-                    {/* --- TOGGLE AND CLOSE BUTTON CONTAINER --- */}
                     <div className="absolute top-6 right-6 sm:top-8 sm:right-8 z-50 flex items-center gap-4">
                          <ThemeToggle />
                          <button
+                              ref={closeButtonRef}
                               onClick={toggleMenu}
-                              className="cursor-pointer"
+                              aria-label="Close main menu"
+                              className="cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-full p-2"
                          >
                               <svg
+                                   aria-hidden="true"
+                                   focusable="false"
                                    xmlns="http://www.w3.org/2000/svg"
                                    className="h-8 w-8"
                                    fill="none"
@@ -205,7 +261,7 @@ const NavMenu = () => {
                               <Link
                                    to="/"
                                    onClick={toggleMenu}
-                                   className="relative block text-3xl md:text-4xl font-normal transition-colors duration-300 group"
+                                   className="relative block text-3xl md:text-4xl font-normal transition-colors duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
                               >
                                    <span className="relative z-10 py-3 transition-colors font-primary duration-300 group-hover:text-accent block pl-8">
                                         HOME
@@ -215,12 +271,11 @@ const NavMenu = () => {
                          </div>
 
                          <div className="link-separator h-0.5 bg-accent"></div>
-
                          <div className="link-item overflow-hidden">
                               <Link
                                    to="/team"
                                    onClick={toggleMenu}
-                                   className="relative block text-3xl md:text-4xl font-normal transition-colors duration-300 group"
+                                   className="relative block text-3xl md:text-4xl font-normal transition-colors duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
                               >
                                    <span className="relative z-10 py-3 font-primary transition-colors duration-300 group-hover:text-accent block pl-8">
                                         TEAM
@@ -230,12 +285,11 @@ const NavMenu = () => {
                          </div>
 
                          <div className="link-separator h-0.5 bg-accent"></div>
-
                          <div className="link-item overflow-hidden">
                               <Link
                                    to="/portfolio"
                                    onClick={toggleMenu}
-                                   className="relative block text-3xl md:text-4xl font-normal transition-colors duration-300 group"
+                                   className="relative block text-3xl md:text-4xl font-normal transition-colors duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
                               >
                                    <span className="relative z-10 py-3 transition-colors font-primary duration-300 group-hover:text-accent block pl-8">
                                         PORTFOLIO
@@ -245,12 +299,11 @@ const NavMenu = () => {
                          </div>
 
                          <div className="link-separator h-0.5 bg-accent"></div>
-
                          <div className="link-item overflow-hidden">
                               <Link
                                    to="/accelerator"
                                    onClick={toggleMenu}
-                                   className="relative block text-3xl md:text-4xl font-normal transition-colors duration-300 group"
+                                   className="relative block text-3xl md:text-4xl font-normal transition-colors duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
                               >
                                    <span className="relative z-10 py-3 transition-colors font-primary duration-300 group-hover:text-accent block pl-8">
                                         ACCELERATOR
@@ -260,12 +313,11 @@ const NavMenu = () => {
                          </div>
 
                          <div className="link-separator h-0.5 bg-accent"></div>
-
                          <div className="link-item overflow-hidden">
                               <Link
                                    to="/wiki"
                                    onClick={toggleMenu}
-                                   className="relative block text-3xl md:text-4xl font-normal transition-colors duration-300 group"
+                                   className="relative block text-3xl md:text-4xl font-normal transition-colors duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
                               >
                                    <span className="relative z-10 py-3 transition-colors font-primary duration-300 group-hover:text-accent block pl-8">
                                         VALLEYNXT WIKI
@@ -275,12 +327,11 @@ const NavMenu = () => {
                          </div>
 
                          <div className="link-separator h-0.5 bg-accent"></div>
-
                          <div className="link-item overflow-hidden">
                               <Link
                                    to="/insights-and-events"
                                    onClick={toggleMenu}
-                                   className="relative block text-3xl md:text-4xl font-normal transition-colors duration-300 group"
+                                   className="relative block text-3xl md:text-4xl font-normal transition-colors duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
                               >
                                    <span className="relative z-10 py-3 transition-colors font-primary duration-300 group-hover:text-accent block pl-8">
                                         INSIGHTS & EVENTS
@@ -288,7 +339,6 @@ const NavMenu = () => {
                                    <div className="absolute top-0 right-0 h-full w-0 bg-gradient-to-r from-background/50 to-accent transition-all duration-300 group-hover:w-full"></div>
                               </Link>
                          </div>
-
                          <div className="link-separator h-0.5 bg-accent"></div>
                     </div>
 
@@ -303,7 +353,8 @@ const NavMenu = () => {
                               href="https://x.com/ValleyNXT_VC"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="block hover:text-text-main transition-colors duration-300"
+                              aria-label="ValleyNXT Ventures on Twitter, opens in a new tab"
+                              className="block hover:text-text-main transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                          >
                               Twitter
                          </a>
@@ -311,15 +362,17 @@ const NavMenu = () => {
                               href="https://www.linkedin.com/company/valleynxtventures/"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="block hover:text-text-main transition-colors duration-300"
+                              aria-label="ValleyNXT Ventures on LinkedIn, opens in a new tab"
+                              className="block hover:text-text-main transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                          >
                               LinkedIn
                          </a>
                          <a
-                              href="https://www.instagram.com/valleynxt_vc?utm_source=ig_web_button_share_sheet&igsh=cWtqMzR1eWFsaXJx"
+                              href="https://www.instagram.com/valleynxt_vc"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="block hover:text-text-main transition-colors duration-300"
+                              aria-label="ValleyNXT Ventures on Instagram, opens in a new tab"
+                              className="block hover:text-text-main transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                          >
                               Instagram
                          </a>

@@ -9,6 +9,8 @@ const GradientNumber = ({ number, theme, variant = "outline", className = "" }) 
     // The parent controls the width/height via className
     <div className={`flex-shrink-0 ${className}`}>
       <svg
+        aria-hidden="true" 
+        focusable="false"
         width="100%"
         height="100%"
         viewBox="0 0 50 80"

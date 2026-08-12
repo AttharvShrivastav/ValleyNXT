@@ -184,7 +184,6 @@ const TeamsPage = () => {
     return (
         <div ref={pageRef} className="bg-background text-text-main">
             
-            {/* ✅ CHANGE: Replaced the hardcoded hero with the reusable PageHero component */}
             <PageHero 
                 subtitle="MEET OUR TEAM"
                 titleLine1="Visionary Leaders"

@@ -211,9 +211,13 @@ export default function DashboardSection() {
             <div ref={contentBoxRef} className="w-full max-w-[1200px] bg-dashboard-bg rounded-3xl p-6 md:p-8 shadow-lg flex flex-col gap-4 md:gap-8">
                 <div className="w-full flex items-center justify-between flex-shrink-0">
                     <img src={MyLogo} alt="ValleyNXT Ventures Logo" className="w-28 md:w-40" />
-                    <a href="https://vclub.valleynxtventures.com/investor/signup/Mg==" ref={presentationButton} className="w-44 md:w-52 px-4 rounded-full flex-shrink-0 text-sm md:text-[15px] font-primary font-bold flex items-center justify-center gap-3 h-12 bg-button text-button-text transition-colors hover:bg-dashboard-internal-bg hover:text-[#FFC7A8]">
+                    <a 
+                        href="https://vclub.valleynxtventures.com/investor/signup/Mg==" 
+                        ref={presentationButton} 
+                        className="w-44 md:w-52 px-4 rounded-full flex-shrink-0 text-sm md:text-[15px] font-primary font-bold flex items-center justify-center gap-3 h-12 bg-button text-button-text transition-colors hover:bg-dashboard-internal-bg hover:text-[#FFC7A8] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
+                    >
                         <span>Explore VN Club</span>
-                        <svg className="w-2 md:w-auto" height="18" viewBox="0 0 15 26" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M2.22732 0.771729L0.259766 2.75703L10.3514 12.9397L0.259766 23.1224L2.22732 25.1077L14.223 12.9397L2.22732 0.771729Z" /></svg>
+                        <svg aria-hidden="true" focusable="false" className="w-2 md:w-auto" height="18" viewBox="0 0 15 26" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M2.22732 0.771729L0.259766 2.75703L10.3514 12.9397L0.259766 23.1224L2.22732 25.1077L14.223 12.9397L2.22732 0.771729Z" /></svg>
                     </a>
                 </div>
                 <div className="w-full flex-grow flex flex-col md:flex-row gap-8 md:gap-12 text-dashboard-text-dark min-h-0">
@@ -278,8 +282,16 @@ export default function DashboardSection() {
                                     <p className="text-[#F47A36] text-center text-sm font-bold tracking-wider">MIB IMPACT</p>
                                 </div>
                                 <div className="flex gap-2">
-                                    <button onClick={() => handleSlideChange(-1)} className="p-2 rounded-full bg-[#4D1600] hover:bg-[#F47A36] transition-colors" aria-label="Previous Chart"><svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg></button>
-                                    <button onClick={() => handleSlideChange(1)} className="p-2 rounded-full bg-[#4D1600] hover:bg-[#F47A36] transition-colors" aria-label="Next Chart"><svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg></button>
+                                    <button 
+    onClick={() => handleSlideChange(-1)} 
+    className="p-2 rounded-full bg-[#4D1600] hover:bg-[#F47A36] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent" 
+    aria-label="Previous Chart"
+><svg aria-hidden="true" focusable="false" className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg></button>
+                                    <button 
+    onClick={() => handleSlideChange(-1)} 
+    className="p-2 rounded-full bg-[#4D1600] hover:bg-[#F47A36] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent" 
+    aria-label="Previous Chart"
+><svg aria-hidden="true" focusable="false" className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg></button>
                                 </div>
                             </div>
                             <div className="flex-grow w-full h-full flex flex-col md:flex-row items-center gap-4">

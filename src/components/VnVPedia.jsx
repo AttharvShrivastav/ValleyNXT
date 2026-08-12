@@ -5,7 +5,6 @@ import { useGSAP } from '@gsap/react';
 import { SplitText } from 'gsap/all';
 import { Link } from 'react-router-dom';
 
-// --- Data for the slider ---
 const vnvpediaArticles = [
     {
         id: 1,
@@ -26,6 +25,8 @@ const vnvpediaArticles = [
 
 const LinkedInIcon = () => (
     <svg 
+        aria-hidden="true" 
+        focusable="false"
         className="w-6 h-6 fill-background"
         xmlns="http://www.w3.org/2000/svg" 
         viewBox="0 0 24 24"
@@ -148,7 +149,8 @@ const VnvpediaSection = () => {
             <div className="relative w-full max-w-5xl flex flex-col items-center mb-16 md:mb-24">
                 <div className="relative z-20 flex items-center justify-center w-full">
                     <div className="absolute hidden md:top-0 md:-translate-y-4 md:block">
-                         <svg ref={headingRef} width="998" height="67" viewBox="0 0 998 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <svg aria-hidden="true" 
+        focusable="false" ref={headingRef} width="998" height="67" viewBox="0 0 998 67" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path 
     d="M165.667 50C165.667 48.5272 164.473 47.3333 163 47.3333C161.527 47.3333 160.333 48.5272 160.333 50C160.333 51.4728 161.527 52.6667 163 52.6667C164.473 52.6667 165.667 51.4728 165.667 50ZM163 50V49.5L1 49.5V50V50.5L163 50.5V50Z" 
     fill="var(--color-accent)" 
@@ -174,10 +176,11 @@ const VnvpediaSection = () => {
                 {/* Button is now a sibling, positioned absolutely to the new parent's edge */}
                 <button
                     onClick={() => handleNavigation('prev')}
-                    className="nav-button absolute left-0 top-1/2 -translate-y-1/4 z-30 p-4 rounded-full bg-accent text-arrow-text hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
+                    className="nav-button absolute left-0 top-1/2 -translate-y-1/4 z-30 p-4 rounded-full bg-accent text-arrow-text hover:scale-110 transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent hidden md:block"
                     aria-label="Previous article"
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg  aria-hidden="true" 
+        focusable="false" className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </button>
@@ -203,10 +206,11 @@ const VnvpediaSection = () => {
                 {/* Button is now a sibling, positioned absolutely to the new parent's edge */}
                 <button
                     onClick={() => handleNavigation('next')}
-                    className="nav-button absolute right-0 top-1/2 -translate-y-1/4 z-30 p-4 rounded-full bg-accent text-arrow-text hover:scale-110 transition-transform duration-300 focus:outline-none hidden md:block"
+                    className="nav-button absolute right-0 top-1/2 -translate-y-1/4 z-30 p-4 rounded-full bg-accent text-arrow-text hover:scale-110 transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent hidden md:block"
                     aria-label="Next article"
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" 
+        focusable="false" className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </button>
@@ -215,19 +219,21 @@ const VnvpediaSection = () => {
             <div className="w-full flex md:hidden items-center justify-center gap-8 mt-8">
                 <button
                     onClick={() => handleNavigation('prev')}
-                    className="p-3 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none"
+                    className="p-3 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
                     aria-label="Previous article"
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" 
+        focusable="false" className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </button>
                 <button
                     onClick={() => handleNavigation('next')}
-                    className="p-3 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none"
+                    className="p-3 rounded-full bg-accent text-black hover:scale-110 transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
                     aria-label="Next article"
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" 
+        focusable="false" className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </button>
@@ -235,7 +241,13 @@ const VnvpediaSection = () => {
             
             <div className="cta-container mt-16">
                 <div className="flex justify-center">
-                    <Link to="https://www.linkedin.com/company/valleynxtventures/about/" className="vnv-cta-button relative w-[60px] h-[60px] cursor-pointer">
+                    <Link 
+                        to="https://www.linkedin.com/company/valleynxtventures/about/" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Explore VnvPedia on LinkedIn, opens in a new tab"
+                        className="vnv-cta-button relative w-[60px] h-[60px] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent rounded-full"
+                    >
                         <div className="cta-background absolute inset-0 w-[60px] h-[60px] bg-CTA-button-bg rounded-full flex items-center">
                            <div className="cta-text-container absolute left-[30px] overflow-hidden">
                                <div className="cta-text text-lg font-medium font-primary text-CTA-button-text whitespace-nowrap">

@@ -47,6 +47,7 @@ const faqData = [
 // This is a sub-component for individual FAQ items to keep the logic clean.
 const FaqItem = ({ item, index, activeIndex, handleToggle }) => {
     const answerRef = useRef(null);
+    const answerId = `faq-answer-${index}`; // Generate a unique ID
     const iconRef = useRef(null);
     const isOpen = activeIndex === index;
 
@@ -72,6 +73,7 @@ const FaqItem = ({ item, index, activeIndex, handleToggle }) => {
                 onClick={() => handleToggle(index)}
                 className="flex justify-between items-center w-full px-6 py-3 text-left transition-colors hover:bg-accent/5"
                 aria-expanded={isOpen}
+                aria-controls={answerId}
             >
                 <span className="text-lg md:text-lg font-medium font-primary text-text-main">
                     {item.question}
@@ -82,7 +84,7 @@ const FaqItem = ({ item, index, activeIndex, handleToggle }) => {
                     <span className="absolute inset-0 w-0.5 h-full bg-accent left-1/2 -translate-x-1/2"></span>
                 </div>
             </button>
-            <div ref={answerRef} className="overflow-hidden h-0">
+            <div id={answerId} ref={answerRef} className="overflow-hidden h-0">
                 {/* ✅ CHANGE: Adjusted padding to be symmetrical (`px-6`). */}
                 <p className="px-6 pb-6 text-base text-text-main/80 leading-relaxed">
                     {item.answer}

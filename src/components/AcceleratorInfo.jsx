@@ -86,7 +86,12 @@ const AcceleratorInfo = () => {
                         <h2 className="info-header-element text-3xl md:text-4xl text-text-main font-bold font-primary text-pri leading-tight mb-8">
                             {pageContent.header.title}
                         </h2>
-                        <a href={pageContent.header.buttonLink} className="inline-block px-8 py-3 bg-button text-button-text font-semibold rounded-full">
+                        <a 
+                            href={pageContent.header.buttonLink} 
+                            // ACCESSIBILITY FIX: This aria-label prevents the Inconsistent Link Text error
+                            aria-label="Sign up for entrepreneur funding" 
+                            className="inline-block px-8 py-3 bg-button text-button-text font-semibold rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
+                        >
                             {pageContent.header.buttonText}
                         </a>
                     </div>

@@ -161,6 +161,8 @@ const VentureServices = () => {
           <div className="main-heading-container w-full text-center relative flex flex-col items-center justify-center">
               <div className="heading-svg-container absolute left-1/2 -translate-x-1/2 w-full max-w-[1100px] hidden md:block px-4">
   <svg 
+  aria-hidden='true'
+  focusable="false"
     ref={headingSvgRef} 
     width="100%" 
     height="100%" 
@@ -192,9 +194,8 @@ const VentureServices = () => {
             <div className="content-wrapper relative grid grid-cols-10 max-w-[1100px] w-full h-full max-h-[670px] border border-accent rounded-[2rem] bg-container-bg overflow-hidden">
               <div className="col-span-6 relative flex items-center justify-center p-12 border-r border-accent">
                 {ventureData.content.map((item, index) => (
-                  <div key={item.id} ref={(element) => { contentRefs.current[index] = element; }} className="desktop-content-section absolute w-full h-full flex flex-col gap-8 items-center justify-center p-12 text-center">
+                  <div key={item.id} ref={(element) => { contentRefs.current[index] = element; }} tabIndex="0" className="desktop-content-section absolute w-full h-full flex flex-col gap-8 items-center justify-center p-12 text-center">
                     <div className="flex flex-col items-center gap-0">
-                      {/* ✅ FIX: Increased Tailwind font size for standard desktops */}
                       <h1 className="text-5xl font-primary pb-5 font-normal leading-none">{item.title}</h1>
                       <h2 className="text-lg font-secondary font-normal text-accent">{item.subtitle}</h2>
                     </div>
@@ -204,13 +205,13 @@ const VentureServices = () => {
               </div>
               <div className="col-span-4 flex flex-col justify-center items-center gap-6 p-4">
                 <div className="svg-container w-[320px] h-[320px] rounded-2xl flex items-center justify-center" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, var(--color-accent) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
-                  <svg width="300" height="300" viewBox="0 0 100 100">
+                  <svg aria-hidden='true' focusable="false" width="300" height="300" viewBox="0 0 100 100">
                     {ventureData.svg.paths.mentorship.map((path, i) => ( <path key={`path-${i}`} className="morph-path fill-none stroke-accent" d={path} strokeWidth="0.5" /> ))}
                     {ventureData.svg.dots.mentorship.map((dot, i) => ( <circle key={`dot-${i}`} className="morph-dot fill-accent" r="2.5" cx={dot.cx} cy={dot.cy} /> ))}
                   </svg>
                 </div>
               </div>
-              <svg className="glow-svg absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible">
+              <svg aria-hidden='true' focusable="false" className="glow-svg absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible">
                 <path className="motion-path" fill="none" stroke="none" />
                 <line className="trace-line" x1="-15" y1="0" x2="15" y2="0" stroke="var(--color-accent)" strokeWidth="1.2" />
               </svg>
@@ -226,7 +227,7 @@ const VentureServices = () => {
                 </div>
                 <p className="text-sm text-text-main font-secondary leading-tight">{item.description}</p>
                 <div className="w-full max-w-[300px] aspect-square rounded-2xl flex items-center justify-center mt-4" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.4) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
-                  <svg width="280" height="280" viewBox="0 0 100 100">
+                  <svg aria-hidden='true' focusable="false" width="280" height="280" viewBox="0 0 100 100">
                     {ventureData.svg.paths[item.id].map((path, i) => ( <path key={`path-${i}`} className="fill-none stroke-accent" d={path} strokeWidth="0.5" /> ))}
                     {ventureData.svg.dots[item.id].map((dot, i) => ( <circle key={`dot-${i}`} className="fill-accent" r="2.5" cx={dot.cx} cy={dot.cy} /> ))}
                   </svg>

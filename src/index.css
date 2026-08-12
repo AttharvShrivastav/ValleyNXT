@@ -3,21 +3,15 @@
 @import "tailwindcss";
 
 
-/* 1. Define what the 'dark:' variant does, per the new docs */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-/* 2. Define your design tokens for the default (light) theme */
 @theme {
-
-
-    /* Accelerator INfo Section */
     --color-card-bg-dark: #202039;
     --color-card-bg-light: #EFF4FF;
 
     --color-darkcard-text: #FFFFFF;
     --color-lightcard-text: #202039;
 
-/* Growth Section Accelerator: */
     --color-bg-growth: #EAF4FF;
     --color-bg-card: #202039;
     --color-text-primary: #202039;
@@ -68,25 +62,22 @@
 }
 
 /* 3. Define the overrides for when dark mode is active */
+/* 3. Define the overrides for when dark mode is active */
 [data-theme="dark"] {
+  --color-card-bg-dark: #330000;
+  --color-card-bg-light: #FFC7A8;
 
+  --color-darkcard-text: #FFC7A8;
+  --color-lightcard-text: #330000;
 
-    /*  */
-    --color-card-bg-dark: #330000;
-    --color-card-bg-light: #FFC7A8;
+  /* Growth Section Accelerator */
+  --color-bg-growth: #FFC7A8;
+  --color-bg-card: #330000;
+  --color-text-primary: #330000;
+  --color-text-secondary: #F47A36;
+  --color-text-card: #F47A36;
 
-    --color-darkcard-text: #FFC7A8;
-    --color-lightcard-text: #330000;
-
-    /* Growth Section Accelerator */
-    --color-bg-growth: #FFC7A8;
-    --color-bg-card: #330000;
-    --color-text-primary: #330000;
-    --color-text-secondary: #F47A36;
-    --color-text-card: #F47A36;
-
-
-    --color-map: #F47A36;
+  --color-map: #F47A36;
   --color-background: #000000;
   --color-text-main: #FFC7A8;
   --color-text-dark: #1C0800;
@@ -98,31 +89,27 @@
   --color-accent-rgb: 244, 122, 54; 
 
   --color-stages-bg : #000000;
-
-
-  --color-container-bg: #00000020;
-
+  --color-container-bg: #2c1000;
 
   --color-dashboard-bg: #FFC7A8;
   --color-dashboard-text-dark: #512520;
   --color-dashboard-internal-bg: #1C0800;
   --color-dashboard-text-white: #FFC7A8;
 
-  --color-profilecard-bg: #592000;
+  /* ACCESSIBILITY FIX: Darkened from #592000 to #330A00 to pass 4.5:1 against the #F47A36 accent text */
+  --color-profilecard-bg: #2d0b00;
 
   --color-CTA-button-bg: #FA9D79;
   --color-CTA-button-text: #2b1107;
 
+  /* ACCESSIBILITY FIX: Darkened BG slightly, brightened text variables to pass 4.5:1 */
+  --color-footer-bg: #3A1000; 
+  --color-footer-text: #E58A55; 
+  --color-footer-text-accent: #F47A36; 
 
-  --color-footer-bg: #4D1600;
-  --color-footer-text: #ba5b26;
-  --color-footer-text-accent: #8B4017;
-
-  --color-brigde: #ba5b26;
-
+  --color-brigde: #E58A55;
   --color-icon: #fff;
-
-  -color-arrow-text : #000;
+  --color-arrow-text : #000;
 }
 
 

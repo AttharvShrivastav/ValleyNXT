@@ -5,7 +5,8 @@ import { SplitText } from 'gsap/all';
 
 gsap.registerPlugin(SplitText, useGSAP);
 
-const PageHero = ({ subtitle, titleLine1, titleLine2, titleLine2Serif, buttonText, buttonLink = "#" }) => {
+// ACCESSIBILITY FIX 1: Added ariaLabel to the accepted props
+const PageHero = ({ subtitle, titleLine1, titleLine2, titleLine2Serif, buttonText, buttonLink = "#", ariaLabel }) => {
     const heroRef = useRef(null);
     
     useGSAP(() => {
@@ -41,7 +42,13 @@ const PageHero = ({ subtitle, titleLine1, titleLine2, titleLine2Serif, buttonTex
                     </div>
 
                     {buttonText && (
-                        <a href={buttonLink} className="px-6 py-3 md:px-8 md:py-3 bg-button text-background font-semibold rounded-full hover:bg-opacity-80 transition-colors">
+                        <a 
+                            href={buttonLink} 
+                            // ACCESSIBILITY FIX 2: Apply the aria-label to the anchor tag
+                            aria-label={ariaLabel}
+                            // ACCESSIBILITY FIX 3: Added focus rings for keyboard navigation
+                            className="px-6 py-3 md:px-8 md:py-3 bg-button text-background font-semibold rounded-full hover:bg-opacity-80 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
+                        >
                             {buttonText}
                         </a>
                     )}

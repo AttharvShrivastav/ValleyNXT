@@ -7811,12 +7811,13 @@
 //     </section>
 //   );
 // }
+
 import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTheme } from "../context/ThemeProvider";
-// Ensure these paths match your actual folder structure
+
 import mapLight from "../assets/GlobalMapLight.svg";
 import mapDark from "../assets/GlobalMapDark.svg";
 
@@ -7843,45 +7844,31 @@ const MapMarker = ({ x, y, name, type, isDark }) => {
 
   return (
     <g
-      // pointer-events-auto is crucial here because the parent SVG is pointer-events-none
-      className="map-marker group cursor-pointer pointer-events-auto"
+      tabIndex="0" // ACCESSIBILITY FIX: Make marker focusable
+      className="map-marker group cursor-pointer pointer-events-auto focus:outline-none"
       transform={`translate(${x}, ${y})`}
     >
       {/* Ripple Effect */}
       <circle
-        cx="0"
-        cy="0"
-        r="0"
-        fill={mainColor}
-        className="ripple-effect opacity-0 group-hover:opacity-100 pointer-events-none"
+        cx="0" cy="0" r="0" fill={mainColor}
+        className="ripple-effect opacity-0 group-hover:opacity-100 group-focus:opacity-100 pointer-events-none"
       />
       {/* Hover Ring */}
       <circle
-        r="5"
-        fill={mainColor}
-        className="opacity-0 group-hover:opacity-20 transition-all duration-300 group-hover:r-12 origin-center"
+        r="5" fill={mainColor}
+        className="opacity-0 group-hover:opacity-20 group-focus:opacity-20 transition-all duration-300 group-hover:r-12 group-focus:r-12 origin-center"
       />
       {/* Core Dot */}
       <circle
-        r="5"
-        fill={mainColor}
-        stroke={isDark ? "#1A1A2E" : "white"}
-        strokeWidth="1.5"
-        className="shadow-sm"
+        r="5" fill={mainColor} stroke={isDark ? "#1A1A2E" : "white"}
+        strokeWidth="1.5" className="shadow-sm"
       />
       {/* Label */}
       <text
-        x="-15"
-        y="5"
-        textAnchor="end"
-        fontSize="14"
-        fontWeight="800"
-        fill={textColor}
-        stroke={haloColor}
-        strokeWidth="4"
-        strokeLinejoin="round"
+        x="-15" y="5" textAnchor="end" fontSize="14" fontWeight="800"
+        fill={textColor} stroke={haloColor} strokeWidth="4" strokeLinejoin="round"
         style={{ paintOrder: "stroke", opacity: 1 }}
-        className="font-primary transition-transform duration-300 group-hover:-translate-x-2"
+        className="font-primary transition-transform duration-300 group-hover:-translate-x-2 group-focus:-translate-x-2"
       >
         {name}
       </text>

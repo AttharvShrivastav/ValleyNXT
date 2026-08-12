@@ -29,6 +29,8 @@ const FolderBg = ({ isHovered, isDark }) => {
 
   return (
     <svg
+      aria-hidden="true" 
+      focusable="false"
       className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
       viewBox="0 0 429 425"
       preserveAspectRatio="none" 
@@ -122,9 +124,12 @@ export default function InvestmentPhilosophy() {
           return (
             <div 
               key={item.id} 
-              className="philosophy-card relative flex flex-col w-full md:w-[26rem] lg:w-[28rem] shrink h-auto md:min-h-[540px] group cursor-default"
+              tabIndex="0" // ACCESSIBILITY FIX: Allows keyboard focus
+              className="philosophy-card relative flex flex-col w-full md:w-[26rem] lg:w-[28rem] shrink h-auto md:min-h-[540px] group cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-3xl"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
+              onFocus={() => setHoveredIndex(index)} // ACCESSIBILITY FIX: Trigger state on Tab focus
+              onBlur={() => setHoveredIndex(null)}   // ACCESSIBILITY FIX: Reset state when focus leaves
             >
               <FolderBg isHovered={isHovered} isDark={isDark} />
 

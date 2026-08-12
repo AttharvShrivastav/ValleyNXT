@@ -127,7 +127,7 @@ const TeamSection = () => {
         <div ref={container} className="relative font-sans bg-background text-text-main flex justify-center items-center min-h-screen p-5 sm:p-10 box-border overflow-hidden">
             <div className="w-full max-w-7xl text-center relative z-10">
                 <div className="relative mb-16 md:mb-32 flex justify-center items-center">
-                    <svg ref={headingSvgRef} className="absolute w-[94%] hidden lg:block top-0 translate-y-5 h-auto z-0" viewBox="0 0 833 102" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-hidden="true" focusable="false" ref={headingSvgRef} className="absolute w-[94%] hidden lg:block top-0 translate-y-5 h-auto z-0" viewBox="0 0 833 102" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <line ref={topRightLineRef} x1="0" y1="3" x2="263" y2="3" stroke="var(--color-accent)"/>
                         <circle ref={topRightCircleRef} cx="263" cy="3" r="2.66" fill="var(--color-accent)"/>
                         <line ref={topLeftLineRef} x1="833" y1="45" x2="634" y2="45" stroke="var(--color-accent)"/>
@@ -164,7 +164,7 @@ const TeamSection = () => {
                            </div>
                         </div>
                         <div className="cta-circle absolute top-0 left-0 w-[60px] h-[60px] bg-accent rounded-full flex items-center justify-center z-10">
-                            <svg className="w-6 h-6 stroke-background" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg aria-hidden="true" focusable="false" className="w-6 h-6 stroke-background" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9 5L16 12L9 19" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </div>
