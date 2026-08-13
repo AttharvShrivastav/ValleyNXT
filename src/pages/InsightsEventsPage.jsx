@@ -39,14 +39,22 @@ const InsightsEventsPage = () => {
                                 rel="noopener noreferrer"
                                 className="bg-container-bg border-2 border-accent/20 rounded-[2rem] p-6 flex flex-col hover:shadow-lg transition-shadow duration-300 group cursor-pointer block"
                             >
-                                <div className="w-full h-48 rounded-2xl mb-6 bg-background/30"
-                                     style={{
-                                         backgroundImage: 'repeating-linear-gradient(45deg, var(--color-background) 25%, transparent 25%, transparent 75%, var(--color-background) 75%, var(--color-background)), repeating-linear-gradient(45deg, var(--color-background) 25%, var(--color-container-bg) 25%, var(--color-container-bg) 75%, var(--color-background) 75%, var(--color-background))',
-                                         backgroundPosition: '0 0, 10px 10px',
-                                         backgroundSize: '20px 20px',
-                                         opacity: 0.6
-                                     }}>
-                                </div>
+                                <div className="w-full h-48 md:h-52 rounded-2xl mb-6 overflow-hidden bg-background/30">
+    <img
+        src={item.image}
+        alt={item.title}
+        loading="lazy"
+        className="
+            w-full
+            h-full
+            object-cover
+            transition-transform
+            duration-500
+            ease-out
+            group-hover:scale-[1.03]
+        "
+    />
+</div>
 
                                 <div className="flex justify-between items-center text-[10px] md:text-xs font-primary font-bold uppercase text-text-main mb-3">
                                     <span>{item.entity}</span>
