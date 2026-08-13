@@ -12,86 +12,119 @@ const Footer = () => {
     const footerRef = useRef(null);
     const bridgeRef = useRef(null);
     const textElementsRef = useRef([]);
-    textElementsRef.current = [];
-
+    
     const addToRefs = (el) => {
-        if (el && !textElementsRef.current.includes(el)) {
-            textElementsRef.current.push(el);
-        }
-    };
+    if (el && !textElementsRef.current.includes(el)) {
+        textElementsRef.current.push(el);
+    }
+};
 
     useGSAP(() => {
-        const mm = gsap.matchMedia();
-        const textElements = textElementsRef.current;
+    const mm = gsap.matchMedia();
 
-        if (textElements.length === 0) return;
+    const textElements = textElementsRef.current.filter(Boolean);
 
-        const split = new SplitText(textElements, { type: "lines", linesClass: "split-line" });
+    if (textElements.length === 0) return;
 
-        split.lines.forEach((line) => {
-            const innerContent = line.innerHTML;
-            line.innerHTML = '';
-            line.style.overflow = 'hidden';
-            const wrapper = document.createElement('div');
-            wrapper.innerHTML = innerContent;
-            line.appendChild(wrapper);
-        });
-        
-        const linesContent = split.lines.map(line => line.querySelector('div')).filter(Boolean);
+    const split = new SplitText(textElements, {
+        type: "lines",
+        linesClass: "split-line",
+    });
 
-        mm.add("(min-width: 768px)", () => {
-            gsap.set(bridgeRef.current, { yPercent: 100, autoAlpha: 0 });
-            gsap.set(linesContent, { yPercent: 100, opacity: 0 });
-             
-            gsap.set([bridgeRef.current, ...linesContent], { willChange: 'transform, opacity' });
+    split.lines.forEach((line) => {
+        const innerContent = line.innerHTML;
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    pin: footerRef.current,
-                    start: "top 40%",
-                    end: "+=100%", 
-                    scrub: 0.5,
-                    invalidateOnRefresh: true,
-                }
-            });
+        line.innerHTML = "";
+        line.style.overflow = "hidden";
 
-            tl.to(bridgeRef.current, { 
-                yPercent: 0, 
-                autoAlpha: 1,
-                ease: 'none'
-            }, 0);
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = innerContent;
 
-            tl.to(linesContent, { 
-                yPercent: 0, 
-                opacity: 1,
-                ease: 'none'
-            }, 0.1);
+        line.appendChild(wrapper);
+    });
+
+    const linesContent = split.lines
+        .map((line) => line.querySelector("div"))
+        .filter(Boolean);
+
+    mm.add("(min-width: 768px)", () => {
+        gsap.set(bridgeRef.current, {
+            yPercent: 100,
+            autoAlpha: 0,
         });
 
-        mm.add("(max-width: 767px)", () => {
-            gsap.set(linesContent, { yPercent: 100 });
-            gsap.set(linesContent, { willChange: 'transform, opacity' });
+        gsap.set(linesContent, {
+            yPercent: 100,
+            opacity: 0,
+        });
 
-            gsap.to(linesContent, {
+        gsap.set(
+            [bridgeRef.current, ...linesContent],
+            {
+                willChange: "transform, opacity",
+            }
+        );
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                pin: footerRef.current,
+                start: "top 40%",
+                end: "+=100%",
+                scrub: 0.5,
+                invalidateOnRefresh: true,
+            },
+        });
+
+        tl.to(
+            bridgeRef.current,
+            {
                 yPercent: 0,
-                stagger: 0.05,
-                duration: 1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: footerRef.current,
-                    start: "top 90%",
-                    toggleActions: "play none none none",
-                },
-            });
+                autoAlpha: 1,
+                ease: "none",
+            },
+            0
+        );
+
+        tl.to(
+            linesContent,
+            {
+                yPercent: 0,
+                opacity: 1,
+                ease: "none",
+            },
+            0.1
+        );
+    });
+
+    mm.add("(max-width: 767px)", () => {
+        gsap.set(linesContent, {
+            yPercent: 100,
         });
 
-        return () => {
-            if (split) split.revert();
-            mm.revert();
-        };
+        gsap.set(linesContent, {
+            willChange: "transform, opacity",
+        });
 
-    }, { scope: sectionRef });
+        gsap.to(linesContent, {
+            yPercent: 0,
+            stagger: 0.05,
+            duration: 1,
+            ease: "power3.out",
+
+            scrollTrigger: {
+                trigger: footerRef.current,
+                start: "top 90%",
+                toggleActions: "play none none none",
+            },
+        });
+    });
+
+    return () => {
+        split.revert();
+        mm.revert();
+    };
+}, { scope: sectionRef });
 
     return (
         <section ref={sectionRef} className="relative w-full mt-24 md:mt-48 font-primary">
@@ -115,13 +148,86 @@ const Footer = () => {
                             </h3>
                         </div>
                         <div className="w-full flex flex-col text-footer-text lg:flex-row lg:items-end lg:space-x-16 mt-12 md:mt-0">
-                            <nav className="flex flex-col space-y-2 text-lg mb-8 md:mb-0 z-30">
-                                <Link ref={addToRefs} to="/" className="hover:text-accent transition-colors w-max">Home</Link>
-                                <Link ref={addToRefs} to="/portfolio" className="hover:text-accent transition-colors w-max">Portfolio</Link>
-                                <Link ref={addToRefs} to="/team" className="hover:text-accent transition-colors w-max">Team</Link>
-                                <Link ref={addToRefs} to="/accelerator" className="hover:text-accent transition-colors w-max">Acceleration</Link>
-                                <a ref={addToRefs} href="https://vclub.valleynxtventures.com/entrepreneur/signup/NA==" aria-label="Sign up for entrepreneur funding" className="hover:text-accent transition-colors w-max">VN Club</a>
-                            </nav>
+                            <nav
+    className="
+        grid
+        grid-cols-1
+        sm:grid-cols-2
+        gap-x-10
+        gap-y-2
+        text-lg
+        mb-8
+        lg:mb-0
+        z-30
+        shrink-0
+    "
+>
+    <Link
+        to="/"
+        className="hover:text-accent transition-colors w-max"
+    >
+        <span ref={addToRefs} className="block">
+            Home
+        </span>
+    </Link>
+
+    <Link
+        to="/team"
+        className="hover:text-accent transition-colors w-max"
+    >
+        <span ref={addToRefs} className="block">
+            Team
+        </span>
+    </Link>
+
+    <Link
+        to="/portfolio"
+        className="hover:text-accent transition-colors w-max"
+    >
+        <span ref={addToRefs} className="block">
+            Portfolio
+        </span>
+    </Link>
+
+    <Link
+        to="/accelerator"
+        className="hover:text-accent transition-colors w-max"
+    >
+        <span ref={addToRefs} className="block">
+            Accelerator
+        </span>
+    </Link>
+
+    <Link
+        to="/wiki"
+        className="hover:text-accent transition-colors w-max"
+    >
+        <span ref={addToRefs} className="block">
+            ValleyNXT Wiki
+        </span>
+    </Link>
+
+    <Link
+        to="/insights-and-events"
+        className="hover:text-accent transition-colors w-max"
+    >
+        <span ref={addToRefs} className="block">
+            Insights & Events
+        </span>
+    </Link>
+
+    <a
+        href="https://vclub.valleynxtventures.com/entrepreneur/signup/NA=="
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Sign up for entrepreneur funding, opens in a new tab"
+        className="hover:text-accent transition-colors w-max"
+    >
+        <span ref={addToRefs} className="block">
+            VN Club
+        </span>
+    </a>
+</nav>
                             <div className="flex flex-col space-y-2 text-base text-footer-text z-30">
                                 <p ref={addToRefs}><span className='text-footer-text-accent'>AIF Name:</span> Bharat Breakthrough Fund I</p>
                                 <p ref={addToRefs}><span className='text-footer-text-accent'>AIF Category:</span> Category 1</p>

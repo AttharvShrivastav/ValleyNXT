@@ -24,6 +24,7 @@ import Footer from '../components/Footer';
 import AnkitSaxenaImage from '../assets/AnkitSaxena.png'; 
 import NehaSrivastavaImage from '../assets/1.png';
 import ShivangiKashyapImage from '../assets/ShivangiKashyap.png';
+import RajnishKumarImage from '../assets/Team/1.png';
 
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
@@ -93,30 +94,40 @@ const investmentTeam = [
 
 
 const advisory = [
-    {
-        id: 10,
-        name: "Dr. Apurva Chamaria",
-        title: "Global Head of VC & Startup Partnerships, Google",
-        bio: "Top angel investor with 100+ startup investments and 10+ exits. Ecosystem builder shaping India's tech landscape.",
-        image: MrApurvaImage,
-        linkedin: "https://www.linkedin.com/in/apurvachamaria/"
-    },
-    {
-        id: 11,
-        name: "Dr. Inderjit Singh",
-        title: "Ex-Member of Parliament, Singapore",
-        bio: "Co-founded a $2B unicorn; global startup leader and mentor. Supports deep tech and innovation ventures.",
-        image: DrInderjitImage,
-        linkedin: "#"
-    },
-    {
-        id: 12,
-        name: "Dr. Nazia M. Habib",
-        title: "Professor, University of Cambridge",
-        bio: "Expert in sustainable development and blended finance. Mentored global founders and mobilized $10M+ capital.",
-        image: DrNaziaImage,
-        linkedin: "https://www.linkedin.com/in/naziamhabib/"
-    },
+  {
+    id: 10,
+    name: "Dr. Apurva Chamaria",
+    title: "Global Head of VC & Startup Partnerships, Google",
+    bio: "Top angel investor with 100+ startup investments and 10+ exits. Ecosystem builder shaping India's tech landscape.",
+    image: MrApurvaImage,
+    linkedin: "https://www.linkedin.com/in/apurvachamaria/"
+  },
+  {
+    id: 11,
+    name: "Dr. Inderjit Singh",
+    title: "Ex-Member of Parliament, Singapore",
+    bio: "Co-founded a $2B unicorn; global startup leader and mentor. Supports deep tech and innovation ventures.",
+    image: DrInderjitImage,
+    linkedin: "#"
+  },
+  {
+    id: 12,
+    name: "Dr. Nazia M. Habib",
+    title: "Professor, University of Cambridge",
+    bio: "Expert in sustainable development and blended finance. Mentored global founders and mobilized $10M+ capital.",
+    image: DrNaziaImage,
+    linkedin: "https://www.linkedin.com/in/naziamhabib/"
+  },
+
+  // Add final details once received from client
+  {
+    id: 17,
+    name: "Rajnish Kumar",
+    title: "",
+    bio: "",
+    image: RajnishKumarImage,
+    linkedin: ""
+  }
 ];
 
 
@@ -143,8 +154,18 @@ const accelerationTeam = [
     title: "Assistant Manager Acceleration",
     bio: "Ecosystem specialist bringing a strong data science and analytical background to portfolio health. Having served as Senior Lead Programs and a Young Professional Fellow at FITT IIT Delhi, she specializes in executing strategic milestones and managing programmatic data visualization workflows.",
     image: ShivangiKashyapImage,
-    linkedin: "https://www.linkedin.com/in/shivangi-kashyap-937b271a0" 
+    linkedin: "https://www.linkedin.com/in/shivangi-kashyap-937b271a0"
   }
+];
+
+
+/* --------------------------------------------------------- */
+/* COMBINED TEAM — CLIENT REQUESTED NO DIFFERENTIATION        */
+/* --------------------------------------------------------- */
+
+const teamMembers = [
+  ...investmentTeam,
+  ...accelerationTeam
 ];
 
 const TeamCategorySection = ({ title, members }) => (
@@ -192,10 +213,20 @@ const TeamsPage = () => {
                 // buttonText="Contact us for available positions"
             />
 
-            <TeamCategorySection title="THE LEADERS" members={founders} />
-            <TeamCategorySection title="THE ADVISORS" members={advisory} />
-            <TeamCategorySection title="THE INVESTMENT TEAM" members={investmentTeam} />
-            <TeamCategorySection title="THE ACCELERATION TEAM" members={accelerationTeam} />
+            <TeamCategorySection
+  title="THE LEADERS"
+  members={founders}
+/>
+
+<TeamCategorySection
+  title="THE ADVISORS"
+  members={advisory}
+/>
+
+<TeamCategorySection
+  title="THE INVESTMENT TEAM"
+  members={teamMembers}
+/>
             <Footer />
         </div>
     );
