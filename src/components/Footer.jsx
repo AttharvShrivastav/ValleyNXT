@@ -240,10 +240,35 @@ const Footer = () => {
 
                 {/* NEW Legal & Compliance Bar */}
                 <div className="relative z-30 mx-8 md:mx-12 lg:mx-16 py-6 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-footer-text">
-                    <div className="flex space-x-6 mb-4 md:mb-0">
-                        <Link to="/accessibility-grievance" className="hover:text-accent transition-colors">Accessibility Grievance</Link>
-                        <Link to="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</Link>
-                    </div>
+                    <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4 md:mb-0">
+    <Link
+        to="/accessibility-grievance"
+        className="hover:text-accent transition-colors"
+    >
+        Accessibility Grievance
+    </Link>
+
+    <Link
+        to="/grievance-redressal-policy"
+        className="hover:text-accent transition-colors"
+    >
+        Grievance Redressal Policy
+    </Link>
+
+    <Link
+        to="/stewardship-code"
+        className="hover:text-accent transition-colors"
+    >
+        Stewardship Code
+    </Link>
+{/* 
+    <Link
+        to="/privacy-policy"
+        className="hover:text-accent transition-colors"
+    >
+        Privacy Policy
+    </Link> */}
+</div>
                     
                 </div>
             </footer>

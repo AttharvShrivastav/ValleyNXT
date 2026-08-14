@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'; // Make sure this is imported at the top!
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
@@ -17,7 +18,8 @@ import WikiPage from './pages/WikiPage';
 import { AccessibilityGrievancePage } from './pages/AccessibilityGrievancePage';
 import SingleBlogPage from './pages/SingleBlogPage';
 import InsightsEventsPage from './pages/InsightsEventsPage';
-import { Link } from 'react-router-dom'; // Make sure this is imported at the top!
+import GrievanceRedressalPolicyPage from "./pages/GrievanceRedressalPolicyPage";
+import StewardshipCodePage from "./pages/StewardshipCodePage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -88,6 +90,15 @@ const Layout = ({ startAnimations, ...props }) => {
           <Route path="/wiki/:slug" element={<SingleBlogPage />} /> 
           <Route path="/insights-and-events" element={<InsightsEventsPage />} />
           <Route path="/accessibility-grievance" element={<AccessibilityGrievancePage />} />
+          <Route
+              path="/grievance-redressal-policy"
+              element={<GrievanceRedressalPolicyPage />}
+          />
+
+          <Route
+              path="/stewardship-code"
+              element={<StewardshipCodePage />}
+          />
         </Routes>
       </main>
 
