@@ -89,7 +89,7 @@ const navItems = [
           to: "/accelerator",
      },
      {
-          label: "VALLEYNXT WIKI",
+          label: "VALLEYNXT WEEKLY",
           to: "/wiki",
      },
      {

@@ -1,7 +1,7 @@
 export const newsData = [
     {
         id: 1,
-        entity: "ValleyNXT Ventures × iHub Anubhuti, IIIT Delhi",
+        entity: "ValleyNXT Ventures x iHub Anubhuti, IIIT Delhi",
         date: "AUGUST 2026",
         title: "ValleyNXT Ventures partners with iHub Anubhuti at IIIT Delhi",
         excerpt:
@@ -12,7 +12,7 @@ export const newsData = [
 
     {
         id: 2,
-        entity: "ValleyNXT Ventures × VIT",
+        entity: "ValleyNXT Ventures x VIT",
         date: "AUGUST 2026",
         title: "ValleyNXT Ventures partners with Vellore Institute of Technology",
         excerpt:
@@ -88,14 +88,3 @@ export const newsData = [
     }
 ];
 
-// Placeholder data for the Events grid
-export const eventsData = [
-    { id: 1, category: "DEMO DAYS", height: "h-64" },
-    { id: 2, category: "WORKSHOPS", height: "h-80" },
-    { id: 3, category: "INVESTOR SESSIONS", height: "h-56" },
-    { id: 4, category: "SINGAPORE", height: "h-72" },
-    { id: 5, category: "DEMO DAYS", height: "h-48" },
-    { id: 6, category: "WORKSHOPS", height: "h-64" },
-    { id: 7, category: "INVESTOR SESSIONS", height: "h-96" },
-    { id: 8, category: "SINGAPORE", height: "h-64" },
-];

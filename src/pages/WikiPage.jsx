@@ -18,7 +18,7 @@ const WikiPage = () => {
         <main className="min-h-screen flex flex-col bg-background text-text-main overflow-x-hidden pt-32">
             <div className="relative">
                 <PageHero
-                    subtitle="VNV PEDIA"
+                    subtitle="ValleyNXT Weekly"
                     titleLine1="INSIGHTS THAT"
                     titleLine2="shape innovation"
                     titleLine2Serif={true}
