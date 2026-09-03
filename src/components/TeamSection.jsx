@@ -4,10 +4,10 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import { SplitText } from 'gsap/all'; 
-import AnandSaklechaImage from '../assets/AnandSaklecha.png';
-import DrMadhuImage from '../assets/DrMadhu.png';
-import DrNikhilImage from '../assets/DrNikhil.png';
-import MrSureshImage from '../assets/MrSureshImage.png';
+import AnandSaklechaImage from '../assets/Team/8.png';
+import DrMadhuImage from '../assets/Team/9.png';
+import DrNikhilImage from '../assets/Team/7.png';
+import MrSureshImage from '../assets/Team/6.png';
 import ProfileCard from './ProfileCard';
 import { Link } from 'react-router-dom';
 

@@ -52,19 +52,6 @@ const GrievanceRedressalPolicyPage = () => {
                                 ValleyNXT Ventures Trust
                             </p>
 
-                            <p>
-                                <strong className="font-bold text-text-main">
-                                    Prepared:
-                                </strong>{" "}
-                                [●]
-                            </p>
-
-                            <p>
-                                <strong className="font-bold text-text-main">
-                                    Reviewed:
-                                </strong>{" "}
-                                -
-                            </p>
                         </div>
                     </div>
 
@@ -253,14 +240,14 @@ const GrievanceRedressalPolicyPage = () => {
                                             </strong>{" "}
                                             Investors can contact the Compliance Officer
                                             named in the Private Placement Memorandum of
-                                            the respective fund[●] (IRO)
+                                            the respective fund
                                         </p>
 
                                         <p>
                                             <strong className="text-text-main font-bold">
                                                 Email:
                                             </strong>{" "}
-                                            [●]
+                                            info@valleynxtventures.com
                                         </p>
 
                                         <p>
@@ -275,7 +262,7 @@ const GrievanceRedressalPolicyPage = () => {
                                         <p>
                                             Plot Number - 195 Scheme No.- 78 Part-II, Near
                                             Daisy Dales School, Indore, Madhya Pradesh,
-                                            India, 452001[●] (Address)
+                                            India, 452001
                                         </p>
                                     </div>
                                 </div>

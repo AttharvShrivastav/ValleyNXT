@@ -426,7 +426,6 @@ const NavMenu = () => {
                                    alt="ValleyNXT Ventures Logo"
                                    className="
                                         object-contain
-
                                         w-[clamp(72px,9vw,140px)]
                                         h-[clamp(58px,10vh,110px)]
                                    "

@@ -56,15 +56,6 @@ const StewardshipCodePage = () => {
                                 ValleyNXT Ventures Trust
                             </p>
 
-                            <p>
-                                <strong className="font-bold text-text-main">Prepared:</strong>{" "}
-                                [●]
-                            </p>
-
-                            <p>
-                                <strong className="font-bold text-text-main">Reviewed:</strong>{" "}
-                                -
-                            </p>
                         </div>
                     </div>
 
@@ -78,7 +69,7 @@ const StewardshipCodePage = () => {
                                 circular No. CIR/CFD/CMDI/168/2019 dated December 24,
                                 2019 (“SEBI Circular”) has mandated all Alternative
                                 Investment Funds (“AIFs”) to follow the Stewardship Code
-                                in relation to the AIF’s investments in listed equities of
+                                in relation to the AIF's investments in listed equities of
                                 companies. Further, SEBI vide its Master Circular No.
                                 SEBI/HO/AFD-1/AFD-1-PoD/P/CIR/2024/39 dated May 07,
                                 2024 (“Master Circular”) has provided guidelines on the
@@ -869,7 +860,7 @@ const StewardshipCodePage = () => {
                         <SectionHeading>8. Effective Date:</SectionHeading>
 
                         <Paragraph>
-                            This Code shall be effective from [●].
+                            This Code shall be effective from April 1, 2026.
                         </Paragraph>
                     </section>
 
